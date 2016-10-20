@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8D80781F-ED86-49F6-BFEA-4F29DD84878B}</ProjectGuid>
+    <ProjectGuid>{3197F30B-2FD5-4369-9245-993F7D8136FC}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Propeller.Mvc.ViewRenderer</RootNamespace>
-    <AssemblyName>Propeller.Mvc.ViewRenderer</AssemblyName>
+    <RootNamespace>Propeller.Mvc.Core</RootNamespace>
+    <AssemblyName>Propeller.Mvc.Core</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -162,8 +162,16 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MvcViewModel.cs" />
+    <Compile Include="Mapping\ConfigurationItem.cs" />
+    <Compile Include="Mapping\ConfigurationMap.cs" />
+    <Compile Include="Mapping\ConfigurationMethods.cs" />
+    <Compile Include="Processing\MappingAssemblyExcludeService.cs" />
+    <Compile Include="PropellerEntity.cs" />
+    <Compile Include="Utility\GetPropertyNameFromExpressionService.cs" />
+    <Compile Include="Processing\MappingProcessor.cs" />
+    <Compile Include="Processing\MappingTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\PropertyIdResolver.cs" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
@@ -178,9 +186,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>5681</DevelopmentServerPort>
+          <DevelopmentServerPort>5655</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5681/</IISUrl>
+          <IISUrl>http://localhost:5655/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -197,10 +205,6 @@
     <Error Condition="!Exists('..\..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

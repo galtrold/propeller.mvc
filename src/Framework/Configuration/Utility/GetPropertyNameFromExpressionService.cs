@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace Propeller.Mvc.Configuration.Utility
+namespace Propeller.Mvc.Core.Utility
 {
     /// <summary>
     /// Utility class used to grab MemberExpressions

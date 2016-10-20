@@ -1,16 +1,15 @@
 ﻿using Sitecore.Data;
 
-namespace Propeller.Mvc.Configuration.Mapping
+namespace Propeller.Mvc.Core.Mapping
 {
     /// <summary>
     /// Configuration item is used to pass information on in the configuration chain.
     /// </summary>
     public class ConfigurationItem
     {
-        public ConfigurationItem(string fullPropertyName, ID fieldId)
+        public ConfigurationItem(string fullPropertyName)
         {
             PropertyName = fullPropertyName;
-            FieldId = fieldId;
         }
 
         public string PropertyName { get; set; }

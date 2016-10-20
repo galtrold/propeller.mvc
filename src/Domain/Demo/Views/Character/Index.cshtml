@@ -1,0 +1,14 @@
+﻿@using Propeller.Mvc.View
+@using Sitecore.Data.Fields
+@model Demo.ViewModels.CharacterViewModel
+
+<h2> @Model.Render(p => p.Affiliation) </h2>
+
+
+@*@Model.Template(p => Test(p.Affiliation))
+
+
+@helper Test(string img)
+{
+    <h3>@img</h3>
+}*@

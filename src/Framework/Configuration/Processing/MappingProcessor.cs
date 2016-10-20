@@ -4,10 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using Propeller.Mvc.Core.Mapping;
 using Sitecore.Diagnostics;
 using Sitecore.Pipelines;
 
-namespace Propeller.Mvc.Configuration.Processing
+namespace Propeller.Mvc.Core.Processing
 {
     /// <summary>
     /// This processor registrerers all the configuration classes and map model properties with Sitecore Field Ids
@@ -78,7 +79,7 @@ namespace Propeller.Mvc.Configuration.Processing
                         continue;
 
                     if (type.BaseType != null && !string.IsNullOrWhiteSpace(type.BaseType.Name) &&
-                        typeof(MappedViewModelConfiguration<>).Name == type.BaseType.Name)
+                        typeof(ConfigurationMap<>).Name == type.BaseType.Name)
                     {
                         Activator.CreateInstance(type);
                     }

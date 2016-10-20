@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{501C7C4A-AF17-4282-9BF9-87B19AB9CA54}</ProjectGuid>
+    <ProjectGuid>{8D80781F-ED86-49F6-BFEA-4F29DD84878B}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Demo</RootNamespace>
-    <AssemblyName>Demo</AssemblyName>
+    <RootNamespace>Propeller.Mvc.View</RootNamespace>
+    <AssemblyName>Propeller.Mvc.View</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -160,31 +160,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="Views\Layouts\PropellerDemoLayout.cshtml" />
-    <None Include="Properties\PublishProfiles\LocalWeb.pubxml" />
-    <None Include="Views\Character\Index.cshtml" />
-    <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\CharacterController.cs" />
-    <Compile Include="Models\Character.cs" />
+    <Compile Include="IPropellerTemplate.cs" />
+    <Compile Include="PropellerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\CharacterViewModel.cs" />
-    <Compile Include="ViewModels\Map\CharacterViewModelMap.cs" />
+    <Compile Include="TemplateRender.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Configuration\Propeller.Mvc.Core.csproj">
-      <Project>{3197F30B-2FD5-4369-9245-993F7D8136FC}</Project>
+    <ProjectReference Include="..\Configuration\Propeller.Mvc.Core.csproj">
+      <Project>{3197f30b-2fd5-4369-9245-993f7d8136fc}</Project>
       <Name>Propeller.Mvc.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Model\Propeller.Mvc.Model.csproj">
+    <ProjectReference Include="..\Model\Propeller.Mvc.Model.csproj">
       <Project>{AF268481-B485-47F2-80F7-BE3A12671A6E}</Project>
       <Name>Propeller.Mvc.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\ViewRenderer\Propeller.Mvc.Presentation.csproj">
-      <Project>{8D80781F-ED86-49F6-BFEA-4F29DD84878B}</Project>
-      <Name>Propeller.Mvc.Presentation</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -200,9 +190,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>5688</DevelopmentServerPort>
+          <DevelopmentServerPort>5681</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5688/</IISUrl>
+          <IISUrl>http://localhost:5681/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -219,6 +209,10 @@
     <Error Condition="!Exists('..\..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

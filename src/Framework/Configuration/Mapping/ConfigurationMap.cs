@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Propeller.Mvc.Configuration.Processing;
-using Propeller.Mvc.Configuration.Utility;
+using Propeller.Mvc.Core.Processing;
+using Propeller.Mvc.Core.Utility;
 using Sitecore.Data;
 using Sitecore.Diagnostics;
 
-namespace Propeller.Mvc.Configuration.Mapping
+namespace Propeller.Mvc.Core.Mapping
 {
     public class ConfigurationMap<T>
     {
-        public ConfigurationItem Property(Expression<Func<T, object>> expression, ID fieldId)
+        public ConfigurationItem SetProperty(Expression<Func<T, object>> expression)
         {
             var fullyQualifiedClassName = typeof(T).FullName;
             var propertyName = GetPropertyNameFromExpressionService.Get(expression);
             var fullPropertyName = string.Format("{0}.{1}", fullyQualifiedClassName, propertyName);
             
 
-            return new ConfigurationItem(fullPropertyName, fieldId);
+            return new ConfigurationItem(fullPropertyName);
         }
 
         public void ImportConfiguration(Type type)

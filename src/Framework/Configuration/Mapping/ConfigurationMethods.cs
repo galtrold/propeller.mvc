@@ -1,7 +1,8 @@
-﻿using Propeller.Mvc.Configuration.Processing;
-using Propeller.Mvc.Configuration.Utility;
+﻿using Propeller.Mvc.Core.Processing;
+using Propeller.Mvc.Core.Utility;
+using Sitecore.Data;
 
-namespace Propeller.Mvc.Configuration.Mapping
+namespace Propeller.Mvc.Core.Mapping
 {
     /// <summary>
     /// Extension methods for all the configuration types provided for the ConfigurationItem
@@ -9,8 +10,10 @@ namespace Propeller.Mvc.Configuration.Mapping
     public static class ConfigurationMethods
     {
 
-        public static ConfigurationItem Map(this ConfigurationItem configItem)
+        public static ConfigurationItem Map(this ConfigurationItem configItem, ID fieldId)
         {
+            configItem.FieldId = fieldId;
+
             if (!MappingTable.Instance.Map.ContainsKey(configItem.PropertyName))
                 MappingTable.Instance.Map.Add(configItem.PropertyName, configItem.FieldId);
 
@@ -31,8 +34,6 @@ namespace Propeller.Mvc.Configuration.Mapping
 
         public static ConfigurationItem Editable(this ConfigurationItem configItem)
         {
-            if (!MappingTable.Instance.IncludeMap.ContainsKey(configItem.PropertyName))
-                MappingTable.Instance.IncludeMap.Add(configItem.PropertyName, configItem.FieldId);
             if (!MappingTable.Instance.EditableMap.ContainsKey(configItem.PropertyName))
                 MappingTable.Instance.EditableMap.Add(configItem.PropertyName, configItem.FieldId);
 

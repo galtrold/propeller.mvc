@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Sitecore.Data;
 
-namespace Propeller.Mvc.Configuration.Processing
+namespace Propeller.Mvc.Core.Processing
 {
     /// <summary>
     /// Global dictionaries which stores Property names (fully qualified names) with Sitecore Field Ids

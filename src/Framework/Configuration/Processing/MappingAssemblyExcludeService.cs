@@ -5,7 +5,7 @@ using Sitecore.IO;
 using Sitecore.Text;
 using Sitecore.Xml;
 
-namespace Propeller.Mvc.Configuration.Processing
+namespace Propeller.Mvc.Core.Processing
 {
   internal class MappingAssemblyExcludeService
   {

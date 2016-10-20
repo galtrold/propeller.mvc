@@ -7,15 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{13102E4E-18DA-4862-90F1-5B43AF4F68D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormUtils", "src\Framework\FormUtils\FormUtils.csproj", "{114F4813-67B5-4255-8652-F1F9EC306D5E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Propeller.Mvc.FormUtils", "src\Framework\FormUtils\Propeller.Mvc.FormUtils.csproj", "{114F4813-67B5-4255-8652-F1F9EC306D5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration", "src\Framework\Configuration\Configuration.csproj", "{3197F30B-2FD5-4369-9245-993F7D8136FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Propeller.Mvc.Core", "src\Framework\Configuration\Propeller.Mvc.Core.csproj", "{3197F30B-2FD5-4369-9245-993F7D8136FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelResolver", "src\Framework\ModelResolver\ModelResolver.csproj", "{7A7F0DC6-5D94-40F4-B0B6-C35D0276DCBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Propeller.Mvc.ModelResolver", "src\Framework\ModelResolver\Propeller.Mvc.ModelResolver.csproj", "{7A7F0DC6-5D94-40F4-B0B6-C35D0276DCBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewRenderer", "src\Framework\ViewRenderer\ViewRenderer.csproj", "{8D80781F-ED86-49F6-BFEA-4F29DD84878B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Propeller.Mvc.Presentation", "src\Framework\ViewRenderer\Propeller.Mvc.Presentation.csproj", "{8D80781F-ED86-49F6-BFEA-4F29DD84878B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "src\Domain\Demo\Demo.csproj", "{501C7C4A-AF17-4282-9BF9-87B19AB9CA54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Propeller.Mvc.Model", "src\Framework\Model\Propeller.Mvc.Model.csproj", "{AF268481-B485-47F2-80F7-BE3A12671A6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{501C7C4A-AF17-4282-9BF9-87B19AB9CA54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{501C7C4A-AF17-4282-9BF9-87B19AB9CA54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{501C7C4A-AF17-4282-9BF9-87B19AB9CA54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF268481-B485-47F2-80F7-BE3A12671A6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF268481-B485-47F2-80F7-BE3A12671A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF268481-B485-47F2-80F7-BE3A12671A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF268481-B485-47F2-80F7-BE3A12671A6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +59,6 @@ Global
 		{7A7F0DC6-5D94-40F4-B0B6-C35D0276DCBC} = {4D21125B-2BC9-4753-A7AF-360CC83DA0A9}
 		{8D80781F-ED86-49F6-BFEA-4F29DD84878B} = {4D21125B-2BC9-4753-A7AF-360CC83DA0A9}
 		{501C7C4A-AF17-4282-9BF9-87B19AB9CA54} = {13102E4E-18DA-4862-90F1-5B43AF4F68D0}
+		{AF268481-B485-47F2-80F7-BE3A12671A6E} = {4D21125B-2BC9-4753-A7AF-360CC83DA0A9}
 	EndGlobalSection
 EndGlobal

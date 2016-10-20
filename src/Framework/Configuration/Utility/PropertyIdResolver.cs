@@ -1,8 +1,8 @@
-﻿using Propeller.Mvc.Configuration.Processing;
+﻿using Propeller.Mvc.Core.Processing;
 using Sitecore.Data;
 using Sitecore.Diagnostics;
 
-namespace Propeller.Mvc.Configuration.Utility
+namespace Propeller.Mvc.Core.Utility
 {
     public  static class PropertyIdResolver
     {
