@@ -2,9 +2,9 @@
 using Sitecore.Data.Items;
 using Sitecore.Mvc.Presentation;
 
-namespace Demo.ViewModels
+namespace Propeller.Mvc.Demo.ViewModels
 {
-    public class CharacterViewModel : PropellerViewModel<CharacterViewModel>, IPropellerTemplate<CharacterViewModel>
+    public class CharacterViewModel : PropellerViewModel<CharacterViewModel>
     {
         public string Species { get; set; }
 
@@ -16,6 +16,10 @@ namespace Demo.ViewModels
 
         public string Homeworld { get; set; }
 
+        public string Photo { get; set; }
+
+        public string PrimaryTransporation { get; set; }
+
         public CharacterViewModel(Item dataItem) : base(dataItem)
         {
         }
@@ -24,6 +28,6 @@ namespace Demo.ViewModels
         {
         }
 
-        public CharacterViewModel TemplateArg { get { return this; } }
+        
     }
 }

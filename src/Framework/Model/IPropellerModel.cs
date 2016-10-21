@@ -4,6 +4,6 @@ namespace Propeller.Mvc.Model
 {
     public interface IPropellerModel
     {
-        Item GetDataItem();
+        Item DataItem { get; set; }  
     }
 }

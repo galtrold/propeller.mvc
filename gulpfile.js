@@ -12,6 +12,12 @@ gulp.task('push', function() {
 
 });
 
+gulp.task('push-domain', function() {
+
+    publishProjects(config.solutionPath + "\\src\\Domain", config.websitePath)
+
+});
+
 var publishProjects = function(location, dest) {
     var targets = ["Build"];
 

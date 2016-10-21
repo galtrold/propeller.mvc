@@ -1,14 +1,51 @@
-﻿@using Propeller.Mvc.View
+﻿@using Propeller.Mvc.Demo.ViewModels
+@using Propeller.Mvc.View
 @using Sitecore.Data.Fields
-@model Demo.ViewModels.CharacterViewModel
-
-<h2> @Model.Render(p => p.Affiliation) </h2>
-
-
-@*@Model.Template(p => Test(p.Affiliation))
-
-
-@helper Test(string img)
-{
-    <h3>@img</h3>
-}*@
+@using Sitecore.Web.UI.WebControls
+@model Propeller.Mvc.Demo.ViewModels.CharacterViewModel
+@{
+    ViewBag.Title = Model.DisplayName;
+}
+<div class="row">
+    <div class="col-xs-2">
+        @Model.Render(p => p.Photo)
+    </div>
+    <div class="col-xs-10">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.DisplayName</p>
+                </div>
+                <label class="col-sm-2 control-label">Species</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.Species)</p>
+                </div>
+                <label class="col-sm-2 control-label">Gender</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.Genger)</p>
+                </div>
+                <label class="col-sm-2 control-label">Affiliation</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.Affiliation)</p>
+                </div>
+                <label class="col-sm-2 control-label">Homeworld</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">
+                        <a href="@(Model.GetItemReference<PlanetViewModel>(p => p.Homeworld).Url)">
+                            @(Model.GetItemReference<PlanetViewModel>(p => p.Homeworld).DisplayName)
+                        </a>
+                    </p>
+                </div>
+                <label class="col-sm-2 control-label">Vehicle</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">
+                        <a href="@(Model.GetItemReference<VehicleViewModel>(p => p.PrimaryTransporation).Url)">
+                            @(Model.GetItemReference<VehicleViewModel>(p => p.PrimaryTransporation).DisplayName)
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

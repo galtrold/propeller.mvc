@@ -16,21 +16,29 @@ namespace Propeller.Mvc.Core
 {
     public abstract class PropellerEntity<T> 
     {
-        public Item DataItem;
+        protected Item _dataItem;
+
+        public virtual Item DataItem
+        {
+            get { return _dataItem; }
+            set { _dataItem = value; }
+        }
 
         [JsonIgnore]
-        public string ItemId => Item?.ID.ToString() ?? "";
+        public string Id => DataItem?.ID.ToString() ?? "";
 
         [JsonIgnore]
-        public string ItemUrl => Item != null ? LinkManager.GetItemUrl(Item).Replace(" ", "%20") : "WARN-dataitem-not-set";
+        public string Url => DataItem != null ? LinkManager.GetItemUrl(DataItem).Replace(" ", "%20") : "WARN-dataitem-not-set";
 
         [JsonIgnore]
-        public string ItemName => Item != null ? Item.Name : "WARN-dataitem-not-set";
+        public string ItemName => DataItem != null ? DataItem.Name : "WARN-dataitem-not-set";
 
         [JsonIgnore]
-        public string ItemDisplayName => Item != null ? Item.DisplayName : "WARN-dataitem-not-set";
+        public string DisplayName => DataItem != null ? DataItem.DisplayName : "WARN-dataitem-not-set";
 
-        protected PropellerEntity(Item dataItem)
+        public PropellerEntity() { }
+
+        public PropellerEntity(Item dataItem)
         {
             DataItem = dataItem;
         }
@@ -55,11 +63,7 @@ namespace Propeller.Mvc.Core
             }
         }
 
-        public virtual Item Item
-        {
-            get { return this.DataItem; }
-            set { DataItem = value; }
-        }
+        public virtual Item Item { get; set; }
 
         protected ID GetPropertyId(Expression<Func<T, object>> expression)
         {

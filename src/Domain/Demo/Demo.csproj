@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Demo</RootNamespace>
-    <AssemblyName>Demo</AssemblyName>
+    <RootNamespace>Propeller.Mvc.Demo</RootNamespace>
+    <AssemblyName>Propeller.Mvc.Demo</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -160,19 +160,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="styles\bootstrap.min.css" />
     <Content Include="Views\Layouts\PropellerDemoLayout.cshtml" />
     <None Include="Properties\PublishProfiles\LocalWeb.pubxml" />
-    <None Include="Views\Character\Index.cshtml" />
+    <Content Include="Views\Character\Index.cshtml" />
     <Content Include="Views\web.config" />
+    <Content Include="Views\Planet\Index.cshtml" />
+    <None Include="Views\Vehicle\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CharacterController.cs" />
-    <Compile Include="Models\Character.cs" />
+    <Compile Include="Controllers\PlanetController.cs" />
+    <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CharacterViewModel.cs" />
-    <Compile Include="ViewModels\Map\CharacterViewModelMap.cs" />
+    <Compile Include="ViewModels\Map\CharacterMap.cs" />
+    <Compile Include="ViewModels\Map\PlanetMap.cs" />
+    <Compile Include="ViewModels\Map\VehicleMap.cs" />
+    <Compile Include="ViewModels\PlanetViewModel.cs" />
+    <Compile Include="ViewModels\VehicleViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\Configuration\Propeller.Mvc.Core.csproj">
       <Project>{3197F30B-2FD5-4369-9245-993F7D8136FC}</Project>

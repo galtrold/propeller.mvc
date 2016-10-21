@@ -10,8 +10,6 @@ namespace Propeller.Mvc.View
         {
             if (Sitecore.Context.PageMode.IsExperienceEditor)
             {
-                var model = vm.GetDataItem();
-
                 var templateHelperMethod = expression.Body as System.Linq.Expressions.MethodCallExpression;
 
                 var propertyField = templateHelperMethod.Arguments[0] as System.Linq.Expressions.MemberExpression;

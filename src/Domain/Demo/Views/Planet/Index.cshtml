@@ -1,0 +1,33 @@
+﻿@model Propeller.Mvc.Demo.ViewModels.PlanetViewModel
+
+<div class="row">
+    <div class="col-xs-4">
+        @Model.Render(p => p.Photo)
+    </div>
+    <div class="col-xs-8">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.DisplayName</p>
+                </div>
+                <label class="col-sm-2 control-label">Region</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.Region)</p>
+                </div>
+                <label class="col-sm-2 control-label">Moons</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.Moons)</p>
+                </div>
+                <label class="col-sm-2 control-label">Water surface</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.SurfaceWater)</p>
+                </div>
+                <label class="col-sm-2 control-label">Affiliation</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.Affiliation)</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -11,9 +11,9 @@ using Sitecore.Diagnostics;
 
 namespace Propeller.Mvc.Model
 {
-    public class PropellerModel<T> : PropellerEntity<T>, IPropellerModel
+    public abstract class PropellerModel<T> : PropellerEntity<T>, IPropellerModel
     {
-
+        public PropellerModel() { }
 
         public PropellerModel(Item dataItem) : base(dataItem)
         {
@@ -24,18 +24,24 @@ namespace Propeller.Mvc.Model
 
         public TP GetItemReference<TP>(Expression<Func<T, object>> expression) where TP : PropellerEntity<TP>, new()
         {
-
-            if (Item == null)
+            var item = DataItem;
+            if (item == null)
                 return new TP();
 
             var propId = GetPropertyId(expression);
-            ReferenceField dropDownSelectedItem = Item.Fields[propId];
-            if (dropDownSelectedItem == null)
+            var fieldItem = item.Fields[propId];
+            if(fieldItem == null)
+                return new TP();
+
+            var selectedItemId = fieldItem.Value;
+
+            ReferenceField selectedItem = item.Fields[propId];
+            if (selectedItem == null)
             {
                 return new TP();
             }
 
-            var targetItem = dropDownSelectedItem.TargetItem;
+            var targetItem = selectedItem.TargetItem;
             return new TP { DataItem = targetItem };
         }
 
@@ -61,14 +67,20 @@ namespace Propeller.Mvc.Model
             return listItems;
         }
 
-        public CT GetAs<CT>(Expression<Func<T, object>> expression) where CT : new()
+        public CT GetAs<CT>(Expression<Func<T, object>> expression) where CT : XmlField
         {
-            return new CT();
-        }
-
-        public virtual Item GetDataItem()
-        {
-            return this.DataItem;
+            try
+            {
+                var item = DataItem;
+                var propId = GetPropertyId(expression);
+                var fieldItem = (CT)item.Fields[propId];
+                return fieldItem;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
         }
 
         private void IncludeRawValues(Item dataItem)
@@ -106,7 +118,7 @@ namespace Propeller.Mvc.Model
         public bool Commit()
         {
 
-            var dataItem = GetDataItem();
+            var dataItem = DataItem;
 
             if (dataItem == null)
                 return false;
@@ -147,5 +159,7 @@ namespace Propeller.Mvc.Model
 
             return true;
         }
+
+        
     }
 }

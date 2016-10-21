@@ -24,7 +24,7 @@ namespace Propeller.Mvc.View
 
         public override Item Item
         {
-            get { return _rendering.Item; } 
+            get { return _rendering != null ? _rendering.Item : null; } 
         }
 
         public virtual Item PageItem
@@ -49,7 +49,8 @@ namespace Propeller.Mvc.View
             }
         }
 
-        public virtual T Self { get; set; }
+
+        public PropellerViewModel() { }
 
         public PropellerViewModel(Item dataItem) : base(dataItem)
         {
@@ -65,22 +66,23 @@ namespace Propeller.Mvc.View
             _rendering = rendering;
         }
 
-        public override Item GetDataItem()
+        public override Item DataItem
         {
-            if (Item != null)
-                return Item;
+            get
+            {
+                if (Item != null)
+                    return Item;
 
-            if (PageItem != null)
-                return PageItem;
+                if (_dataItem != null)
+                    return _dataItem;
 
-            if (DataItem != null)
-                return DataItem;
+                if (PageItem != null)
+                    return PageItem;
 
-            Log.Error("Error now data item available", this);
-            return null;
-
+                Log.Error("Error now data item available", this);
+                return null;
+            }
         }
-     
 
         public HtmlString Render(Expression<Func<T, object>> expression)
         {
@@ -91,7 +93,7 @@ namespace Propeller.Mvc.View
                 var propId = GetPropertyId(expression);
                 fieldId = propId.ToString();
 
-                var item = GetDataItem();
+                var item = DataItem;
 
 
                 itemId = item.ID.ToString();

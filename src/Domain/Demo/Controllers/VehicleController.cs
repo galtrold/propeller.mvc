@@ -4,13 +4,13 @@ using Sitecore.Mvc.Presentation;
 
 namespace Propeller.Mvc.Demo.Controllers
 {
-    public class CharacterController : Controller
+    public class VehicleController : Controller
     {
         public ActionResult Index()
         {
-            var characterViewModel = new CharacterViewModel(RenderingContext.Current.Rendering);
+            var viewModel = new VehicleViewModel(RenderingContext.Current.Rendering);
 
-            return View(characterViewModel);
+            return View(viewModel);
         }
     }
 }

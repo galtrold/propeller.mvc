@@ -1,0 +1,50 @@
+﻿@model Propeller.Mvc.Demo.ViewModels.VehicleViewModel
+
+
+<div class="row">
+    <div class="col-xs-2">
+        @Model.Render(p => p.Photo)
+    </div>
+    <div class="col-xs-10">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.DisplayName</p>
+                </div>
+                <label class="col-sm-2 control-label">Manufacturer</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.Manufacturer)</p>
+                </div>
+                <label class="col-sm-2 control-label">Model</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.Model)</p>
+                </div>
+                <label class="col-sm-2 control-label">Class</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.Class)</p>
+                </div>
+                <label class="col-sm-2 control-label">Engine</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.Engine)</p>
+                </div>
+                <label class="col-sm-2 control-label">Hyperdrive</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.Hyperdrive)</p>
+                </div>
+                <label class="col-sm-2 control-label">Length</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.Length)</p>
+                </div>
+                <label class="col-sm-2 control-label">MaximumAtmosphericSpeed</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.MaximumAtmosphericSpeed)</p>
+                </div>
+                <label class="col-sm-2 control-label">Shielding</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.Shielding)</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
