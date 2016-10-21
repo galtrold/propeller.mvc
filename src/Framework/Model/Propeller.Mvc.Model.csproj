@@ -113,6 +113,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\GeneralLink.cs" />
+    <Compile Include="Adapters\Image.cs" />
     <Compile Include="IPropellerModel.cs" />
     <Compile Include="PropellerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

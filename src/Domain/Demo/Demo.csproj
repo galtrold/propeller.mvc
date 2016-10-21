@@ -167,7 +167,7 @@
     <Content Include="Views\Character\Index.cshtml" />
     <Content Include="Views\web.config" />
     <Content Include="Views\Planet\Index.cshtml" />
-    <None Include="Views\Vehicle\Index.cshtml" />
+    <Content Include="Views\Vehicle\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CharacterController.cs" />

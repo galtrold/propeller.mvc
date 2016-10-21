@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Propeller.Mvc.Core;
 using Propeller.Mvc.Core.Processing;
+using Propeller.Mvc.Model.Adapters;
 using Sitecore.Data;
 using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
@@ -21,9 +22,16 @@ namespace Propeller.Mvc.Model
                 IncludeRawValues(dataItem);
         }
 
-
+        /// <summary>
+        /// DropList is not supported ny this method. DropList are generelly not that useful lsince they only provide the selected Item.Name 
+        /// Use DropLink instead. 
+        /// </summary>
+        /// <typeparam name="TP"></typeparam>
+        /// <param name="expression"></param>
+        /// <returns></returns>
         public TP GetItemReference<TP>(Expression<Func<T, object>> expression) where TP : PropellerEntity<TP>, new()
         {
+            Item targetItem;
             var item = DataItem;
             if (item == null)
                 return new TP();
@@ -33,15 +41,22 @@ namespace Propeller.Mvc.Model
             if(fieldItem == null)
                 return new TP();
 
-            var selectedItemId = fieldItem.Value;
-
-            ReferenceField selectedItem = item.Fields[propId];
-            if (selectedItem == null)
+            if (fieldItem.Type.ToLower().Equals("droplist"))
             {
-                return new TP();
+                Log.Warn("DropList is not supported ny this method. DropList are generelly not that useful lsince they only provide the selected Item.Name. Use DropLink instead. ", item);
+                targetItem = null;
+            }
+            else
+            {
+                ReferenceField selectedItem = item.Fields[propId];
+                if (selectedItem == null)
+                {
+                    return new TP();
+                }
+                targetItem = selectedItem.TargetItem;
             }
 
-            var targetItem = selectedItem.TargetItem;
+            
             return new TP { DataItem = targetItem };
         }
 
@@ -67,18 +82,19 @@ namespace Propeller.Mvc.Model
             return listItems;
         }
 
-        public CT GetAs<CT>(Expression<Func<T, object>> expression) where CT : XmlField
+        public CT GetAs<CT>(Expression<Func<T, object>> expression) where CT : IFieldAdapter, new()
         {
             try
             {
                 var item = DataItem;
                 var propId = GetPropertyId(expression);
-                var fieldItem = (CT)item.Fields[propId];
-                return fieldItem;
+                var adapter = new CT();
+                adapter.InitAdapter(item, propId);
+                return adapter;
             }
             catch (Exception)
             {
-                return null;
+                return new CT();
             }
             
         }

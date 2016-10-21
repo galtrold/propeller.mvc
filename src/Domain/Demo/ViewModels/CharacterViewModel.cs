@@ -20,6 +20,8 @@ namespace Propeller.Mvc.Demo.ViewModels
 
         public string PrimaryTransporation { get; set; }
 
+        public string ExternalLink { get; set; }
+
         public CharacterViewModel(Item dataItem) : base(dataItem)
         {
         }

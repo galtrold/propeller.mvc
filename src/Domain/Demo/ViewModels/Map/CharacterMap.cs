@@ -14,6 +14,7 @@ namespace Propeller.Mvc.Demo.ViewModels.Map
             SetProperty(p => p.Homeworld).Map(new ID("{E8D236D1-E473-4816-89BD-EE4CCD613972}")).Include().Editable();
             SetProperty(p => p.Photo).Map(new ID("{ADB6E999-106A-4611-B3B0-51E442FD4A58}")).Include().Editable();
             SetProperty(p => p.PrimaryTransporation).Map(new ID("{4D888B1E-8B88-4594-8B1B-6082BCDCFEFF}")).Include().Editable();
+            SetProperty(p => p.ExternalLink).Map(new ID("{D64C6352-DA90-4DDE-9A9A-31E154E9905A}")).Include().Editable();
         }
     }
 }

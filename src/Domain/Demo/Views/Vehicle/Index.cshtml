@@ -1,9 +1,10 @@
-﻿@model Propeller.Mvc.Demo.ViewModels.VehicleViewModel
+﻿@using Propeller.Mvc.Model.Adapters
+@model Propeller.Mvc.Demo.ViewModels.VehicleViewModel
 
 
 <div class="row">
     <div class="col-xs-2">
-        @Model.Render(p => p.Photo)
+        <img src="@(Model.GetAs<Image>(p => p.Photo).Url)" style="max-width: 100%;height: auto"/> 
     </div>
     <div class="col-xs-10">
         <form class="form-horizontal">
@@ -36,13 +37,15 @@
                 <div class="col-sm-10">
                     <p class="form-control-static">@Model.Render(p => p.Length)</p>
                 </div>
-                <label class="col-sm-2 control-label">MaximumAtmosphericSpeed</label>
-                <div class="col-sm-10">
-                    <p class="form-control-static">@Model.Render(p => p.MaximumAtmosphericSpeed)</p>
-                </div>
+              
+
                 <label class="col-sm-2 control-label">Shielding</label>
                 <div class="col-sm-10">
                     <p class="form-control-static">@Model.Render(p => p.Shielding)</p>
+                </div>
+                <label class="col-sm-2 control-label">Maximum Atmospheric Speed</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.Render(p => p.MaximumAtmosphericSpeed)</p>
                 </div>
             </div>
         </form>
