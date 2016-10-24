@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using Propeller.Mvc.Core.Processing;
+using Sitecore.Data;
+using Sitecore.Web.UI.WebControls;
 
 namespace Propeller.Mvc.View
 {
@@ -10,16 +14,32 @@ namespace Propeller.Mvc.View
         {
             if (Sitecore.Context.PageMode.IsExperienceEditor)
             {
-                var templateHelperMethod = expression.Body as System.Linq.Expressions.MethodCallExpression;
+                var expressionBody= expression.Body as System.Linq.Expressions.MethodCallExpression;
 
-                var propertyField = templateHelperMethod.Arguments[0] as System.Linq.Expressions.MemberExpression;
+                var GetAsMethod = expressionBody.Arguments.FirstOrDefault() as MethodCallExpression;
 
-                var propName = "Not found yet";
-                if (propertyField != null)
-                    propName = propertyField.Member.Name;
+                var unaryExpression = GetAsMethod.Arguments.FirstOrDefault() as UnaryExpression;
+                var innerExpresion = unaryExpression.Operand as LambdaExpression;
+                var propertyField = innerExpresion.Body as System.Linq.Expressions.MemberExpression;
 
-                return new MvcHtmlString(propName);
+                var propName = propertyField.Member.Name;
 
+                var fullyQualifiedName = typeof(TModel).FullName;
+
+                var key = $"{fullyQualifiedName}.{propName}";
+
+                Func<ID> idFunc;
+                if (MappingTable.Instance.JumpMap.TryGetValue(key, out idFunc))
+                {
+                    var fieldId = idFunc();
+
+                    var htmlStr = FieldRenderer.Render(vm.DataItem, fieldId.ToString());
+                    return new MvcHtmlString(htmlStr);
+                }
+
+
+
+                return new MvcHtmlString("sd");
 
             }
             else

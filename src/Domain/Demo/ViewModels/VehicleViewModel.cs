@@ -4,7 +4,7 @@ using Sitecore.Mvc.Presentation;
 
 namespace Propeller.Mvc.Demo.ViewModels
 {
-    public class VehicleViewModel : PropellerViewModel<VehicleViewModel>
+    public class VehicleViewModel : PropellerViewModel<VehicleViewModel>, IPropellerTemplate<VehicleViewModel>
     {
         public string Manufacturer { get; set; }
 
@@ -33,5 +33,7 @@ namespace Propeller.Mvc.Demo.ViewModels
         public VehicleViewModel(Rendering rendering) : base(rendering)
         {
         }
+
+        public VehicleViewModel TemplateArg { get { return this; } }
     }
 }

@@ -16,6 +16,7 @@ namespace Propeller.Mvc.Model.Adapters
             var mediaItem = image.MediaDatabase.GetItem(image.MediaID);
             Url = Sitecore.Resources.Media.MediaManager.GetMediaUrl(mediaItem);
             Alt = image.Alt;
+            
 
         }
     }

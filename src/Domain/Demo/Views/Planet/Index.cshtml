@@ -2,7 +2,9 @@
 
 <div class="row">
     <div class="col-xs-4">
-        @Model.Render(p => p.Photo)
+        <img src="@(Model.GetAs<Propeller.Mvc.Model.Adapters.Image>(p => p.Photo).Url)"
+             alt="@(Model.GetAs<Propeller.Mvc.Model.Adapters.Image>(p => p.Photo).Alt)" 
+             style="max-width: 100%;height: auto"/>
     </div>
     <div class="col-xs-8">
         <form class="form-horizontal">
