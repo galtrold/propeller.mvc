@@ -1,0 +1,44 @@
+﻿@model Propeller.Mvc.Demo.ViewModels.OrganizationViewModel
+
+<div class="row">
+    <div class="col-xs-7">
+        <h3>Intro</h3>
+        <p>@Model.Render(p => p.Intro)</p>
+        <h3>History</h3>
+        <p>@Model.Render(p => p.History)</p>
+    </div>
+    <div class="col-xs-5">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Org. type</label>
+                <div class="col-sm-9">
+                    <p class="form-control-static">@Model.Render(p => p.OrganizationType)</p>
+                </div>
+                <label class="col-sm-3 control-label">Headquarters</label>
+                <div class="col-sm-9">
+                    <p class="form-control-static">@Model.Render(p => p.Headquarters)</p>
+                </div>
+                <label class="col-sm-3 control-label">Leaders</label>
+                <div class="col-sm-9">
+                    <p class="form-control-static">@Model.Render(p => p.Leaders)</p>
+                </div>
+                <label class="col-sm-3 control-label">Formed from</label>
+                <div class="col-sm-9">
+                    <p class="form-control-static">@Model.Render(p => p.FormedFrom)</p>
+                </div>
+                <label class="col-sm-3 control-label">Date established</label>
+                <div class="col-sm-9">
+                    <p class="form-control-static">@Model.Render(p => p.DateEstablished)</p>
+                </div>
+                <label class="col-sm-3 control-label">Date reorganized</label>
+                <div class="col-sm-9">
+                    <p class="form-control-static">@Model.Render(p => p.DateReorganized)</p>
+                </div>
+                <label class="col-sm-3 control-label">Date dissolved</label>
+                <div class="col-sm-9">
+                    <p class="form-control-static">@Model.Render(p => p.DateDissolved)</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

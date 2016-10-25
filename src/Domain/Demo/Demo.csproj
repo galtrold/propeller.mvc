@@ -168,16 +168,20 @@
     <Content Include="Views\web.config" />
     <Content Include="Views\Planet\Index.cshtml" />
     <Content Include="Views\Vehicle\Index.cshtml" />
+    <Content Include="Views\Organization\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CharacterController.cs" />
+    <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\PlanetController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CharacterViewModel.cs" />
     <Compile Include="ViewModels\Map\CharacterMap.cs" />
+    <Compile Include="ViewModels\Map\OrganizationMap.cs" />
     <Compile Include="ViewModels\Map\PlanetMap.cs" />
     <Compile Include="ViewModels\Map\VehicleMap.cs" />
+    <Compile Include="ViewModels\OrganizationViewModel.cs" />
     <Compile Include="ViewModels\PlanetViewModel.cs" />
     <Compile Include="ViewModels\VehicleViewModel.cs" />
   </ItemGroup>
