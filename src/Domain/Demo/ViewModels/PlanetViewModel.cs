@@ -28,6 +28,6 @@ namespace Propeller.Mvc.Demo.ViewModels
         {
         }
 
-        public PlanetViewModel TemplateArg { get { return this; } }
+        public PlanetViewModel TemplateArg() {  return this; } 
     }
 }

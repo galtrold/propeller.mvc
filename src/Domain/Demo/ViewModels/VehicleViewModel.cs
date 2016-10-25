@@ -1,4 +1,5 @@
-﻿using Propeller.Mvc.View;
+﻿using Newtonsoft.Json;
+using Propeller.Mvc.View;
 using Sitecore.Data.Items;
 using Sitecore.Mvc.Presentation;
 
@@ -34,6 +35,8 @@ namespace Propeller.Mvc.Demo.ViewModels
         {
         }
 
-        public VehicleViewModel TemplateArg { get { return this; } }
+        
+        public VehicleViewModel TemplateArg() { return this; } 
+        
     }
 }

@@ -20,13 +20,16 @@ namespace Propeller.Mvc.View
 {
     public abstract class PropellerViewModel<T> : PropellerModel<T>, IRenderingModel 
     {
+        [JsonIgnore]
         private Rendering _rendering;
 
+        [JsonIgnore]
         public override Item Item
         {
             get { return _rendering != null ? _rendering.Item : null; } 
         }
 
+        [JsonIgnore]
         public virtual Item PageItem
         {
             get
@@ -34,7 +37,8 @@ namespace Propeller.Mvc.View
                 return PageContext.Current.Item;
             }
         }
-        
+
+        [JsonIgnore]
         public virtual Rendering Rendering
         {
             get
@@ -48,8 +52,7 @@ namespace Propeller.Mvc.View
                 this._rendering = value;
             }
         }
-
-
+        
         public PropellerViewModel() { }
 
         public PropellerViewModel(Item dataItem) : base(dataItem)
@@ -66,6 +69,7 @@ namespace Propeller.Mvc.View
             _rendering = rendering;
         }
 
+        [JsonIgnore]
         public override Item DataItem
         {
             get

@@ -45,7 +45,7 @@ namespace Propeller.Mvc.View
             else
             {
                 var result = expression.Compile();
-                var value = result( vm.TemplateArg);
+                var value = result( vm.TemplateArg());
                 var r = new MvcHtmlString(value.ToString());
                 return r;
             }

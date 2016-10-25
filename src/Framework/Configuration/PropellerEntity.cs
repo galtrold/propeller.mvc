@@ -16,8 +16,10 @@ namespace Propeller.Mvc.Core
 {
     public abstract class PropellerEntity<T> 
     {
+        [JsonIgnore]
         protected Item _dataItem;
 
+        [JsonIgnore]
         public virtual Item DataItem
         {
             get { return _dataItem; }
@@ -63,6 +65,7 @@ namespace Propeller.Mvc.Core
             }
         }
 
+        [JsonIgnore]
         public virtual Item Item { get; set; }
 
         protected ID GetPropertyId(Expression<Func<T, object>> expression)
