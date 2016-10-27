@@ -4,7 +4,7 @@ using Sitecore.Mvc.Presentation;
 
 namespace Propeller.Mvc.Demo.ViewModels
 {
-    public class CharacterViewModel : PropellerViewModel<CharacterViewModel>
+    public class CharacterViewModel : PropellerViewModel<CharacterViewModel>, IPropellerTemplate<CharacterViewModel>
     {
         public string Species { get; set; }
 
@@ -29,7 +29,10 @@ namespace Propeller.Mvc.Demo.ViewModels
         public CharacterViewModel(Rendering rendering) : base(rendering)
         {
         }
-
         
+        public CharacterViewModel TemplateArg()
+        {
+            return this;
+        }
     }
 }

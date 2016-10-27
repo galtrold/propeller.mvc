@@ -32,7 +32,10 @@
                 </div>
                 <label class="col-sm-2 control-label">Affiliation</label>
                 <div class="col-sm-10">
-                    <p class="form-control-static">@Model.Render(p => p.Affiliation)</p>
+                    <p class="form-control-static">
+                        @Model.Template( p => AffiliationTemplate( p.GetList<OrganizationViewModel>(q => q.Affiliation) ))
+
+                    </p>
                 </div>
                 <label class="col-sm-2 control-label">Homeworld</label>
                 <div class="col-sm-10">
@@ -59,10 +62,15 @@
                         </a>
                     </p>
                 </div>
-
-
-
             </div>
         </form>
     </div>
 </div>
+
+@helper AffiliationTemplate(IEnumerable<OrganizationViewModel> orgs)
+{
+    foreach (var org in orgs)
+    {
+        <div><a href="@org.Url"> @org.DisplayName</a> (@org.Render(p => p.OrganizationType))</div>
+    }
+}
