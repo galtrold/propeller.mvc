@@ -1,0 +1,14 @@
+﻿---
+ID: "1e6609a2-49ab-4458-9c1b-69dd31af700c"
+Parent: "cc9cbc07-d2fd-4f62-8bc2-84759767dbb2"
+Template: "957073a9-0b6c-4f9d-802c-c349fc981ab1"
+Path: /sitecore/content/Home/PropellerDemo/Planets
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161021T080845Z

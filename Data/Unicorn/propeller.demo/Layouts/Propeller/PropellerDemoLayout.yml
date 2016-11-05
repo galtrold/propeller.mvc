@@ -1,0 +1,10 @@
+﻿---
+ID: "67293474-7b4e-4699-850a-8c6a0fc6b775"
+Parent: "5b5b0158-0ba7-42eb-9b84-a46c372a584b"
+Template: "3a45a723-64ee-4919-9d41-02fd40fd1466"
+Path: /sitecore/layout/Layouts/Propeller/PropellerDemoLayout
+DB: master
+SharedFields:
+- ID: "a036b2bc-ba04-44f6-a75f-bae6cd242abf"
+  Hint: Path
+  Value: /Views/Layouts/PropellerDemoLayout.cshtml

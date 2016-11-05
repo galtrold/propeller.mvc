@@ -1,0 +1,48 @@
+﻿---
+ID: "c1638d29-2fb8-4a05-b241-2f9b3df0050f"
+Parent: "51aa64cf-82e7-4755-863f-36674051e17d"
+Template: "98ce4cc7-a7c8-49aa-acb0-4b1e602872b6"
+Path: /sitecore/content/Home/PropellerDemo/Organizations/ConfederacyOfIndependentSystems
+DB: master
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Confederacy of Independent Systems
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "146b1291-22a9-428e-bb3b-7ae3be6b0936"
+      Hint: Date established
+      Value: Seperatist Crisis
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161027T192552Z
+    - ID: "435b2a53-f83c-4b8b-95ba-b41395409cde"
+      Hint: Headquarters
+      Value: Raxulon
+    - ID: "44b3d3ff-ed52-4124-b998-6efa27a9897e"
+      Hint: Leaders
+      Value: Darth Sidious
+    - ID: "73aaca1a-cc66-40c7-ba6f-f30603c7a42e"
+      Hint: OrganizationType
+      Value: Confederacy
+    - ID: "7f9c35ca-4c3d-4d72-9595-37c5627cfc63"
+      Hint: Intro
+      Value: |
+        The Confederacy of Independent Systems (CIS), also known as the Separatist Alliance, the Separatist State, or simply as the Separatists, was a partially recognized government of planetary and sectorial governments who declared their independence from the Galactic Republic in the wake of the Naboo Crisis, and refused to comply with the excessive taxation and corruption that plagued it, resulting in a secession crisis and a massive military build up in the lead-up to war with the secret support from some galactic mega-corporations.
+        
+        The following three years would see the Clone Wars wage across the galaxy with the Separatists rapidly attempting to bring the Republic to its knees. But the war was merely a ploy – the Republic’s Supreme Chancellor Palpatine was a Sith Lord called Darth Sidious, to whom Head of State Dooku answered. Towards the end of the conflict, the Confederacy suffered several major defeats in the Outer Rim Sieges as the end of the war approached. Along with Dooku's death, its council being executed on Mustafar, and its droid army being shut down, the organization rapidly collapsed as the war came to an end. Following the end of hostilities, trade groups that had supported the cause were nationalized, and most of its remaining star systems rejoined the Republic successor state; the Galactic Empire, whether voluntarily or under threat.
+    - ID: "81bcbef4-3289-4814-a108-9e1469afd357"
+      Hint: Date reorganized
+      Value: Several holdouts established at the start of the Age of the Empire. 
+    - ID: "d4a744e0-81bf-43ec-b05d-750a439e571a"
+      Hint: FormedFrom
+      Value: Galactic Republic
+    - ID: "dead5bfe-8271-4f28-a5ec-ab962a41cc9e"
+      Hint: Date dissolved
+      Value: 19 years before the Battle of Yavin, at the end of the Clone Wars
+    - ID: "ecd1f451-9c4a-467a-8689-244b12a6f812"
+      Hint: History
+      Value: The first declaration of secession can be traced back to Count Dooku's denouncement of the Republic after commandeering a HoloNet relay station in the Raxus system, after which some believed he was merely one step ahead of Republic assassins. The fallen Jedi Master's words of inflammatory rhetoric would find receptive audiences among young intellectuals in Mid and Inner Rim universities. Both charismatic and exuding confidence, Dooku's message rallied thousands of individuals by recounting decades of experience within the Republic government and publicizing its hypocrisies, corruption and ineffectiveness. Dooku's rebellious message mesmerized young psyches and spurred them into political activism. As the Separatist Crisis grew more and more heated, Dooku's appearances grew rarer and were announced with much shorter notice, with his message often spurning violence on polarized worlds. Thousands of disgruntled star systems ultimately seceded from the Republic and fully embraced the Confederacy's fiery message of resistance. The idea that the Republic was distant, dispassionate, corrupt, and unworthy of membership ultimately marshaled disgruntled systems into a new galactic government.

@@ -1,0 +1,59 @@
+﻿---
+ID: "9f9281d0-2626-41c6-91e8-61baa3f509d0"
+Parent: "51aa64cf-82e7-4755-863f-36674051e17d"
+Template: "98ce4cc7-a7c8-49aa-acb0-4b1e602872b6"
+Path: /sitecore/content/Home/PropellerDemo/Organizations/GalacticEmpire
+DB: master
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Galactic Empire
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "146b1291-22a9-428e-bb3b-7ae3be6b0936"
+      Hint: Date established
+      Value: Nineteen years before the Battle of Yavin, at the end of the Clone Wars
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161025T220634Z
+    - ID: "435b2a53-f83c-4b8b-95ba-b41395409cde"
+      Hint: Headquarters
+      Value: Imperial City
+    - ID: "44b3d3ff-ed52-4124-b998-6efa27a9897e"
+      Hint: Leaders
+      Value: Galactic Emperor
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+    - ID: "73aaca1a-cc66-40c7-ba6f-f30603c7a42e"
+      Hint: OrganizationType
+      Value: Totalitarian dictatorship, Constitutional monarchy
+    - ID: "7f9c35ca-4c3d-4d72-9595-37c5627cfc63"
+      Hint: Intro
+      Value: |
+        For at least a thousand years,[13] the dominant governing body of the galaxy was the unicameral and democratic Galactic Republic, led by an elected Supreme Chancellor.[13][14]
+        
+        In the last decades of its existence, the Republic Senate became mired in bureaucracy, rendering it woefully ineffectual as a governing body. Darth Sidious, the Dark Lord of the Sith known publicly as Senator Sheev Palpatine of Naboo, privately lamented the declining state of the Senate, noting that the Republic was "not what it once was."[14][15]
+        Thirteen years before the Republic's end as a democracy, Darth Sidious orchestrated the invasion of Naboo by the Trade Federation, in order to create a leadership crisis in the Senate. Sidious used the crisis to manipulate the then–Queen of the Naboo, Amidala, into calling a Vote of No Confidence against sitting Chancellor Finis Valorum. The vote passed, and in the subsequent election, Sidious—in his public persona of Palpatine—secured the position of Supreme Chancellor of the Galactic Republic for himself.[14] Ultimately, Sidious would be the last individual to hold this office.[1]
+        In the decade that followed, Sidious secretly manipulated galactic events to the extent that war became inevitable. Besides persuading a dead Jedi Master to create a secret clone army, he also tasked his Sith apprentice, Darth Tyranus, with exacerbating political tensions in the Republic and engineering a Separatist Crisis. These actions would culminate in the outbreak of the Clone Wars, the last conflict of the Republic, while Sidious himself "reluctantly" accepted emergency powers.
+    - ID: "81bcbef4-3289-4814-a108-9e1469afd357"
+      Hint: Date reorganized
+      Value: Sometime after the Galactic Concordance, as numerous independent nations, star systems, and factions, including the First Order.
+    - ID: "d4a744e0-81bf-43ec-b05d-750a439e571a"
+      Hint: FormedFrom
+      Value: Galactic Republic
+    - ID: "dead5bfe-8271-4f28-a5ec-ab962a41cc9e"
+      Hint: Date dissolved
+      Value: Sometime after the Galactic Concordance
+    - ID: "ecd1f451-9c4a-467a-8689-244b12a6f812"
+      Hint: History
+      Value: |
+        For the duration of the war, Chancellor Palpatine remained a popular leader, remaining in office at the will of the Senate for far longer than his term technically allowed.[1] Throughout this period, Sidious continued to consolidate and centralize his own power,[16][17][18] paving the way for his eventual ascension to Emperor.[1]
+        
+        As the war drew toward its end, the Jedi Order learned of Palpatine's true identity as Dark Lord of the Sith, Darth Sidious. Following an attempt to arrest him, a brief but vicious fight ensued in which several Jedi were killed at Sidious’ hands, and Sidious himself visibly injured in the struggle. The intercession of Jedi Knight Anakin Skywalker, who was a personal friend of Chancellor Palpatine, and already disillusioned with both the Order and the war, ensured Sidious' victory. The prodigal Jedi was turned to the dark side of the Force, while Sidious had a pretext upon which to turn the Republic against the Jedi.[1]
+        Sidious immediately seized the opportunity to order the clone army to enact Order 66: to exterminate the Jedi commanding forces across the galaxy. With this command programmed into the clones since their beginnings on Kamino,[19] the Republic soldiers immediately turned on their Jedi commanders, and exterminated the vast majority of the Jedi Order in an instant. However certain Jedi such as Depa Billaba and Luminara Unduli initially survived the purge, while Jedi Master Uvell gave antiques dealer Antron Bach numerous Jedi scrolls, lightsabers and other objects of historical significance to hide from the Galactic Empire in an abandoned Geonosian colony on a remote moon.[20] Shortly afterward, Sidious dispatched his new apprentice, now christened Darth Vader, to wipe out the Separatist leadership on Mustafar, following which Imperial financier Arsin Crassus plundered the Trade Federation's accounts to fund the new Imperial government.[1][6]
+        Now able to demonstrate threats to the Republic from both within and without, a visibly injured and scarred Sidious addressed the Galactic Senate to announce the reforms which had been his endgame since the beginning. To the thunderous applause of the Senators, Sidious—now known publicly as Emperor Palpatine—announced that in order to ensure safety and security, the Republic would be reorganized into the Galactic Empire.

@@ -1,0 +1,44 @@
+﻿---
+ID: "e56ebb6a-517a-4791-a2e4-3982f8e1ec90"
+Parent: "0464698c-20ae-41d5-862c-46f08a0fce8e"
+Template: "8d69b1a0-28d4-47b6-b7d2-e186ab91fe60"
+Path: /sitecore/content/Home/PropellerDemo/Characters/BobaFett
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161019T163836Z
+    - ID: "4d888b1e-8b88-4594-8b1b-6082bcdcfeff"
+      Hint: PrimaryTransportation
+      Value: "{54E9DCC2-5B8C-4F03-9C09-D5408A511DFA}"
+    - ID: "7079e001-680a-460c-bb86-91e31c3ea2a5"
+      Hint: Gender
+      Value: Male
+    - ID: "73ff41aa-2acf-45f8-9fa3-8c4f6374f217"
+      Hint: Occupation
+      Value: "Bounty-Hunter"
+    - ID: "adb6e999-106a-4611-b3b0-51e442fd4a58"
+      Hint: Photo
+      Value: |
+        <image mediapath="" alt="bobafett" width="" height="" hspace="" vspace="" showineditor="" usethumbnail="" src="" mediaid="{5EA35D30-EF21-4217-AFE8-D71F5867DCC7}" />
+    - ID: "d64c6352-da90-4dde-9a9a-31e154e9905a"
+      Hint: ExternalRef
+      Value: |
+        <link text="Star wars wiki" linktype="external" url="http://starwars.wikia.com/wiki/Boba_Fett" anchor="" target="_blank" />
+    - ID: "e8d236d1-e473-4816-89bd-ee4ccd613972"
+      Hint: Homeworld
+      Type: Treelist
+      Value: "{F55BA887-37C6-45F6-8DE6-3E720451AA0A}"
+    - ID: "ee444d4a-7fdf-4d94-8aba-6054a898e721"
+      Hint: Affiliation
+      Type: Treelist
+      Value: |
+        {C1638D29-2FB8-4A05-B241-2F9B3DF0050F}
+        {9F9281D0-2626-41C6-91E8-61BAA3F509D0}
+    - ID: "ff80b838-b0e4-4266-9e6a-2918585c4eb7"
+      Hint: Species
+      Value: Human

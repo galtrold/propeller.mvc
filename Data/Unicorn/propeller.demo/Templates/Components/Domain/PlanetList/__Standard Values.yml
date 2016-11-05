@@ -1,0 +1,23 @@
+﻿---
+ID: "711be70a-4acb-4f0f-be2e-b80ce85668fe"
+Parent: "957073a9-0b6c-4f9d-802c-c349fc981ab1"
+Template: "957073a9-0b6c-4f9d-802c-c349fc981ab1"
+Path: /sitecore/templates/Components/Domain/PlanetList/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{CB507923-43E0-45A4-AD5C-887AE6AF3DA3}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161021T080332Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

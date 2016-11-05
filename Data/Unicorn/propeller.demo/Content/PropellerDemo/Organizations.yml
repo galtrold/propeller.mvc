@@ -1,0 +1,14 @@
+﻿---
+ID: "51aa64cf-82e7-4755-863f-36674051e17d"
+Parent: "cc9cbc07-d2fd-4f62-8bc2-84759767dbb2"
+Template: "66838d55-2467-45e2-bf13-4d162494af44"
+Path: /sitecore/content/Home/PropellerDemo/Organizations
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161025T220600Z

@@ -1,0 +1,33 @@
+﻿---
+ID: "f55ba887-37c6-45f6-8de6-3e720451aa0a"
+Parent: "1e6609a2-49ab-4458-9c1b-69dd31af700c"
+Template: "cb507923-43e0-45a4-ad5c-887ae6af3da3"
+Path: /sitecore/content/Home/PropellerDemo/Planets/Kamino
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161021T080902Z
+    - ID: "3b427930-c49a-4736-ac49-ffa095ec0d49"
+      Hint: Photo
+      Value: |
+        <image mediaid="{94019398-2891-42E0-A828-91906480C937}" />
+    - ID: "3bdf4b87-443e-44c5-a282-3118e96d64ac"
+      Hint: Population
+      Value: 1000000000
+    - ID: "a3ffeb37-56c1-4de0-8f12-fdc14c3c8023"
+      Hint: Surface water
+      Value: 100%
+    - ID: "d0aaf369-02c5-468b-8de7-5cec8344f33f"
+      Hint: Affiliation
+      Value: Sith, Galactic Republic
+    - ID: "e9f01dd2-1d56-424e-84d1-8730aa38e5f2"
+      Hint: Region
+      Value: Outer Rim Territories
+    - ID: "fce0331e-d362-4fa7-80cc-4b892ef0ea72"
+      Hint: Moons
+      Value: 3

@@ -1,0 +1,14 @@
+﻿---
+ID: "1332b6ae-d7aa-4d04-94f0-1eb38668f322"
+Parent: "cc9cbc07-d2fd-4f62-8bc2-84759767dbb2"
+Template: "2314674d-dc2a-4779-a801-22fc2fb89951"
+Path: /sitecore/content/Home/PropellerDemo/Vehicles
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161021T121834Z

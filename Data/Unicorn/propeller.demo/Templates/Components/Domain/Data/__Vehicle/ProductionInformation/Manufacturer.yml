@@ -1,0 +1,18 @@
+﻿---
+ID: "e02f29eb-a3f0-4388-a38a-d506604cf515"
+Parent: "fc98ff9b-3c19-4c04-a6da-61defd0622d4"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/Components/Domain/Data/__Vehicle/ProductionInformation/Manufacturer
+DB: master
+SharedFields:
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: "Single-Line Text"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161021T113524Z

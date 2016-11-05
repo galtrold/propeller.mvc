@@ -1,0 +1,56 @@
+﻿---
+ID: "618a5f04-dc04-4955-b499-809b026f88c7"
+Parent: "51aa64cf-82e7-4755-863f-36674051e17d"
+Template: "98ce4cc7-a7c8-49aa-acb0-4b1e602872b6"
+Path: /sitecore/content/Home/PropellerDemo/Organizations/HuttClan
+DB: master
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Hutt Clan
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "146b1291-22a9-428e-bb3b-7ae3be6b0936"
+      Hint: Date established
+      Value: N/A
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161027T192038Z
+    - ID: "435b2a53-f83c-4b8b-95ba-b41395409cde"
+      Hint: Headquarters
+      Value: Nal Hutta
+    - ID: "44b3d3ff-ed52-4124-b998-6efa27a9897e"
+      Hint: Leaders
+      Value: Grand Hutt Council
+    - ID: "73aaca1a-cc66-40c7-ba6f-f30603c7a42e"
+      Hint: OrganizationType
+      Value: Crime family
+    - ID: "7f9c35ca-4c3d-4d72-9595-37c5627cfc63"
+      Hint: Intro
+      Value: The Hutt Clan, also known as the Hutt Cartel and sometimes simply as the Hutts, was one of the most powerful crime families in the galaxy around the time of the Clone Wars. It was governed by the Grand Hutt Council, whose members were the heads of the five Hutt families. During the Clone Wars, the clan aligned itself with the Galactic Republic, and briefly with Darth Maul's criminal empire, the Shadow Collective. During the Galactic Civil War, they clashed on multiple occasions with a group of mercenaries operating on the planet Tatooine, and established an alliance with the Galactic Empire.
+    - ID: "81bcbef4-3289-4814-a108-9e1469afd357"
+      Hint: Date reorganized
+      Value: N/A
+    - ID: "d4a744e0-81bf-43ec-b05d-750a439e571a"
+      Hint: FormedFrom
+      Value: N/A
+    - ID: "dead5bfe-8271-4f28-a5ec-ab962a41cc9e"
+      Hint: Date dissolved
+      Value: N/A
+    - ID: "ecd1f451-9c4a-467a-8689-244b12a6f812"
+      Hint: History
+      Value: |
+        Before the Clone WarsEdit
+        During the final days of the Galactic Republic, Jabba Desilijic Tiure and his fellow Hutts were known to preside over Tatooine's podraces. Notably during the Invasion of Naboo, Jabba was present when the human slave Anakin Skywalker won the Boonta Eve Classic in what was considered a monumentous event.[14]
+        
+        Clone WarsEdit
+        Entering the ConflictEdit
+        "Soon the Jedi will not only be at war with you, Count, but the Hutt Clan as well."
+        ―Darth Sidious to Count Dooku[src]
+        During the Clone Wars, the Hutts' influence and power over the Outer Rim, specifically its hyperspace lanes, was sought by both the Galactic Republic and the Confederacy of Independent Systems. Rotta, the son of Jabba, was secretly kidnapped by the Separatists, orchestrated by the Sith Lord Count Dooku with help from Jabba's uncle Ziro. The plot was meant to discredit the Jedi Order and scuttle negotiations between the Republic and the Hutts, but the Jedi were able to rescue Rotta from the Separatists. The crime lord had promised his support to whomever returned his son, and when the Separatists were revealed to have orchestrated Rotta's kidnapping, Jabba pledged his support to the Republic.[10]
+        
+        Senate Hostage CrisisEdit
+        At another point in the war, the Hutt Clan hired bounty hunter Cad Bane to get information on the Senate Building on Coruscant. After gaining the information, the Grand Hutt Council hired Bane to free Ziro the Hutt before he revealed the Council's records, which were kept on a holodiary, to the Republic Senate[2][3]. Thus, there was a hostage crisis that took place at the Senate Office Building on Coruscant, in which bounty hunters led by Bane held the Supreme Chancellor Sheev Palpatine of the Galactic Republic and other senators hostage in order to free Ziro from the Central Detention Center. Ziro, with the help of Bane, escaped from the custody of the Galactic Republic.[15] However, two Jedi—Quinlan Vos and Obi-Wan Kenobi— found him dead on Teth after he was killed by his lover Sy Snootles, at the behest of Jabba.[3]

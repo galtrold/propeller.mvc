@@ -1,0 +1,18 @@
+﻿---
+ID: "e9f01dd2-1d56-424e-84d1-8730aa38e5f2"
+Parent: "c8a6afcf-a7f6-47c5-9f93-a91d48e8d23a"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/Components/Domain/Data/__Planet/Planet/Region
+DB: master
+SharedFields:
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: "Single-Line Text"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161021T075852Z
