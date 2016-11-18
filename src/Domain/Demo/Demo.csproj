@@ -189,6 +189,10 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="styles\bootstrap.min.css" />
     <Content Include="Views\Layouts\PropellerDemoLayout.cshtml" />
+    <Content Include="App_Config\Include\Unicorn\Unicorn.config" />
+    <Content Include="App_Config\Include\Unicorn\Unicorn.Configs.propeller.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Config\Include\Rainbow.config" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.zSharedSecret.config.example" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.UI.config" />
@@ -199,11 +203,7 @@
     <Content Include="App_Config\Include\Unicorn\Unicorn.Configs.NewItemsOnly.example" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.Configs.Dependency.config.example" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.Configs.Default.example" />
-    <Content Include="App_Config\Include\Unicorn\Unicorn.config" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.AutoPublish.config" />
-    <Content Include="App_Config\Include\Unicorn\Unicorn.Configs.propeller.config">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="Properties\PublishProfiles\LocalWeb.pubxml" />
     <Content Include="Views\Character\Index.cshtml" />
     <Content Include="Views\web.config" />
@@ -230,16 +230,16 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Configuration\Propeller.Mvc.Core.csproj">
-      <Project>{3197F30B-2FD5-4369-9245-993F7D8136FC}</Project>
+    <ProjectReference Include="..\..\Framework\PropellerMvcCore\Propeller.Mvc.Core.csproj">
+      <Project>{af007b65-ec07-4905-843b-e40beeb05388}</Project>
       <Name>Propeller.Mvc.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Model\Propeller.Mvc.Model.csproj">
-      <Project>{AF268481-B485-47F2-80F7-BE3A12671A6E}</Project>
+    <ProjectReference Include="..\..\Framework\PropellerMvcModel\Propeller.Mvc.Model.csproj">
+      <Project>{479a5641-1614-4d2a-aeab-afa79884e207}</Project>
       <Name>Propeller.Mvc.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\ViewRenderer\Propeller.Mvc.Presentation.csproj">
-      <Project>{8D80781F-ED86-49F6-BFEA-4F29DD84878B}</Project>
+    <ProjectReference Include="..\..\Framework\PropellerMvcPresentation\Propeller.Mvc.Presentation.csproj">
+      <Project>{c80c85b3-f9b6-49db-99a7-31f70fbaea85}</Project>
       <Name>Propeller.Mvc.Presentation</Name>
     </ProjectReference>
   </ItemGroup>

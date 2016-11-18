@@ -6,6 +6,7 @@ namespace Propeller.Mvc.Demo.Controllers
 {
     public class CharacterController : Controller
     {
+
         public ActionResult Index()
         {
             var characterViewModel = new CharacterViewModel(RenderingContext.Current.Rendering);
