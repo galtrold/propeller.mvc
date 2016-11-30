@@ -1,5 +1,5 @@
 module.exports = {
     websitePath: "C:\\Websites\\propeller.mvc\\Website",
-    solutionPath: "h:\\james\\Projects\\propeller.mvc",
+    solutionPath: "d:\\Home\\James\\Projects\\Private\\propeller.mvc",
     buildConfiguration: "Debug"
 }

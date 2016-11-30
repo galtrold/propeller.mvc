@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>propeller.mvc.core</id>
+    <id>propeller.mvc.model</id>
     <version>$version$</version>
-    <title>Propeller Mvc Core</title>
+    <title>Propeller Mvc Model</title>
     <authors>Christian James</authors>
     <owners>Christian James</owners>
     <licenseUrl>https://raw.githubusercontent.com/galtrold/propeller.mvc/master/license.txt</licenseUrl>
@@ -14,5 +14,8 @@
     <releaseNotes>Initial release</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>sitecore mvc</tags>
+    <dependencies>
+      <dependency id="propeller.mvc.core" version="1.0" />
+    </dependencies>
   </metadata>
 </package>
