@@ -3,7 +3,7 @@
 
 # Subversion
 .svn/
-
+.vscode/
 # User-specific files
 *.suo
 *.user
