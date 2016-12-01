@@ -12,7 +12,7 @@ using Rendering = Sitecore.Mvc.Presentation.Rendering;
 
 namespace Propeller.Mvc.Presentation
 {
-    public abstract class PropellerViewModel<T> : PropellerModel<T>, IRenderingModel 
+    public class PropellerViewModel<T> : PropellerModel<T>, IRenderingModel where T : IPropellerModel, new()
     {
         [JsonIgnore]
         private Rendering _rendering;

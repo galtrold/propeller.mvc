@@ -9,7 +9,7 @@ using Sitecore.Links;
 
 namespace Propeller.Mvc.Core
 {
-    public abstract class PropellerEntity<T> 
+    public class PropellerEntity<T>
     {
         [JsonIgnore]
         protected Item _dataItem;

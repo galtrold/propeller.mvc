@@ -99,9 +99,8 @@ Use the ViewModel as the ```@model``` in the razor view. In order to support Sit
 
 # Documentation
 
-1. [Configuration](#example2)
-2. [Model](#example)
-3. [ViewModel](#example)
+1. Configuration
+2. ViewModel
 
 ## 1. Configuration
 
@@ -125,15 +124,15 @@ public class CharacterMap : ConfigurationMap<CharacterViewModel>
 ### 1.1 Basic mapping
 The mapping takes place inside the Constructor method where the ```SetProperty()``` method dictates which property to map. This method returns a configuration object enabling multiple configurations on the same property by chaining.
 
-The first configuration method is the ```Map()``` method and is the minimal configuration needed. It simply maps the property with the Sitecore template field Id, like this:
+The first configuration method is the ```Map()``` method and is the only required configuration. It simply maps the property with the Sitecore template field Id, like this:
 
 ```cs
 SetProperty(p => p.Affiliation).Map(new ID("{EE444D4A-7FDF-4D94-8ABA-6054A898E721}"));
 ```
-This mapping only registers the field Id together with the ViewModel property. This means that the ViewModel properties remain null/empty but you can use the ViewModels ```Render()``` in the Razor view to output the content in html.
+This mapping only registers the field Id together with the ViewModel property. This means that the ViewModel properties remain null/empty but you can use the ViewModels ```Render()``` in the Razor view to output the content as html.
 
 ### 1.2 Include values
-If you want to populate the ViewModel with actual data, the configuration system provides at method for this to happen automatically. The configuration method is called ```Include()```.
+If you want to populate the ViewModel with actual data, the configuration system provides at method automating this. The configuration method is called ```Include()```.
 ```cs
 SetProperty(p => p.Affiliation).Map(new ID("{EE444D4A-7FDF-4D94-8ABA-6054A898E721}")).Include();
 ```
@@ -146,7 +145,7 @@ SetProperty(p => p.Affiliation).Map(new ID("{EE444D4A-7FDF-4D94-8ABA-6054A898E72
 ```
 
 ### 1.4 Inheritance 
-ViewModels can not directly inherit from other base ViewModels. If a base class is needed one should use an ```Interface``` to define the base properties. In order to only map the base class properties once, configuration is applied to the Interface and not the ViewModel inplmenting the Interface.  
+ViewModels should not inherit from other ViewModels. If a base class is needed one should use an ```Interface``` to define the base properties. In order to only map the base class properties once, configuration is applied to the Interface and not the ViewModel implmenting the Interface.  
 
 ```cs
 public class BaseViewModelMap : ConfigurationMap<ICharacterViewModel>
@@ -161,3 +160,27 @@ public class BaseViewModelMap : ConfigurationMap<ICharacterViewModel>
     }
 }
 ```
+
+## 2. ViewModel
+
+This ViewModel can render the data in a number of ways. We will cover these methods with a series of use cases.
+
+### 2.1 Default properties
+Without doing anything you have access to the ItemName, DisplayName and url. 
+### 2.2 Basic Sitecore rendering
+The ViewModel has a Render method which uses Sitecores FieldRenderer.Render method. This means you get the standard rendering provided by Sitecore which also supports the Experience editor for editing content. The “problem” with Sitecores render method is that you need to provide it the field Id for the property you want to render or the property name (in the configuration chapter we discussed why we avoid field name as an identifier). The ViewModel hides the field identification away by providing an expression with a generic type of its self.  This enables static typing of the property to render. Because the ConfigurationMap has mapped the property name (fully qualified propertyname) with the field, the ViewModel is able to lookup the field Id based on the expression. No more magic Ids or Constant files lying around. The ViewModel provides a tight mapping to the Sitecore item which cannot ‘leak’ outside the scope of the 
+```cs
+ViewModel.Model.Render(p => p.Species)
+```
+
+### 2.3 Referenced items
+Basic rendering works great with simple data types but are not very useful when dealing with referenced data items. If you were to Render a DropLink or TreeList, the result be the Id of referenced item(s), not  particular useful. In order to deal with referenced items, the ViewModel has the GetItemReference method.
+```cs 
+TP GetItemReference<TP>(Expression<Func<T, object>> expression) 
+```
+It returns the generic type it is provided (the type mush be a ViewModel) and as the Render method it provides an expression to specifi which property holds the referenced item. The returned ViewModel is now available for further rendering.
+The benefits of GetItemReference is 1) referenced items are automatically instantiated as complex objects and 2) you get static typing throughout the whole object tree.
+### 2.4 
+…to be continued.
+
+

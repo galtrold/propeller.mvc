@@ -9,7 +9,7 @@ namespace Propeller.Mvc.Demo.Controllers
         public ActionResult Index()
         {
             var planetViewModel = new PlanetViewModel(RenderingContext.Current.Rendering);
-
+            
             return View(planetViewModel);
         }
     }

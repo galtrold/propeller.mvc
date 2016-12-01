@@ -5,11 +5,6 @@ using Sitecore.Data.Items;
 
 namespace Propeller.Mvc.Model.Adapters
 {
-    public interface IFieldAdapter
-    {
-        void InitAdapter(Item item, ID propId);
-    }
-
     public class GeneralLink : IFieldAdapter
     {
         public string Url { get; set; }

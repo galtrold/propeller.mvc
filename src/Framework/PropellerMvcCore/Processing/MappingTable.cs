@@ -33,7 +33,9 @@ namespace Propeller.Mvc.Core.Processing
                         Map = new Dictionary<string, ID>(),
                         IncludeMap = new Dictionary<string, ID>(),
                         EditableMap = new Dictionary<string, ID>(),
-                        JumpMap = new Dictionary<string, Func<ID>>()
+                        JumpMap = new Dictionary<string, Func<ID>>(),
+                        ViewModelRegistry =  new Dictionary<string, Type>()
+                       
                     };
                 }
                 return _instance;
@@ -47,6 +49,6 @@ namespace Propeller.Mvc.Core.Processing
         public Dictionary<string, ID> EditableMap { get; set; }
 
         public Dictionary<string, Func<ID>> JumpMap { get; set; }
-
+        public Dictionary<string, Type> ViewModelRegistry { get; set; }
     }
 }

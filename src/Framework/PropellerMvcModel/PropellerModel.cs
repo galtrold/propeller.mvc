@@ -13,7 +13,7 @@ using Sitecore.Diagnostics;
 
 namespace Propeller.Mvc.Model
 {
-    public abstract class PropellerModel<T> : PropellerEntity<T>, IPropellerModel
+    public class PropellerModel<T> : PropellerEntity<T>, IPropellerModel where T : IPropellerModel, new()
     {
         public PropellerModel() { }
 
@@ -100,7 +100,7 @@ namespace Propeller.Mvc.Model
             
         }
 
-        private void IncludeRawValues(Item dataItem)
+        public void IncludeRawValues(Item dataItem)
         {
             var viewModelType = typeof(T);
 
@@ -110,23 +110,37 @@ namespace Propeller.Mvc.Model
                 ID sitecoreFieldId;
                 if (MappingTable.Instance.IncludeMap.TryGetValue(propertyIdentifier, out sitecoreFieldId))
                 {
-                    pi.SetValue(this, ParseValue(pi.PropertyType, dataItem.Fields[sitecoreFieldId].Value));
+                    pi.SetValue(this, ParseValue(pi.PropertyType, dataItem.Fields[sitecoreFieldId]));
                 }
             }
         }
-        private object ParseValue(Type propertyType, string value)
+        private object ParseValue(Type propertyType, Field field)
         {
             int intValue;
             bool boolValue;
             DateTime dateValue;
+            Type viewModelType;
+            var value = field.Value;
             if (propertyType == typeof(int) && int.TryParse(value, out intValue))
                 return intValue;
             if (propertyType == typeof(bool) && bool.TryParse(value, out boolValue))
                 return boolValue;
-            if (propertyType == typeof(string))
-                return value;
             if (propertyType == typeof(DateTime) && DateTime.TryParse(value, out dateValue))
                 return dateValue;
+            if (MappingTable.Instance.ViewModelRegistry.TryGetValue(propertyType.FullName, out viewModelType))
+            {
+                ReferenceField refItem = field;
+                if (refItem == null || refItem.TargetItem == null)
+                    return null;
+                var viewModel = (IPropellerModel) Activator.CreateInstance(propertyType);
+                viewModel.DataItem = refItem.TargetItem;
+                viewModel.IncludeRawValues(refItem.TargetItem);
+
+                return viewModel;
+            }
+
+            if (propertyType == typeof(string))
+                return value;
 
             Log.Warn($"MvcViewModel: Not supported value type '{propertyType.FullName}'", this);
             return null;

@@ -18,9 +18,13 @@ namespace Propeller.Mvc.Demo.ViewModels
 
         public string Photo { get; set; }
 
-        public string PrimaryTransporation { get; set; }
+        public VehicleViewModel PrimaryTransportation { get; set; }
 
         public string ExternalLink { get; set; }
+
+        public CharacterViewModel()
+        {
+        }
 
         public CharacterViewModel(Item dataItem) : base(dataItem)
         {

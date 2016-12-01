@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\GeneralLink.cs" />
+    <Compile Include="Adapters\IFieldAdapter.cs" />
     <Compile Include="Adapters\Image.cs" />
     <Compile Include="IPropellerModel.cs" />
     <Compile Include="PropellerModel.cs" />

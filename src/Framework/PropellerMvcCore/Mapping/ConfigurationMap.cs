@@ -9,13 +9,19 @@ namespace Propeller.Mvc.Core.Mapping
 {
     public class ConfigurationMap<T>
     {
+
+        static ConfigurationMap()
+        {
+            var viewModelType = typeof(T);
+            if ( !MappingTable.Instance.ViewModelRegistry.ContainsKey(viewModelType.FullName))
+                MappingTable.Instance.ViewModelRegistry.Add(viewModelType.FullName, viewModelType);
+        }
+
         public ConfigurationItem SetProperty(Expression<Func<T, object>> expression)
         {
             var fullyQualifiedClassName = typeof(T).FullName;
             var propertyName = GetPropertyNameFromExpressionService.Get(expression);
             var fullPropertyName = string.Format("{0}.{1}", fullyQualifiedClassName, propertyName);
-            
-
             return new ConfigurationItem(fullPropertyName);
         }
 
@@ -28,7 +34,7 @@ namespace Propeller.Mvc.Core.Mapping
 
                 var fullyQualifiedClassName = typeof(T).FullName;
                 var interfaceFullyQualifiedClassName = type.FullName;
-                
+
                 var propertyInfos = type.GetProperties();
                 foreach (var propertyInfo in propertyInfos)
                 {
@@ -47,6 +53,6 @@ namespace Propeller.Mvc.Core.Mapping
             }
         }
 
-       
+
     }
 }
