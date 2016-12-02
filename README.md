@@ -1,4 +1,4 @@
-# Propeller MVC
+# Propeller MVC [![Build Status](https://travis-ci.org/galtrold/propeller.mvc.svg?branch=master)](https://travis-ci.org/galtrold/propeller.mvc)
 
 ## What is this?
 Propeller MVC is a small library created to improve the developer workflow when building Sitecore solutions. Sitecore provides standard rendering of Sitecore items but in the real world, you often need a more fine grained access to the data properties. Secondly, more and more data is flowing between the server and browser via asynchronous calls which means we need the raw data instead of the HTML presentation.  
