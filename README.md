@@ -172,15 +172,68 @@ The ViewModel has a Render method which uses Sitecores FieldRenderer.Render meth
 ```cs
 ViewModel.Model.Render(p => p.Species)
 ```
+The ViewModels property type has no infuence on the rendering the data when using the ViewModels ```Render``` method. It simply provides static typing and provices a way of resolving Sitecores field id. 
 
 ### 2.3 Referenced items
 Basic rendering works great with simple data types but are not very useful when dealing with referenced data items. If you were to Render a DropLink or TreeList, the result be the Id of referenced item(s), not  particular useful. In order to deal with referenced items, the ViewModel has the GetItemReference method.
 ```cs 
 TP GetItemReference<TP>(Expression<Func<T, object>> expression) 
 ```
-It returns the generic type it is provided (the type mush be a ViewModel) and as the Render method it provides an expression to specifi which property holds the referenced item. The returned ViewModel is now available for further rendering.
+And is used like this
+```cs 
+@Model.GetItemReference<Person>(p => p.Address).Street 
+```
+
+It returns the generic type it is provided (the type mush be a ViewModel) and as the Render method it provides an expression to specific which property holds the referenced item. The returned ViewModel is now available for further rendering.
 The benefits of GetItemReference is 1) referenced items are automatically instantiated as complex objects and 2) you get static typing throughout the whole object tree.
-### 2.4 
-…to be continued.
 
+### 2.4 Raw values
+Web services (web api's) are becomming increasenly popular and is such case, you are not interrested in the HTML output from Sitecore. What you are want is the raw values. Now you could manually fetch the raw values from the Sitecore item, but this is tedious work and genereally not something we want to spend our time with. Luckily the framework provides a way to automate this work and is done at the configuration level. As mentioned in the Configuration section, you can chain configuration for each property. You can tell the framework to automatically populate the ViewModels properties by configuring them with the ```Include()``` method like this.
+```cs
+SetProperty(p => p.Species).Map(new ID("{FF80B838-B0E4-4266-9E6A-2918585C4EB7}")).Include();
+```
+***IMPORTANT:*** For this feature to work, it is important that the ViewModel properties are defined with the currect data type e.g ```string``` for text, ```bool``` for Checkbox, ```double``` for number, ```DateTime``` for date etc. Complex types e.i other ViewModels will also be extracted if the correct ViewModel is defined at the property type. 
 
+### 2.5 Field Adapters
+Sitecore has its own complex types like ___Image___ and ___Generel link___. Extracting raw values from these types is done using a ```FieldAdapter``` which must implement the ```IFieldAdapter```. The framework comes with set of FieldAdapters but their main purpose is to provide a plugable system for customizing the data extracting. Here is an example of the FieldAdapter for Sitecores ___Image___ type. 
+```cs
+public class Image : IFieldAdapter
+{
+    public string Url { get; set; }
+    public string Alt { get; set; }
+
+    public void InitAdapter(Item item, ID propId)
+    {
+        ImageField image = item.Fields[propId];
+
+        var mediaItem = image.MediaDatabase.GetItem(image.MediaID);
+        Url = Sitecore.Resources.Media.MediaManager.GetMediaUrl(mediaItem);
+        Alt = image.Alt;
+    }
+}
+```     
+The ```IFieldAdapter``` contains only the ```InitAdapter``` method which provide the Sitecore item and the target field id. From here on you can extract any data you wish and provide it via properties. The ViewModel uses the Field Adapters with the ```the GetAs<T>``` method, where T implements IFieldAdapter. This can be used to extract raw data for a webservice or directly in the Razor view like this.
+```html
+<img src="@Model.GetAs<Propeller.Mvc.Model.Adapters.Image>(p => p.Photo).Url"
+             alt="@Model.GetAs<Propeller.Mvc.Model.Adapters.Image>(p => p.Photo).Alt" 
+             style="max-width: 100%;height: auto"/>
+```
+
+### 2.6 Templates
+The framework supports the use of ASP.NET helper Templates (in the razor view) and can take any object type, typically some type provided by the ViewModel.
+
+```cs
+@helper VehicleTemplate(Propeller.Mvc.Model.Adapters.Image img)
+{
+    <div style="background-image:url('@img.Url)');">
+        <strong style="color: white;">@img.Alt</strong>
+    </div>
+}
+```
+
+```html
+@Model.Template(vm => VehicleTemplate(vm.GetAs<Image>(p => p.Photo)))
+```
+The template is obviously beneficial when you have 'complex' renderings several places on the page because you only defined once. But maybe more beneficial is, that you can combine custom rendering while supporting the Experience editor. The mechanics of the ```Template``` method is very simple. When in pageedit mode, the template method uses the the Sitecore built in Render method as described in 2.2 
+
+..to be continued.
