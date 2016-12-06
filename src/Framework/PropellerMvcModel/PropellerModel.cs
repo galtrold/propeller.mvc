@@ -146,7 +146,7 @@ namespace Propeller.Mvc.Model
             return null;
         }
 
-        public bool Commit()
+        public bool Commit(string username)
         {
 
             var dataItem = DataItem;
@@ -169,7 +169,7 @@ namespace Propeller.Mvc.Model
                         continue;
                     }
 
-                    using (new Sitecore.SecurityModel.SecurityDisabler())
+                    using (new Sitecore.Security.Accounts.UserSwitcher(username, true))
                     {
                         dataItem.Editing.BeginEdit();
                         try
