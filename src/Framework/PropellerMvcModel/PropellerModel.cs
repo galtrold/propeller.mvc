@@ -118,15 +118,18 @@ namespace Propeller.Mvc.Model
         {
             int intValue;
             bool boolValue;
-            DateTime dateValue;
             Type viewModelType;
             var value = field.Value;
             if (propertyType == typeof(int) && int.TryParse(value, out intValue))
                 return intValue;
-            if (propertyType == typeof(bool) && bool.TryParse(value, out boolValue))
-                return boolValue;
-            if (propertyType == typeof(DateTime) && DateTime.TryParse(value, out dateValue))
-                return dateValue;
+            if (propertyType == typeof(bool))
+                return value == "1";
+            if (propertyType == typeof(DateTime))
+            {
+                var dateField = (DateField)field;
+                if(dateField != null)
+                    return dateField.DateTime;
+            } 
             if (MappingTable.Instance.ViewModelRegistry.TryGetValue(propertyType.FullName, out viewModelType))
             {
                 ReferenceField refItem = field;

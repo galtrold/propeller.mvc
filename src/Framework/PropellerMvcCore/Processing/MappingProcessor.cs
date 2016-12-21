@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using Propeller.Mvc.Core.Mapping;
+using Propeller.Mvc.Core.Utility;
 using Sitecore.Diagnostics;
 using Sitecore.Pipelines;
 
@@ -17,7 +18,9 @@ namespace Propeller.Mvc.Core.Processing
     {
         public void Process(PipelineArgs args)
         {
-            var folder = Path.Combine(HttpContext.Current.Server.MapPath("~/"), "bin");
+            
+            
+            var folder = EnvironmentSetttings.ApplicationPath;
             var files = FilterExcludedAssemblies(Directory.GetFiles(folder, "*.dll"));
             try
             {

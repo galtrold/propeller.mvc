@@ -1,4 +1,5 @@
-﻿using Propeller.Mvc.Presentation;
+﻿using System;
+using Propeller.Mvc.Presentation;
 using Sitecore.Data.Items;
 using Sitecore.Mvc.Presentation;
 
@@ -21,6 +22,8 @@ namespace Propeller.Mvc.Demo.ViewModels
         public string MaximumAtmosphericSpeed { get; set; }
 
         public string Shielding { get; set; }
+
+        public DateTime EnteredService { get; set; }
 
         public VehicleViewModel()
         {

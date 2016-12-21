@@ -41,6 +41,9 @@ Languages:
     - ID: "c59e678f-1891-4ddc-addd-e3df93ca9991"
       Hint: Model
       Value: "Modified Firespray-31 Patrol and attack craft"
+    - ID: "ca2b640a-a591-46a3-a437-9a07adc7f684"
+      Hint: EnteredServiceDate
+      Value: 20161217T212000Z
     - ID: "e02f29eb-a3f0-4388-a38a-d506604cf515"
       Hint: Manufacturer
       Value: Kuat Systems Engineering 

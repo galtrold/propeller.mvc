@@ -25,6 +25,10 @@ Languages:
       Hint: Photo
       Value: |
         <image mediapath="" alt="bobafett" width="" height="" hspace="" vspace="" showineditor="" usethumbnail="" src="" mediaid="{5EA35D30-EF21-4217-AFE8-D71F5867DCC7}" />
+    - ID: "cd46f2b2-507a-47b7-9e46-3cdac9d2cd73"
+      Hint: IsActive
+      Type: Checkbox
+      Value: 0
     - ID: "d64c6352-da90-4dde-9a9a-31e154e9905a"
       Hint: ExternalRef
       Value: |

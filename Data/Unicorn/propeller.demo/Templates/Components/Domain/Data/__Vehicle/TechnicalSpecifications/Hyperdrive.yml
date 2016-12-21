@@ -2,8 +2,12 @@
 ID: "38570933-4cf5-4d7a-b3a0-14c2e5533967"
 Parent: "f79dce98-5591-4544-b1d2-3494916ae63f"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
-Path: /sitecore/templates/Components/Domain/Data/__Vehicle/TechnicalSpecifications/Hyperdrive 
+Path: /sitecore/templates/Components/Domain/Data/__Vehicle/TechnicalSpecifications/Hyperdrive
 DB: master
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
 Languages:
 - Language: en
   Versions:
