@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationTest", "src\Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelTest", "src\Test\ModelTest\ModelTest.csproj", "{62015D11-D3F3-4FE8-9B17-BE02BE18EE11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Propeller.Log", "src\Framework\PropellerTcpLogger\Propeller.Log.csproj", "{F3256DA0-CB19-49D7-9C89-97A8CF65ECF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{62015D11-D3F3-4FE8-9B17-BE02BE18EE11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62015D11-D3F3-4FE8-9B17-BE02BE18EE11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62015D11-D3F3-4FE8-9B17-BE02BE18EE11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3256DA0-CB19-49D7-9C89-97A8CF65ECF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3256DA0-CB19-49D7-9C89-97A8CF65ECF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3256DA0-CB19-49D7-9C89-97A8CF65ECF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3256DA0-CB19-49D7-9C89-97A8CF65ECF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,5 +82,6 @@ Global
 		{C80C85B3-F9B6-49DB-99A7-31F70FBAEA85} = {4D21125B-2BC9-4753-A7AF-360CC83DA0A9}
 		{0FC6B16E-D74C-4C62-95F6-CBAFC8D96114} = {0700765F-C332-4C77-9DBF-80E5795B9639}
 		{62015D11-D3F3-4FE8-9B17-BE02BE18EE11} = {0700765F-C332-4C77-9DBF-80E5795B9639}
+		{F3256DA0-CB19-49D7-9C89-97A8CF65ECF2} = {4D21125B-2BC9-4753-A7AF-360CC83DA0A9}
 	EndGlobalSection
 EndGlobal
