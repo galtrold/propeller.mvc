@@ -91,7 +91,7 @@
     <Compile Include="Utility\PropertyIdResolver.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Config\Include\Propeller.Mvc.Core\PropellerMapping.config" />
+    <Content Include="App_Config\Include\Propeller.Mvc.Core\PropellerMapping.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
