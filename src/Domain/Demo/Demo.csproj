@@ -227,6 +227,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\PropellerLog\Propeller.Log.csproj">
+      <Project>{f3256da0-cb19-49d7-9c89-97a8cf65ecf2}</Project>
+      <Name>Propeller.Log</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\PropellerMvcCore\Propeller.Mvc.Core.csproj">
       <Project>{af007b65-ec07-4905-843b-e40beeb05388}</Project>
       <Name>Propeller.Mvc.Core</Name>
@@ -238,10 +242,6 @@
     <ProjectReference Include="..\..\Framework\PropellerMvcPresentation\Propeller.Mvc.Presentation.csproj">
       <Project>{c80c85b3-f9b6-49db-99a7-31f70fbaea85}</Project>
       <Name>Propeller.Mvc.Presentation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\PropellerTcpLogger\Propeller.Log.csproj">
-      <Project>{f3256da0-cb19-49d7-9c89-97a8cf65ecf2}</Project>
-      <Name>Propeller.Log</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
