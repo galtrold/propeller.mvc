@@ -69,13 +69,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Appenders\UdpTextAppender.cs" />
-    <Compile Include="LogPropInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\propeller.logger\propellerlog.config" />
+    <Content Include="App_Config\Include\propeller.logger\propellerlog.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="DockerCompose\docker-compose.yml" />
-    <None Include="DockerCompose\tcp-input.conf" />
+    <None Include="DockerCompose\propeller-input.conf" />
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
