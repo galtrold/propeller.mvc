@@ -30,6 +30,9 @@ namespace propeller.logger.Appenders
 
         protected override void Append(LoggingEvent loggingEvent)
         {
+
+            loggingEvent.Properties["hostname"] = System.Environment.MachineName;
+
             if (!_isValidated)
                 ValidateConfiguration();
 
