@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26020.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{4D21125B-2BC9-4753-A7AF-360CC83DA0A9}"
 EndProject
@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationTest", "src\Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelTest", "src\Test\ModelTest\ModelTest.csproj", "{62015D11-D3F3-4FE8-9B17-BE02BE18EE11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Propeller.Log", "src\Framework\PropellerTcpLogger\Propeller.Log.csproj", "{F3256DA0-CB19-49D7-9C89-97A8CF65ECF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Propeller.Log", "src\Framework\PropellerLog\Propeller.Log.csproj", "{F3256DA0-CB19-49D7-9C89-97A8CF65ECF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
