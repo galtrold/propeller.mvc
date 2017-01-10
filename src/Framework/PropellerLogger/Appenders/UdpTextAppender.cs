@@ -6,8 +6,7 @@ using System.Text;
 using log4net.Appender;
 using log4net.spi;
 
-
-namespace Propeller.Log.Appenders
+namespace propeller.logger.Appenders
 {
     public class UdpTextAppender : AppenderSkeleton
     {

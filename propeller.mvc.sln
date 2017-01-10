@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationTest", "src\Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelTest", "src\Test\ModelTest\ModelTest.csproj", "{62015D11-D3F3-4FE8-9B17-BE02BE18EE11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Propeller.Log", "src\Framework\PropellerLog\Propeller.Log.csproj", "{F3256DA0-CB19-49D7-9C89-97A8CF65ECF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Propeller.Logger", "src\Framework\PropellerLogger\Propeller.Logger.csproj", "{F3256DA0-CB19-49D7-9C89-97A8CF65ECF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
