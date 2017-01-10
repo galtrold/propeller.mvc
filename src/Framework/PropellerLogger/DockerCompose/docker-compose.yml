@@ -9,7 +9,7 @@ services:
             - "5044:5044"
             - "8085:8085/udp"
         volumes: 
-            - "./inputs/tcp-input.conf:/etc/logstash/conf.d/tcp-input.conf"
-            - "./outputs/30-output.conf:/etc/logstash/conf.d/30-output.conf"
+            - "./propeller-input.conf:/etc/logstash/conf.d/tcp-input.conf"
+       
         environment: 
             - "LS_OPTS=--config.reload.automatic"
