@@ -11,6 +11,7 @@ namespace Propeller.Mvc.Demo.Controllers
 
         public ActionResult Index()
         {
+            Sitecore.Diagnostics.Log.Info("Pass on that shit!!", this);
             var mappingProcessor = new MappingProcessor();
             mappingProcessor.Process(null);
 
