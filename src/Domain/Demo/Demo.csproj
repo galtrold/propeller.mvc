@@ -227,6 +227,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\PropellerLogger\Propeller.Logger.csproj">
+      <Project>{f3256da0-cb19-49d7-9c89-97a8cf65ecf2}</Project>
+      <Name>Propeller.Logger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\PropellerMvcCore\Propeller.Mvc.Core.csproj">
       <Project>{af007b65-ec07-4905-843b-e40beeb05388}</Project>
       <Name>Propeller.Mvc.Core</Name>
