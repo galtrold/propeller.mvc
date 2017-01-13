@@ -75,8 +75,8 @@
     <Content Include="App_Config\Include\propeller.logger\propellerlog.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="DockerCompose\docker-compose.yml" />
-    <None Include="DockerCompose\propeller-input.conf" />
+    <Content Include="PropellerLogger\DockerCompose\docker-compose.yml" />
+    <Content Include="PropellerLogger\DockerCompose\propeller-input.conf" />
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>

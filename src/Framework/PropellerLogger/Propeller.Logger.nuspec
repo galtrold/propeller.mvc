@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>propeller.logger</id>
+    <version>$version$</version>
+    <title>Propeller Logger</title>
+    <authors>Christian James</authors>
+    <owners>Christian James</owners>
+    <licenseUrl>https://raw.githubusercontent.com/galtrold/propeller.mvc/master/license.txt</licenseUrl>
+    <projectUrl>https://github.com/galtrold/propeller.mvc</projectUrl>
+    <iconUrl>https://github.com/galtrold/propeller.mvc/blob/master/propellericon.png?raw=true</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Propeller Logger is an log4net appender for sitecore which make send events directly to logstash</description>
+    <summary>Propeller Logger is an log4net appender for sitecore. It sends log events via udp packages wich can then be collected by logstash. Because the setup process of the ELK stack (Elastic search, Logstash and Kibana) is rather lengthy a docler-compose files is included in the package so one can fire it up within a minute.</summary>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>sitecore logstash kibana log logging</tags>
+  </metadata>
+</package>
