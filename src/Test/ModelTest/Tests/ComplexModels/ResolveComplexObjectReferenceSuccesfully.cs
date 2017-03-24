@@ -10,18 +10,13 @@ using Sitecore.Data;
 using Sitecore.FakeDb;
 using Xunit;
 
-namespace ModelTest.Tests.FieldAdapters
+namespace ModelTest.Tests.ComplexModels
 {
-    public class GeneralLinkAdapterTest
+    public class ResolveComplexObjectReferenceSuccesfully
     {
         [Fact]
-        public void GeneralLinkAdapter_ExternalLink_Success()
+        public void GetSingleItemReferenceAsViewModel()
         {
-            // Arrange 
-            EnvironmentSetttings.ApplicationPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
-            var mappingProcessor = new MappingProcessor();
-            mappingProcessor.Process(null);
-
             using (var db = SharedDatabaseDefinition.CarDatabase())
             {
 
@@ -36,7 +31,8 @@ namespace ModelTest.Tests.FieldAdapters
 
 
             }
-        }
 
+        }
+        
     }
 }

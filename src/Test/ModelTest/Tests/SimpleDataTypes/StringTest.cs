@@ -23,14 +23,14 @@ namespace ModelTest.Tests.SimpleDataTypes
 
 
 
-            using (var db = BasicDbScaffolding.SetupDatebaseWithSimpleFieldTypeAndValue(ConstantsCarModel.Fields.ManuFactureField, "Ford"))
+            using (var db = SharedDatabaseDefinition.CarDatabase())
             {
                 // Act
-                var item = db.GetItem("/sitecore/content/Ford500");
+                var item = db.GetItem("/sitecore/content/Astra");
                 var carViewModel = new CarViewModel(item);
 
                 // Assert
-                carViewModel.Manufacture.Should().Be("Ford");
+                carViewModel.Manufacture.Should().Be(SharedDatabaseDefinition.StaticCarData.Manufacture);
             }
         }
 
