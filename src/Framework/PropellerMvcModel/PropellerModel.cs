@@ -32,15 +32,19 @@ namespace Propeller.Mvc.Model
         /// <returns></returns>
         public TP GetItemReference<TP>(Expression<Func<T, object>> expression) where TP : PropellerEntity<TP>, new()
         {
+            var type = typeof(TP);
             Item targetItem;
             var item = DataItem;
             if (item == null)
-                return new TP();
+                return Activator.CreateInstance(type, null) as TP;
 
             var propId = GetPropertyId(expression);
+            if (propId ==  ID.Null)
+                return Activator.CreateInstance(type, null) as TP;
+
             var fieldItem = item.Fields[propId];
             if(fieldItem == null)
-                return new TP();
+                return Activator.CreateInstance(type, null) as TP;
 
             if (fieldItem.Type.ToLower().Equals("droplist"))
             {
@@ -52,35 +56,44 @@ namespace Propeller.Mvc.Model
                 ReferenceField selectedItem = item.Fields[propId];
                 if (selectedItem == null)
                 {
-                    return new TP();
+                    return Activator.CreateInstance(type, null) as TP;
                 }
                 targetItem = selectedItem.TargetItem;
             }
 
             
-            return new TP { DataItem = targetItem };
+            return Activator.CreateInstance(type, targetItem) as TP;
+            
         }
 
         public IEnumerable<TK> GetList<TK>(Expression<Func<T, object>> expression) where TK : PropellerEntity<TK>, new()
         {
 
-            if (Item == null)
+            if (DataItem == null)
                 return new List<TK>();
 
             var propId = GetPropertyId(expression);
+            if (propId == ID.Null)
+                return new List<TK>();
 
-            var listField = Item.Fields[propId];
+            var listField = DataItem.Fields[propId];
 
-            var database = Sitecore.Context.Database;
+            var database = DataItem.Database;
 
             var listItemIds = listField.Value.Split('|');
 
             if (string.IsNullOrWhiteSpace(listField.Value) || listItemIds.Length < 1)
                 return new List<TK>();
+            var type = typeof(TK);
 
-            var listItems = listItemIds.Select(p => new TK { DataItem = database.GetItem(p) });
+            var results = new List<TK>();
+            foreach (var itemId in listItemIds)
+            {
+                var viewModelItem = (TK)Activator.CreateInstance(type, database.GetItem(itemId));
+                results.Add(viewModelItem);
+            }
 
-            return listItems;
+            return results;
         }
 
         public CT GetAs<CT>(Expression<Func<T, object>> expression) where CT : IFieldAdapter, new()
@@ -89,6 +102,9 @@ namespace Propeller.Mvc.Model
             {
                 var item = DataItem;
                 var propId = GetPropertyId(expression);
+                if(propId == ID.Null)
+                    return new CT();
+
                 var adapter = new CT();
                 adapter.InitAdapter(item, propId);
                 return adapter;

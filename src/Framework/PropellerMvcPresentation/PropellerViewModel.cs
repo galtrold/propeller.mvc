@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using System.Web;
 using Newtonsoft.Json;
 using Propeller.Mvc.Model;
+using Sitecore.Data;
 using Sitecore.Data.Items;
 using Sitecore.Diagnostics;
 using Sitecore.Mvc.Presentation;
@@ -16,12 +17,6 @@ namespace Propeller.Mvc.Presentation
     {
         [JsonIgnore]
         private Rendering _rendering;
-
-        [JsonIgnore]
-        public override Item Item
-        {
-            get { return _rendering != null ? _rendering.Item : null; } 
-        }
 
         [JsonIgnore]
         public virtual Item PageItem
@@ -68,8 +63,8 @@ namespace Propeller.Mvc.Presentation
         {
             get
             {
-                if (Item != null)
-                    return Item;
+                if (_rendering != null )
+                    return _rendering.Item;
 
                 if (_dataItem != null)
                     return _dataItem;
@@ -89,6 +84,10 @@ namespace Propeller.Mvc.Presentation
             try
             {
                 var propId = GetPropertyId(expression);
+
+                if(propId == ID.Null)
+                    return new HtmlString(string.Empty);
+
                 fieldId = propId.ToString();
 
                 var item = DataItem;

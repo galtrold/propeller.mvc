@@ -14,6 +14,7 @@ namespace Propeller.Mvc.Core
         [JsonIgnore]
         protected Item _dataItem;
 
+
         [JsonIgnore]
         public virtual Item DataItem
         {
@@ -37,7 +38,10 @@ namespace Propeller.Mvc.Core
 
         public PropellerEntity(Item dataItem)
         {
+            if(dataItem == null)
+                Log.Warn($"Instanciating propeller entity of type '{this.GetType().FullName}' with no data item. Is null", this);
             DataItem = dataItem;
+
         }
 
         private MemberExpression GetMemberExpression(Expression<Func<T, object>> expression)
@@ -60,8 +64,6 @@ namespace Propeller.Mvc.Core
             }
         }
 
-        [JsonIgnore]
-        public virtual Item Item { get; set; }
 
         protected ID GetPropertyId(Expression<Func<T, object>> expression)
         {
@@ -72,7 +74,7 @@ namespace Propeller.Mvc.Core
             var propName = memberExpression?.Member.Name;
 
             if (string.IsNullOrEmpty(propName))
-                return new ID("");
+                return ID.Null;
 
             var fullyQualifiedName = typeof(T).FullName;
 
@@ -84,7 +86,7 @@ namespace Propeller.Mvc.Core
                 return idFunc();
 
             Log.Error($"Kunne ikke finde item id for '{key}'", this);
-            return new ID("");
+            return ID.Null;
         }
 
 

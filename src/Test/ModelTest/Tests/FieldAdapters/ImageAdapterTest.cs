@@ -25,9 +25,9 @@ namespace ModelTest.Tests.FieldAdapters
             mappingProcessor.Process(null);
 
             using (var db = SharedDatabaseDefinition.CarDatabase())
-            {
+            {   
                 var mediaProvider = Substitute.For<Sitecore.Resources.Media.MediaProvider>();
-                mediaProvider.GetMediaUrl(Arg.Is<Sitecore.Data.Items.MediaItem>(i => i.ID.ToString() == ConstantsCarModel.Fields.MediaImageItem)).Returns(ConstantsCarModel.Fields.MediaImageItem);
+                mediaProvider.GetMediaUrl(Arg.Is<Sitecore.Data.Items.MediaItem>(p => true )).Returns(SharedDatabaseDefinition.StaticCarData.CarPhoto.Url);
 
                 
                 // Act
