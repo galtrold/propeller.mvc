@@ -33,6 +33,10 @@ Languages:
       Hint: ExternalRef
       Value: |
         <link text="Star wars wiki" linktype="external" url="http://starwars.wikia.com/wiki/Boba_Fett" anchor="" target="_blank" />
+    - ID: "e6857d61-1aa8-49b1-8638-e909eaa9b7ef"
+      Hint: SignelHomeWorld
+      Value: |
+        <link text="Bobas homeworld" linktype="internal" class="" title="Kamino, homeworld of Bobafett" target="" querystring="" id="{F55BA887-37C6-45F6-8DE6-3E720451AA0A}" />
     - ID: "e8d236d1-e473-4816-89bd-ee4ccd613972"
       Hint: Homeworld
       Type: Treelist

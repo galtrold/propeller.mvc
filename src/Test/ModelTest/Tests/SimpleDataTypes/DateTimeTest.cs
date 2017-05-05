@@ -20,14 +20,14 @@ namespace ModelTest.Tests.SimpleDataTypes
             mappingProcessor.Process(null);
 
 
-            using (var db = BasicDbScaffolding.SetupDatebaseWithSimpleFieldTypeAndValue(ConstantsCarModel.Fields.EnteredProductionDateField, "20161217T212000Z"))
+            using (var db = SharedDatabaseDefinition.CarDatabase())
             {
                 // Act
-                var item = db.GetItem("/sitecore/content/Ford500");
+                var item = db.GetItem("/sitecore/content/Astra");
                 var carViewModel = new CarViewModel(item);
 
                 // Assert
-                carViewModel.EnteredProductionDate.Date.Should().Be(17.December(2016));
+                carViewModel.EnteredProductionDate.Date.Should().Be(SharedDatabaseDefinition.StaticCarData.EnteredProductionDate.Date);
             }
         }
     }

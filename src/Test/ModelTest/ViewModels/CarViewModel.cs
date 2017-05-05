@@ -23,6 +23,9 @@ namespace ModelTest.ViewModels
 
         public Image CarPhoto { get; set; }
 
+        public CountryViewModel ProductionCountry { get; set; }
+
+
         public CarViewModel()
         {
         }

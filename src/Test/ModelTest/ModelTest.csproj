@@ -152,6 +152,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tests\ComplexModels\ResolveComplexObjectReferenceSuccesfully.cs" />
     <Compile Include="Tests\FieldAdapters\GeneralLinkAdapterTest.cs" />
     <Compile Include="Tests\FieldAdapters\ImageAdapterTest.cs" />
     <Compile Include="Constants\ConstantsCarModel.cs" />
@@ -159,8 +160,9 @@
     <Compile Include="Tests\SimpleDataTypes\DateTimeTest.cs" />
     <Compile Include="Tests\SimpleDataTypes\BooleanTest.cs" />
     <Compile Include="Tests\SimpleDataTypes\StringTest.cs" />
-    <Compile Include="Utils\BasicDbScaffolding.cs" />
+    <Compile Include="Utils\SharedDatabaseDefinition.cs" />
     <Compile Include="ViewModels\CarViewModel.cs" />
+    <Compile Include="ViewModels\CountryViewModel.cs" />
     <Compile Include="ViewModels\Maps\CarMap.cs" />
   </ItemGroup>
   <ItemGroup>

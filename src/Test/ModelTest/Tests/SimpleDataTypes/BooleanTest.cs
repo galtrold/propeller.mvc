@@ -23,10 +23,10 @@ namespace ModelTest.Tests.SimpleDataTypes
 
 
 
-            using (var db = BasicDbScaffolding.SetupDatebaseWithSimpleFieldTypeAndValue(ConstantsCarModel.Fields.IsActive, "1"))
+            using (var db = SharedDatabaseDefinition.CarDatabase())
             {
                 // Act
-                var item = db.GetItem("/sitecore/content/Ford500");
+                var item = db.GetItem("/sitecore/content/Astra");
                 var carViewModel = new CarViewModel(item);
 
                 // Assert
