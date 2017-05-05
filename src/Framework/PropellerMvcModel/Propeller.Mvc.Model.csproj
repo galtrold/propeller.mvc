@@ -77,9 +77,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\Checkbox.cs" />
+    <Compile Include="Adapters\DatetimeAdapter.cs" />
     <Compile Include="Adapters\GeneralLink.cs" />
     <Compile Include="Adapters\IFieldAdapter.cs" />
     <Compile Include="Adapters\Image.cs" />
+    <Compile Include="Adapters\Integer.cs" />
     <Compile Include="IPropellerModel.cs" />
     <Compile Include="PropellerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
