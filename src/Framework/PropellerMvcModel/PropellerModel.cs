@@ -116,6 +116,8 @@ namespace Propeller.Mvc.Model
         }
         private object ParseValue(Type propertyType, Field field)
         {
+
+            // ASP.NET types
             int intValue;
             bool boolValue;
             Type viewModelType;
@@ -130,6 +132,8 @@ namespace Propeller.Mvc.Model
                 if(dateField != null)
                     return dateField.DateTime;
             } 
+            
+            // Other ViewModels
             if (MappingTable.Instance.ViewModelRegistry.TryGetValue(propertyType.FullName, out viewModelType))
             {
                 ReferenceField refItem = field;
