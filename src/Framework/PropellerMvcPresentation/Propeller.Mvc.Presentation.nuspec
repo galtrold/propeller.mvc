@@ -15,7 +15,7 @@
     <copyright>Copyright 2016</copyright>
     <tags>sitecore mvc</tags>
      <dependencies>
-      <dependency id="propeller.mvc.model" version="1.0" />
+      <dependency id="propeller.mvc.model" version="1.0.0.4" />
     </dependencies>
   </metadata>
 </package>
