@@ -12,13 +12,12 @@ namespace Propeller.Mvc.Presentation
     {
         public static MvcHtmlString Template<TModel, TValue>(this IPropellerTemplate<TModel> vm, Expression<Func<TModel, TValue>> expression)
         {
-            if (Sitecore.Context.PageMode.IsExperienceEditor)
+            if (Sitecore.Context.PageMode.IsPageEditor)
             {
                 var expressionBody = expression.Body as System.Linq.Expressions.MethodCallExpression;
                 try
                 {
                     var getAsMethod = expressionBody.Arguments.FirstOrDefault() as MethodCallExpression;
-
                     var unaryExpression = getAsMethod.Arguments.FirstOrDefault() as UnaryExpression;
                     var innerExpresion = unaryExpression.Operand as LambdaExpression;
                     var propertyField = innerExpresion.Body as System.Linq.Expressions.MemberExpression;
