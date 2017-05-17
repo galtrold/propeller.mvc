@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Web.Mvc;
 using Propeller.Mvc.Core.Processing;
 using Sitecore.Data;
@@ -10,9 +11,17 @@ namespace Propeller.Mvc.Presentation
 {
     public static class TemplateRender
     {
+
         public static MvcHtmlString Template<TModel, TValue>(this IPropellerTemplate<TModel> vm, Expression<Func<TModel, TValue>> expression)
         {
-            if (Sitecore.Context.PageMode.IsPageEditor)
+            //var sitecoreAssembly = Assembly.LoadFile("Sitecore.Kernal.dll");
+
+            //var pageMode = sitecoreAssembly.GetType("Sitecore.Context.PageMode");
+
+            //pageMode.InvokeMember("IsExperience")
+
+
+            if (SCPageMode.IsEditMode())
             {
                 var expressionBody = expression.Body as System.Linq.Expressions.MethodCallExpression;
                 try
