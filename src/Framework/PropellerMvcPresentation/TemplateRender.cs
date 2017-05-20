@@ -12,7 +12,7 @@ namespace Propeller.Mvc.Presentation
     {
         public static MvcHtmlString Template<TModel, TValue>(this IPropellerTemplate<TModel> vm, Expression<Func<TModel, TValue>> expression)
         {
-            if (Sitecore.Context.PageMode.IsPageEditor)
+            if (PageEditStats.IsPageEditor)
             {
                 var expressionBody = expression.Body as System.Linq.Expressions.MethodCallExpression;
                 try
