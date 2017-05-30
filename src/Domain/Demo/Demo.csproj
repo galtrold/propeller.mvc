@@ -201,6 +201,7 @@
     <Content Include="App_Config\Include\Unicorn\Unicorn.Configs.Dependency.config.example" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.Configs.Default.example" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.AutoPublish.config" />
+    <Content Include="App_Config\Include\Propeller.Mvc.Core\PropellerMapping.config" />
     <None Include="Properties\PublishProfiles\LocalWeb.pubxml" />
     <Content Include="Views\Character\Index.cshtml" />
     <Content Include="Views\web.config" />

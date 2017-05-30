@@ -35,6 +35,7 @@ namespace Propeller.Mvc.Model
             var type = typeof(TP);
             Item targetItem;
             var item = DataItem;
+            
             if (item == null)
                 return Activator.CreateInstance(type, null) as TP;
 
@@ -43,13 +44,20 @@ namespace Propeller.Mvc.Model
                 return Activator.CreateInstance(type, null) as TP;
 
             var fieldItem = item.Fields[propId];
-            if(fieldItem == null)
+            var linkField = (LinkField)fieldItem;
+            if (fieldItem == null)
                 return Activator.CreateInstance(type, null) as TP;
 
             if (fieldItem.Type.ToLower().Equals("droplist"))
             {
-                Log.Warn("DropList is not supported ny this method. DropList are generelly not that useful lsince they only provide the selected Item.Name. Use DropLink instead. ", item);
+                Log.Warn("DropList is not supported by this method. DropList are generelly not that useful lsince they only provide the selected Item.Name. Use DropLink instead. ", item);
                 targetItem = null;
+            }
+            else if (linkField != null && linkField.IsInternal )
+            {
+                if(linkField.TargetItem == null )
+                    return Activator.CreateInstance(type, null) as TP;
+                targetItem = linkField.TargetItem;
             }
             else
             {
@@ -135,7 +143,6 @@ namespace Propeller.Mvc.Model
 
             // ASP.NET types
             int intValue;
-            bool boolValue;
             Type viewModelType;
             var value = field.Value;
             if (propertyType == typeof(int) && int.TryParse(value, out intValue))
@@ -152,12 +159,27 @@ namespace Propeller.Mvc.Model
             // Other ViewModels
             if (MappingTable.Instance.ViewModelRegistry.TryGetValue(propertyType.FullName, out viewModelType))
             {
+                
+               //Sitecore.Data.Fields.LinkField
                 ReferenceField refItem = field;
-                if (refItem == null || refItem.TargetItem == null)
+                LinkField linkField = field;
+                Item targetItem = null;
+
+                if (refItem != null && refItem.TargetItem != null)
+                {
+                    targetItem = refItem.TargetItem;
+                }
+                else if (linkField != null && linkField.TargetItem != null)
+                {
+                    targetItem = linkField.TargetItem;
+                }
+
+                if (targetItem == null)
                     return null;
+
                 var viewModel = (IPropellerModel) Activator.CreateInstance(propertyType);
-                viewModel.DataItem = refItem.TargetItem;
-                viewModel.IncludeRawValues(refItem.TargetItem);
+                viewModel.DataItem = targetItem;
+                viewModel.IncludeRawValues(targetItem);
 
                 return viewModel;
             }
