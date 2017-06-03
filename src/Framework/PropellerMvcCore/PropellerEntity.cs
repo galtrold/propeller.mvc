@@ -76,6 +76,12 @@ namespace Propeller.Mvc.Core
             if (string.IsNullOrEmpty(propName))
                 return ID.Null;
 
+            return GetPropertyIdByName(propName);
+
+        }
+
+        protected ID GetPropertyIdByName(string propName)
+        {
             var fullyQualifiedName = typeof(T).FullName;
 
             var key = $"{fullyQualifiedName}.{propName}";

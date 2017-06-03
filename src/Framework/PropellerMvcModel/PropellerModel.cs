@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using Propeller.Mvc.Core;
 using Propeller.Mvc.Core.Processing;
 using Propeller.Mvc.Model.Adapters;
@@ -134,12 +135,13 @@ namespace Propeller.Mvc.Model
                 ID sitecoreFieldId;
                 if (MappingTable.Instance.IncludeMap.TryGetValue(propertyIdentifier, out sitecoreFieldId))
                 {
-                    pi.SetValue(this, ParseValue(pi.PropertyType, dataItem.Fields[sitecoreFieldId]));
+                    pi.SetValue(this, ParseValue(pi, dataItem.Fields[sitecoreFieldId]));
                 }
             }
         }
-        private object ParseValue(Type propertyType, Field field)
+        private object ParseValue(PropertyInfo propertyInfo, Field field)
         {
+            var propertyType = propertyInfo.PropertyType;
 
             // ASP.NET types
             int intValue;
@@ -154,8 +156,11 @@ namespace Propeller.Mvc.Model
                 var dateField = (DateField)field;
                 if(dateField != null)
                     return dateField.DateTime;
-            } 
-            
+            }
+
+           
+        
+
             // Other ViewModels
             if (MappingTable.Instance.ViewModelRegistry.TryGetValue(propertyType.FullName, out viewModelType))
             {
@@ -183,6 +188,16 @@ namespace Propeller.Mvc.Model
 
                 return viewModel;
             }
+
+            // AdapterFields
+            if (propertyType.GetInterfaces().Contains(typeof(IFieldAdapter)))
+            {
+                var id = GetPropertyIdByName(propertyInfo.Name);
+                var fieldAdapter = (IFieldAdapter)Activator.CreateInstance(propertyType);
+                fieldAdapter.InitAdapter(DataItem, id);
+                return fieldAdapter;
+            }
+
 
             if (propertyType == typeof(string))
                 return value;
