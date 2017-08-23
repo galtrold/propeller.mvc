@@ -105,6 +105,15 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /F /R /Y /I "$(ProjectDir)container_setup_script.sh" "$(ProjectDir)dist\app\"
+xcopy /F /R /Y /I "$(ProjectDir)bin/sc81/propeller.logger.dll" "$(ProjectDir)dist\app\lib\"
+xcopy /F /R /Y /I "$(ProjectDir)bin/sc81/App_Config/Include/propeller.logger/propellerlog.config" "$(ProjectDir)dist\app\config\"
+xcopy /F /R /Y /I "$(ProjectDir)container_startup_script.sh" "$(ProjectDir)dist\app\"
+xcopy /F /R /Y /I "$(ProjectDir)DockerCompose/propeller-input.conf" "$(ProjectDir)dist\etc\logstash\conf.d\"
+xcopy /F /R /Y /I "$(ProjectDir)config_merge.js" "$(ProjectDir)dist\app\"
+xcopy /F /R /Y /I "$(ProjectDir)package.json" "$(ProjectDir)dist\app\"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
