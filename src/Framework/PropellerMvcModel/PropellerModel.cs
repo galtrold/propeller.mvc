@@ -38,16 +38,16 @@ namespace Propeller.Mvc.Model
             var item = DataItem;
             
             if (item == null)
-                return Activator.CreateInstance(type, null) as TP;
+                return Activator.CreateInstance(type) as TP;
 
             var propId = GetPropertyId(expression);
             if (propId ==  ID.Null)
-                return Activator.CreateInstance(type, null) as TP;
+                return Activator.CreateInstance(type) as TP;
 
             var fieldItem = item.Fields[propId];
             var linkField = (LinkField)fieldItem;
             if (fieldItem == null)
-                return Activator.CreateInstance(type, null) as TP;
+                return Activator.CreateInstance(type) as TP;
 
             if (fieldItem.Type.ToLower().Equals("droplist"))
             {
@@ -57,7 +57,7 @@ namespace Propeller.Mvc.Model
             else if (linkField != null && linkField.IsInternal )
             {
                 if(linkField.TargetItem == null )
-                    return Activator.CreateInstance(type, null) as TP;
+                    return Activator.CreateInstance(type) as TP;
                 targetItem = linkField.TargetItem;
             }
             else
@@ -65,14 +65,17 @@ namespace Propeller.Mvc.Model
                 ReferenceField selectedItem = item.Fields[propId];
                 if (selectedItem == null)
                 {
-                    return Activator.CreateInstance(type, null) as TP;
+                    return Activator.CreateInstance(type) as TP;
                 }
                 targetItem = selectedItem.TargetItem;
             }
 
             
-            return Activator.CreateInstance(type, targetItem) as TP;
-            
+            var vm =  Activator.CreateInstance(type) as TP;
+            vm.DataItem = targetItem;
+            return vm;
+
+
         }
 
         public IEnumerable<TK> GetList<TK>(Expression<Func<T, object>> expression) where TK : PropellerEntity<TK>, new()
@@ -96,10 +99,12 @@ namespace Propeller.Mvc.Model
             var type = typeof(TK);
 
             var results = new List<TK>();
+
             foreach (var itemId in listItemIds)
             {
-                var viewModelItem = (TK)Activator.CreateInstance(type, database.GetItem(itemId));
-                results.Add(viewModelItem);
+                var viewModel = (TK)Activator.CreateInstance(type);
+                viewModel.DataItem = database.GetItem(itemId);
+                results.Add(viewModel);
             }
 
             return results;

@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using Propeller.Mvc.Core.Processing;
 using Propeller.Mvc.Demo.ViewModels;
+using Propeller.Mvc.Model.Factory;
+using Propeller.Mvc.Presentation.Factory;
 using Sitecore.Mvc.Presentation;
 
 namespace Propeller.Mvc.Demo.Controllers
@@ -11,8 +13,8 @@ namespace Propeller.Mvc.Demo.Controllers
 
         public ActionResult Index()
         {
-
-            var characterViewModel = new CharacterViewModel(RenderingContext.Current.Rendering);
+            var vmFactory = new ViewModelFactory();
+            var characterViewModel =  vmFactory.Create<CharacterViewModel>(RenderingContext.Current.Rendering);
             ViewBag.SerializedModel = JsonConvert.SerializeObject(characterViewModel, Formatting.Indented);
             return View(characterViewModel);
         }

@@ -91,6 +91,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factory\ViewModelFactory.cs" />
     <Compile Include="IPropellerTemplate.cs" />
     <Compile Include="PropellerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

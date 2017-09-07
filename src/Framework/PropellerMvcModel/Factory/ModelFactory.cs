@@ -11,10 +11,11 @@ using Sitecore.Search.Crawlers.FieldCrawlers;
 
 namespace Propeller.Mvc.Model.Factory
 {
-    public class ViewModelFactory
+    public class ModelFactory
     {
-        public T Create<T>(Item dataItem, Type viewModelType) where T : IPropellerModel
+        public T Create<T>(Item dataItem) where T : IPropellerModel
         {
+            var viewModelType = typeof(T);
             if (dataItem == null)
             {
                 return default(T);
@@ -22,7 +23,6 @@ namespace Propeller.Mvc.Model.Factory
 
             var viewModel = (T)Activator.CreateInstance(viewModelType);
             viewModel.DataItem = dataItem;
-
 
             foreach (var pi in viewModelType.GetProperties())
             {
@@ -34,13 +34,13 @@ namespace Propeller.Mvc.Model.Factory
                     {
                         // Property is a viewmodel
                         var viewModelItem = GetReferencedItem(dataItem, sitecoreFieldId);
-                        pi.SetValue(this, this.Create<IPropellerModel>(viewModelItem, chieldViewModelType));
+                        pi.SetValue(viewModel, this.Create<IPropellerModel>(viewModelItem), null);
                     }
                     else
                     {
                         // Property is a value
                         var fieldValue = ParseFieldValue(pi, dataItem, sitecoreFieldId);
-                        pi.SetValue(this, fieldValue);
+                        pi.SetValue(viewModel, fieldValue);
                     }
                 }
             }

@@ -222,3 +222,5 @@ ModelManifest.xml
 license.xml
 
 src/Framework/PropellerLogger/dist/
+
+yarn.lock

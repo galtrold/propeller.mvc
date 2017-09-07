@@ -26,16 +26,6 @@ namespace ModelTest.ViewModels
         public CountryViewModel ProductionCountry { get; set; }
 
 
-        public CarViewModel()
-        {
-        }
-
-        public CarViewModel(Item dataItem) : base(dataItem)
-        {
-        }
-
-        public CarViewModel(Rendering rendering) : base(rendering)
-        {
-        }
+     
     }
 }

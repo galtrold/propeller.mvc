@@ -18,15 +18,7 @@ namespace Propeller.Mvc.Demo.ViewModels
 
         public string Photo { get; set; }
 
-        public PlanetViewModel(){}
-
-        public PlanetViewModel(Item dataItem) : base(dataItem)
-        {
-        }
-
-        public PlanetViewModel(Rendering rendering) : base(rendering)
-        {
-        }
+     
 
         public PlanetViewModel TemplateArg() {  return this; } 
     }

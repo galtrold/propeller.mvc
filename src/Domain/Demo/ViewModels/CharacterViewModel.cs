@@ -15,7 +15,7 @@ namespace Propeller.Mvc.Demo.ViewModels
 
         public string Affiliation { get; set; }
 
-        public string Homeworld { get; set; }
+        public GeneralLink Homeworld { get; set; }
 
         public string Photo { get; set; }
 
@@ -23,17 +23,6 @@ namespace Propeller.Mvc.Demo.ViewModels
 
         public string ExternalLink { get; set; }
 
-        public CharacterViewModel()
-        {
-        }
-
-        public CharacterViewModel(Item dataItem) : base(dataItem)
-        {
-        }
-
-        public CharacterViewModel(Rendering rendering) : base(rendering)
-        {
-        }
         
         public CharacterViewModel TemplateArg()
         {

@@ -13,70 +13,8 @@ using Rendering = Sitecore.Mvc.Presentation.Rendering;
 
 namespace Propeller.Mvc.Presentation
 {
-    public class PropellerViewModel<T> : PropellerModel<T>, IRenderingModel where T : IPropellerModel, new()
+    public class PropellerViewModel<T> : PropellerModel<T> where T : IPropellerModel, new()
     {
-        [JsonIgnore]
-        private Rendering _rendering;
-
-        [JsonIgnore]
-        public virtual Item PageItem
-        {
-            get
-            {
-                return PageContext.Current.Item;
-            }
-        }
-
-        [JsonIgnore]
-        public virtual Rendering Rendering
-        {
-            get
-            {
-                if (_rendering == null)
-                    throw new InvalidOperationException("{0} has not been initialized.".FormatWith((object)GetType()));
-                return _rendering;
-            }
-            set
-            {
-                _rendering = value;
-            }
-        }
-        
-        public PropellerViewModel() { }
-
-        public PropellerViewModel(Item dataItem) : base(dataItem)
-        {
-        }
-
-        public PropellerViewModel(Rendering rendering) : base(rendering.Item) 
-        {
-            Initialize(rendering);
-        }
-
-        public void Initialize(Rendering rendering)
-        {
-            _rendering = rendering;
-        }
-
-        [JsonIgnore]
-        public override Item DataItem
-        {
-            get
-            {
-                if (_rendering != null )
-                    return _rendering.Item;
-
-                if (_dataItem != null)
-                    return _dataItem;
-
-                if (PageItem != null)
-                    return PageItem;
-
-                Log.Error("Error now data item available", this);
-                return null;
-            }
-        }
-
         public HtmlString Render(Expression<Func<T, object>> expression)
         {
             var fieldId = "";

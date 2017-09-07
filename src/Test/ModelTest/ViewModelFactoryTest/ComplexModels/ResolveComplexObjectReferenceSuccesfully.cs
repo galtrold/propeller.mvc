@@ -1,16 +1,11 @@
-﻿using System;
-using FluentAssertions;
-using ModelTest.Constants;
+﻿using FluentAssertions;
 using ModelTest.Utils;
 using ModelTest.ViewModels;
-using Propeller.Mvc.Core.Processing;
-using Propeller.Mvc.Core.Utility;
 using Propeller.Mvc.Model.Adapters;
-using Sitecore.Data;
-using Sitecore.FakeDb;
+using Propeller.Mvc.Model.Factory;
 using Xunit;
 
-namespace ModelTest.Tests.ComplexModels
+namespace ModelTest.ViewModelFactoryTest.ComplexModels
 {
     public class ResolveComplexObjectReferenceSuccesfully
     {
@@ -19,10 +14,13 @@ namespace ModelTest.Tests.ComplexModels
         {
             using (var db = SharedDatabaseDefinition.CarDatabase())
             {
+                // Arrange
+                var factory = new ModelFactory();
+
 
                 // Act
                 var item = db.GetItem("/sitecore/content/Astra");
-                var carViewModel = new CarViewModel(item);
+                var carViewModel = factory.Create<CarViewModel>(item);
                 carViewModel.WikiLink = carViewModel.GetAs<GeneralLink>(p => p.WikiLink);
 
                 // Assert

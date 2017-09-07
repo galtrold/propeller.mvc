@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using Propeller.Mvc.Model.Adapters;
 using Propeller.Mvc.Model.Strategies;
+using Sitecore.Data;
+using Sitecore.Data.Items;
 
 namespace Propeller.Mvc.Model.Factory
 {
@@ -9,8 +12,10 @@ namespace Propeller.Mvc.Model.Factory
     {
         public IFieldStrategy GetFieldStrategy(Type propertyType)
         {
-            
-            
+
+            if (propertyType == typeof(string))
+                return new StringFieldStrategy();
+
             if (propertyType == typeof(int))
                 return new IntegerFieldStrategy();
 
@@ -24,6 +29,17 @@ namespace Propeller.Mvc.Model.Factory
                 return new AdapterFieldStrategy();
 
                 return new EmptyFieldStrategy();
+        }
+    }
+
+    internal class StringFieldStrategy : IFieldStrategy
+    {
+        public object CreateField(Item item, ID propertyId, PropertyInfo pi)
+        {
+            var field = item.Fields[propertyId];
+            if (field != null)
+                return field.Value;
+            return string.Empty;
         }
     }
 }

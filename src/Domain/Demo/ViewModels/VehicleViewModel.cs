@@ -25,17 +25,7 @@ namespace Propeller.Mvc.Demo.ViewModels
 
         public DateTime EnteredService { get; set; }
 
-        public VehicleViewModel()
-        {
-        }
-
-        public VehicleViewModel(Item dataItem) : base(dataItem)
-        {
-        }
-
-        public VehicleViewModel(Rendering rendering) : base(rendering)
-        {
-        }
+      
 
         
         public VehicleViewModel TemplateArg() { return this; } 
