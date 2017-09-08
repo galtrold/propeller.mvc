@@ -15,7 +15,7 @@ namespace Propeller.Mvc.Demo.ViewModels
 
         public string Affiliation { get; set; }
 
-        public GeneralLink Homeworld { get; set; }
+        public string Homeworld { get; set; }
 
         public string Photo { get; set; }
 

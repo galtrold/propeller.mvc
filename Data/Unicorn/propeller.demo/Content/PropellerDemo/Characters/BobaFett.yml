@@ -37,7 +37,7 @@ Languages:
     - ID: "e6857d61-1aa8-49b1-8638-e909eaa9b7ef"
       Hint: SignelHomeWorld
       Value: |
-        <link text="Bobas homeworld" linktype="internal" class="" title="Kamino, homeworld of Bobafett" target="" querystring="" id="{F55BA887-37C6-45F6-8DE6-3E720451AA0A}" />
+        <link text="Slaveee" anchor="" linktype="internal" class="" title="Slaveee" target="" querystring="" id="{54E9DCC2-5B8C-4F03-9C09-D5408A511DFA}" />
     - ID: "e8d236d1-e473-4816-89bd-ee4ccd613972"
       Hint: Homeworld
       Type: Treelist

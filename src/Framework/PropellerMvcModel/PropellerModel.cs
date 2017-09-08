@@ -56,9 +56,17 @@ namespace Propeller.Mvc.Model
             }
             else if (linkField != null && linkField.IsInternal )
             {
-                if(linkField.TargetItem == null )
+                if (linkField.TargetItem != null)
+                {
+                    targetItem = linkField.TargetItem;
+                }else if (!string.IsNullOrEmpty(linkField.Value) && ID.IsID(linkField.Value) )
+                {
+                    targetItem = item.Database.GetItem(new ID(linkField.Value));
+                }
+                else
+                {
                     return Activator.CreateInstance(type) as TP;
-                targetItem = linkField.TargetItem;
+                }
             }
             else
             {
