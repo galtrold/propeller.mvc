@@ -6,6 +6,7 @@ using System.Reflection;
 using Propeller.Mvc.Core;
 using Propeller.Mvc.Core.Processing;
 using Propeller.Mvc.Model.Adapters;
+using Propeller.Mvc.Model.Factory;
 using Sitecore.Data;
 using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
@@ -31,7 +32,7 @@ namespace Propeller.Mvc.Model
         /// <typeparam name="TP"></typeparam>
         /// <param name="expression"></param>
         /// <returns></returns>
-        public TP GetItemReference<TP>(Expression<Func<T, object>> expression) where TP : PropellerEntity<TP>, new()
+        public TP GetItemReference<TP>(Expression<Func<T, object>> expression) where TP : PropellerEntity<TP>, IPropellerModel, new()
         {
             var type = typeof(TP);
             Item targetItem;
@@ -45,7 +46,7 @@ namespace Propeller.Mvc.Model
                 return Activator.CreateInstance(type) as TP;
 
             var fieldItem = item.Fields[propId];
-            var linkField = (LinkField)fieldItem;
+            var linkField = (ReferenceField)fieldItem;
             if (fieldItem == null)
                 return Activator.CreateInstance(type) as TP;
 
@@ -54,11 +55,12 @@ namespace Propeller.Mvc.Model
                 Log.Warn("DropList is not supported by this method. DropList are generelly not that useful lsince they only provide the selected Item.Name. Use DropLink instead. ", item);
                 targetItem = null;
             }
-            else if (linkField != null && linkField.IsInternal )
+            else if (linkField != null )
             {
                 if (linkField.TargetItem != null)
                 {
                     targetItem = linkField.TargetItem;
+
                 }else if (!string.IsNullOrEmpty(linkField.Value) && ID.IsID(linkField.Value) )
                 {
                     targetItem = item.Database.GetItem(new ID(linkField.Value));
@@ -78,15 +80,14 @@ namespace Propeller.Mvc.Model
                 targetItem = selectedItem.TargetItem;
             }
 
-            
-            var vm =  Activator.CreateInstance(type) as TP;
-            vm.DataItem = targetItem;
+            var modelFactory = new ModelFactory();
+            var vm = modelFactory.Create<TP>(targetItem);
             return vm;
 
 
         }
 
-        public IEnumerable<TK> GetList<TK>(Expression<Func<T, object>> expression) where TK : PropellerEntity<TK>, new()
+        public IEnumerable<TK> GetList<TK>(Expression<Func<T, object>> expression) where TK : PropellerEntity<TK>, IPropellerModel, new()
         {
 
             if (DataItem == null)
@@ -96,22 +97,16 @@ namespace Propeller.Mvc.Model
             if (propId == ID.Null)
                 return new List<TK>();
 
-            var listField = DataItem.Fields[propId];
-
-            var database = DataItem.Database;
-
-            var listItemIds = listField.Value.Split('|');
-
-            if (string.IsNullOrWhiteSpace(listField.Value) || listItemIds.Length < 1)
+            MultilistField itemList = DataItem.Fields[propId];
+            
+            if(itemList == null)
                 return new List<TK>();
-            var type = typeof(TK);
-
+          
             var results = new List<TK>();
-
-            foreach (var itemId in listItemIds)
+            var modelFactory = new ModelFactory();
+            foreach (var linkItem in itemList.GetItems())
             {
-                var viewModel = (TK)Activator.CreateInstance(type);
-                viewModel.DataItem = database.GetItem(itemId);
+                var viewModel = modelFactory.Create<TK>(linkItem);
                 results.Add(viewModel);
             }
 
