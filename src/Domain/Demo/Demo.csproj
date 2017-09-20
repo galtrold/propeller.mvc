@@ -224,6 +224,7 @@
     <Compile Include="ViewModels\Map\VehicleMap.cs" />
     <Compile Include="ViewModels\OrganizationViewModel.cs" />
     <Compile Include="ViewModels\PlanetViewModel.cs" />
+    <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="ViewModels\VehicleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
