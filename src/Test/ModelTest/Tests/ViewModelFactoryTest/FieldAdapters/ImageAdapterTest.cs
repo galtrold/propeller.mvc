@@ -9,7 +9,7 @@ using Propeller.Mvc.Model.Adapters;
 using Propeller.Mvc.Model.Factory;
 using Xunit;
 
-namespace ModelTest.ViewModelFactoryTest.FieldAdapters
+namespace ModelTest.Tests.ViewModelFactoryTest.FieldAdapters
 {
     public class ImageAdapterTest
     {

@@ -7,7 +7,7 @@ using Propeller.Mvc.Core.Utility;
 using Propeller.Mvc.Model.Factory;
 using Xunit;
 
-namespace ModelTest.ViewModelFactoryTest.SimpleDataTypes
+namespace ModelTest.Tests.ViewModelFactoryTest.SimpleDataTypes
 {
     public class DateTimeTest
     {

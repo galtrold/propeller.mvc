@@ -5,7 +5,7 @@ using Propeller.Mvc.Model.Adapters;
 using Propeller.Mvc.Model.Factory;
 using Xunit;
 
-namespace ModelTest.ViewModelFactoryTest.ComplexModels
+namespace ModelTest.Tests.ViewModelFactoryTest.ComplexModels
 {
     public class ResolveComplexObjectReferenceSuccesfully
     {
