@@ -68,6 +68,13 @@
     <Compile Include="Adapters\IFieldAdapter.cs" />
     <Compile Include="Adapters\Image.cs" />
     <Compile Include="Adapters\Integer.cs" />
+    <Compile Include="Strategies\EmptyFieldStrategy.cs" />
+    <Compile Include="Strategies\BooleanFieldStrategy.cs" />
+    <Compile Include="Strategies\DateFieldStrategy.cs" />
+    <Compile Include="Factory\FieldFactory.cs" />
+    <Compile Include="Strategies\IFieldStrategy.cs" />
+    <Compile Include="Strategies\IntegerFieldStrategy.cs" />
+    <Compile Include="Factory\ModelFactory.cs" />
     <Compile Include="IPropellerModel.cs" />
     <Compile Include="PropellerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

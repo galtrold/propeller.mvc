@@ -16,7 +16,7 @@ namespace Propeller.Mvc.Core
 
 
         [JsonIgnore]
-        public virtual Item DataItem
+        public Item DataItem
         {
             get { return _dataItem; }
             set { _dataItem = value; }

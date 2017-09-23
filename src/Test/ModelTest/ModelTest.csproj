@@ -170,15 +170,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tests\ComplexModels\ResolveComplexObjectReferenceSuccesfully.cs" />
-    <Compile Include="Tests\FieldAdapters\GeneralLinkAdapterTest.cs" />
-    <Compile Include="Tests\FieldAdapters\ImageAdapterTest.cs" />
     <Compile Include="Constants\ConstantsCarModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\SimpleDataTypes\DateTimeTest.cs" />
-    <Compile Include="Tests\SimpleDataTypes\BooleanTest.cs" />
-    <Compile Include="Tests\SimpleDataTypes\StringTest.cs" />
     <Compile Include="Utils\SharedDatabaseDefinition.cs" />
+    <Compile Include="Tests\ViewModelFactoryTest\ComplexModels\ResolveComplexObjectReferenceSuccesfully.cs" />
+    <Compile Include="Tests\ViewModelFactoryTest\FieldAdapters\GeneralLinkAdapterTest.cs" />
+    <Compile Include="Tests\ViewModelFactoryTest\FieldAdapters\ImageAdapterTest.cs" />
+    <Compile Include="Tests\ViewModelFactoryTest\SimpleDataTypes\BooleanTest.cs" />
+    <Compile Include="Tests\ViewModelFactoryTest\SimpleDataTypes\DateTimeTest.cs" />
+    <Compile Include="Tests\ViewModelFactoryTest\SimpleDataTypes\StringTest.cs" />
     <Compile Include="ViewModels\CarViewModel.cs" />
     <Compile Include="ViewModels\CountryViewModel.cs" />
     <Compile Include="ViewModels\Maps\CarMap.cs" />

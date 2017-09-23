@@ -20,18 +20,6 @@ namespace Propeller.Mvc.Demo.ViewModels
         public string Intro { get; set; }
 
         public string History { get; set; }
-
-
-        public OrganizationViewModel()
-        {
-        }
-
-        public OrganizationViewModel(Item dataItem) : base(dataItem)
-        {
-        }
-
-        public OrganizationViewModel(Rendering rendering) : base(rendering)
-        {
-        }
+       
     }
 }

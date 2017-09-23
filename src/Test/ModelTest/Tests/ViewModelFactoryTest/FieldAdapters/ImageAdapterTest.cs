@@ -1,17 +1,15 @@
 ﻿using System;
 using FluentAssertions;
-using ModelTest.Constants;
 using ModelTest.Utils;
 using ModelTest.ViewModels;
 using NSubstitute;
 using Propeller.Mvc.Core.Processing;
 using Propeller.Mvc.Core.Utility;
 using Propeller.Mvc.Model.Adapters;
-using Sitecore.Data;
-using Sitecore.FakeDb;
+using Propeller.Mvc.Model.Factory;
 using Xunit;
 
-namespace ModelTest.Tests.FieldAdapters
+namespace ModelTest.Tests.ViewModelFactoryTest.FieldAdapters
 {
     public class ImageAdapterTest
     {
@@ -23,6 +21,7 @@ namespace ModelTest.Tests.FieldAdapters
             EnvironmentSetttings.ApplicationPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
             var mappingProcessor = new MappingProcessor();
             mappingProcessor.Process(null);
+            var factory = new ModelFactory();
 
             using (var db = SharedDatabaseDefinition.CarDatabase())
             {   
@@ -32,7 +31,7 @@ namespace ModelTest.Tests.FieldAdapters
                 
                 // Act
                 var item = db.GetItem("/sitecore/content/Astra");
-                var carViewModel = new CarViewModel(item);
+                var carViewModel = factory.Create<CarViewModel>(item);
                 using (new Sitecore.FakeDb.Resources.Media.MediaProviderSwitcher(mediaProvider))
                 {
                     carViewModel.CarPhoto = carViewModel.GetAs<Image>(p => p.CarPhoto);
