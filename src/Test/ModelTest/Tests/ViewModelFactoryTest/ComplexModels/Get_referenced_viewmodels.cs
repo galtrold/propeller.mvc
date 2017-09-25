@@ -28,7 +28,7 @@ namespace ModelTest.Tests.ViewModelFactoryTest.ComplexModels
                 var carViewModel = factory.Create<CarViewModel>(item);
 
                 // Assert
-                //carViewModel.ProductionCountry.Name.Should().Be(SharedDatabaseDefinition.StaticCarData.ProductionCountry.Name);
+                carViewModel.ProductionCountry.Name.Should().Be(SharedDatabaseDefinition.StaticCarData.ProductionCountry.Name);
                 carViewModel.ProductionCountry.Currency.Should().Be(SharedDatabaseDefinition.StaticCarData.ProductionCountry.Currency);
                 carViewModel.ProductionCountry.DieselTax.Should().Be(SharedDatabaseDefinition.StaticCarData.ProductionCountry.DieselTax);
                 carViewModel.ProductionCountry.PetrolTax.Should().Be(SharedDatabaseDefinition.StaticCarData.ProductionCountry.PetrolTax);

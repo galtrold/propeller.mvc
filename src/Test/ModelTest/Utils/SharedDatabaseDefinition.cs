@@ -52,14 +52,7 @@ namespace ModelTest.Utils
                     {new ID(ConstantsCarModel.Fields.EnteredProductionDateField), Sitecore.DateUtil.ToIsoDate(StaticCarData.EnteredProductionDate)},
                     {new ID(ConstantsCarModel.Fields.ManuFactureField), StaticCarData.Manufacture },
                     {new ID(ConstantsCarModel.Fields.ExternalWikiLink), $"<link text=\"{StaticCarData.WikiLink.Desciption}\" linktype=\"external\" url=\"{StaticCarData.WikiLink.Url}\" anchor=\"\" target=\"_blank\" />" },
-                    {new DbLinkField(ConstantsCarModel.Fields.ProductionCountry)
-                        {
-                           LinkType = "internal",
-                           Text = "Germany",
-                           Title = "Opel HQ is placed in Germany",
-                           TargetID = ConstantsCountryModel.LinkItems.CountryItem
-                        }
-                    }
+                    {new ID(ConstantsCarModel.Fields.ProductionCountry), $"<link text=\"Germany\" anchor=\"\" linktype=\"internal\" class=\"\" title=\"Opel HQ is placed in Germany\" target=\"\" querystring=\"\" id=\"{ConstantsCountryModel.LinkItems.CountryItem}\" />" },
                 },
                 new DbItem("Astra", ID.NewID, ConstantsCarModel.Templates.CarTemplateId)
                 
