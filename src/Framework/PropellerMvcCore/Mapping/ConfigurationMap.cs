@@ -12,7 +12,7 @@ namespace Propeller.Mvc.Core.Mapping
 
         static ConfigurationMap()
         {
-            var viewModelType = typeof(T);
+            Type viewModelType = typeof(T);
             if ( !MappingTable.Instance.ViewModelRegistry.ContainsKey(viewModelType.FullName))
                 MappingTable.Instance.ViewModelRegistry.Add(viewModelType.FullName, viewModelType);
         }

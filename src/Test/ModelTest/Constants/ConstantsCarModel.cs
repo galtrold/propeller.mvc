@@ -37,7 +37,10 @@ namespace ModelTest.Constants
         }
         public struct Fields
         {
-            public const string CountryField = "{1B8E4A74-20FC-4708-8CEF-5D7C2D38A5B2}";
+            public const string NameField = "{E6245D48-0D6A-49B0-9DA2-412145F71D83}";
+            public const string CurrencyField = "{80D5A5C9-26FE-4FF6-AE3C-F9AE229E2958}";
+            public const string PetrolTaxField = "{EA83D3D0-BC05-4EE9-B22B-6B70F387C743}";
+            public const string DieselTaxField = "{C1611192-5A00-4D04-BE02-494DB77BB0C8}";
         }
     }
 }

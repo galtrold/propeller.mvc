@@ -33,6 +33,16 @@ namespace ModelTest.Utils
         {
             var db = new Db()
             {
+                new DbTemplate("country", ConstantsCountryModel.Templates.CountryTemplateId)
+                {
+                    {new ID(ConstantsCountryModel.Fields.NameField), StaticCarData.ProductionCountry.Name },
+                    {new ID(ConstantsCountryModel.Fields.CurrencyField), StaticCarData.ProductionCountry.Currency },
+                    {new ID(ConstantsCountryModel.Fields.DieselTaxField), StaticCarData.ProductionCountry.DieselTax },
+                    {new ID(ConstantsCountryModel.Fields.PetrolTaxField), StaticCarData.ProductionCountry.PetrolTax},
+
+                },
+                new DbItem("Germany", ConstantsCountryModel.LinkItems.CountryItem, ConstantsCountryModel.Templates.CountryTemplateId),
+
                 new DbTemplate("car", ConstantsCarModel.Templates.CarTemplateId)
                 {
                     {new ID(ConstantsCarModel.Fields.CarClassField), StaticCarData.CarClass },
@@ -47,18 +57,12 @@ namespace ModelTest.Utils
                            LinkType = "internal",
                            Text = "Germany",
                            Title = "Opel HQ is placed in Germany",
-                           TargetID = Constants.ConstantsCountryModel.LinkItems.CountryItem
+                           TargetID = ConstantsCountryModel.LinkItems.CountryItem
                         }
                     }
                 },
-
-                new DbTemplate("country", ConstantsCountryModel.Templates.CountryTemplateId)
-                {
-                    
-                },
-
-                new DbItem("Astra", ID.NewID, ConstantsCarModel.Templates.CarTemplateId),
-                new DbItem("Germany", ConstantsCountryModel.LinkItems.CountryItem, ConstantsCountryModel.Templates.CountryTemplateId)
+                new DbItem("Astra", ID.NewID, ConstantsCarModel.Templates.CarTemplateId)
+                
             };
             return db;
         }

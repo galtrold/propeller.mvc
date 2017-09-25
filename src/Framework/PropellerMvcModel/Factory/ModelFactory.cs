@@ -15,7 +15,21 @@ namespace Propeller.Mvc.Model.Factory
     {
         public T Create<T>(Item dataItem) where T : IPropellerModel
         {
-            var viewModelType = typeof(T);
+            var vm = NestedCreator<T>(dataItem, null);
+            return vm;
+        }
+
+        /// <summary>
+        /// The actual create method. The method is hidden(private) in order to hide the second type parameter because the client will never have to use it.
+        /// It is only used during resursive calls when building the object tree.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dataItem"></param>
+        /// <param name="implicitViewModelType"></param>
+        /// <returns></returns>
+        private T NestedCreator<T>(Item dataItem, Type implicitViewModelType) where T : IPropellerModel
+        {
+            var viewModelType = implicitViewModelType == null ? typeof(T) : implicitViewModelType;
             if (dataItem == null)
             {
                 return default(T);
@@ -34,7 +48,7 @@ namespace Propeller.Mvc.Model.Factory
                     {
                         // Property is a viewmodel
                         var viewModelItem = GetReferencedItem(dataItem, sitecoreFieldId);
-                        pi.SetValue(viewModel, this.Create<IPropellerModel>(viewModelItem), null);
+                        pi.SetValue(viewModel, NestedCreator<IPropellerModel>(viewModelItem, pi.PropertyType), null);
                     }
                     else
                     {
