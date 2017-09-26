@@ -12,8 +12,12 @@ namespace Propeller.Mvc.Model.Strategies
         public object CreateField(Item item, ID propertyId, PropertyInfo pi)
         {
             var field = item.Fields[propertyId];
-            var value = field.Value;
-            return value == "1";
+            if (field != null)
+            {
+                var value = field.Value;
+                return value == "1";
+            }
+            return false;
         }
     }
 }

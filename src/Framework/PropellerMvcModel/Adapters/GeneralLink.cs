@@ -19,6 +19,8 @@ namespace Propeller.Mvc.Model.Adapters
         {
 
             LinkField lf = item.Fields[propId];
+            if (lf == null)
+                return;
             TargetItem = item;
             Desciption = lf.Text;
             LinkType = lf.LinkType.ToLower();

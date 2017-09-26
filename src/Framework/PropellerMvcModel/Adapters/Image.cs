@@ -12,7 +12,8 @@ namespace Propeller.Mvc.Model.Adapters
         public void InitAdapter(Item item, ID propId)
         {
             ImageField image = item.Fields[propId];
-
+            if (image == null)
+                return;
             var mediaItem = image.MediaDatabase.GetItem(image.MediaID);
             Url = Sitecore.Resources.Media.MediaManager.GetMediaUrl(mediaItem);
             Alt = image.Alt;
