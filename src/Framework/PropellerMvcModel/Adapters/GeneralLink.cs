@@ -11,17 +11,24 @@ namespace Propeller.Mvc.Model.Adapters
 
         public string Desciption { get; set; }
 
+        public string LinkType { get; set; }
+
+        public Item TargetItem { get; set; }
+
         public void InitAdapter(Item item, ID propId)
         {
 
             LinkField lf = item.Fields[propId];
-
+            TargetItem = item;
             Desciption = lf.Text;
+            LinkType = lf.LinkType.ToLower();
+
             switch (lf.LinkType.ToLower())
             {
                 case "internal":
                     // Use LinkMananger for internal links, if link is not empty
                     Url = lf.TargetItem != null ? Sitecore.Links.LinkManager.GetItemUrl(lf.TargetItem) : string.Empty;
+                    
                     break;
                 case "media":
                     // Use MediaManager for media links, if link is not empty

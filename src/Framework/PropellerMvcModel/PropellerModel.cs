@@ -17,13 +17,6 @@ namespace Propeller.Mvc.Model
 {
     public class PropellerModel<T> : PropellerEntity<T>, IPropellerModel where T : IPropellerModel, new()
     {
-        public PropellerModel() { }
-
-        public PropellerModel(Item dataItem) : base(dataItem)
-        {
-            if (dataItem != null)
-                IncludeRawValues(dataItem);
-        }
 
         /// <summary>
         /// DropList is not supported ny this method. DropList are generelly not that useful lsince they only provide the selected Item.Name 
@@ -133,86 +126,86 @@ namespace Propeller.Mvc.Model
             
         }
 
-        public void IncludeRawValues(Item dataItem)
-        {
-            var viewModelType = typeof(T);
+        //public void IncludeRawValues(Item dataItem)
+        //{
+        //    var viewModelType = typeof(T);
 
-            foreach (var pi in viewModelType.GetProperties())
-            {
-                var propertyIdentifier = $"{viewModelType.FullName}.{pi.Name}";
-                ID sitecoreFieldId;
-                if (MappingTable.Instance.IncludeMap.TryGetValue(propertyIdentifier, out sitecoreFieldId))
-                {
-                    pi.SetValue(this, ParseValue(pi, dataItem.Fields[sitecoreFieldId]));
-                }
-            }
-        }
-        private object ParseValue(PropertyInfo propertyInfo, Field field)
-        {
-            var propertyType = propertyInfo.PropertyType;
+        //    foreach (var pi in viewModelType.GetProperties())
+        //    {
+        //        var propertyIdentifier = $"{viewModelType.FullName}.{pi.Name}";
+        //        ID sitecoreFieldId;
+        //        if (MappingTable.Instance.IncludeMap.TryGetValue(propertyIdentifier, out sitecoreFieldId))
+        //        {
+        //            pi.SetValue(this, ParseValue(pi, dataItem.Fields[sitecoreFieldId]));
+        //        }
+        //    }
+        //}
+        //private object ParseValue(PropertyInfo propertyInfo, Field field)
+        //{
+        //    var propertyType = propertyInfo.PropertyType;
 
-            // ASP.NET types
-            int intValue;
-            Type viewModelType;
-            var value = field.Value;
-            if (propertyType == typeof(int) && int.TryParse(value, out intValue))
-                return intValue;
-            if (propertyType == typeof(bool))
-                return value == "1";
-            if (propertyType == typeof(DateTime))
-            {
-                var dateField = (DateField)field;
-                if(dateField != null)
-                    return dateField.DateTime;
-            }
+        //    // ASP.NET types
+        //    int intValue;
+        //    Type viewModelType;
+        //    var value = field.Value;
+        //    if (propertyType == typeof(int) && int.TryParse(value, out intValue))
+        //        return intValue;
+        //    if (propertyType == typeof(bool))
+        //        return value == "1";
+        //    if (propertyType == typeof(DateTime))
+        //    {
+        //        var dateField = (DateField)field;
+        //        if(dateField != null)
+        //            return dateField.DateTime;
+        //    }
 
            
         
 
-            // Other ViewModels
-            if (MappingTable.Instance.ViewModelRegistry.TryGetValue(propertyType.FullName, out viewModelType))
-            {
+        //    // Other ViewModels
+        //    if (MappingTable.Instance.ViewModelRegistry.TryGetValue(propertyType.FullName, out viewModelType))
+        //    {
                 
-               //Sitecore.Data.Fields.LinkField
-                ReferenceField refItem = field;
-                LinkField linkField = field;
-                Item targetItem = null;
+        //       //Sitecore.Data.Fields.LinkField
+        //        ReferenceField refItem = field;
+        //        LinkField linkField = field;
+        //        Item targetItem = null;
 
-                if (refItem != null && refItem.TargetItem != null)
-                {
-                    targetItem = refItem.TargetItem;
-                }
-                else if (linkField != null && linkField.TargetItem != null)
-                {
-                    targetItem = linkField.TargetItem;
-                }
+        //        if (refItem != null && refItem.TargetItem != null)
+        //        {
+        //            targetItem = refItem.TargetItem;
+        //        }
+        //        else if (linkField != null && linkField.TargetItem != null)
+        //        {
+        //            targetItem = linkField.TargetItem;
+        //        }
 
-                if (targetItem == null)
-                    return null;
+        //        if (targetItem == null)
+        //            return null;
 
-                var viewModel = (IPropellerModel) Activator.CreateInstance(propertyType);
-                viewModel.DataItem = targetItem;
-                viewModel.IncludeRawValues(targetItem);
+        //        var viewModel = (IPropellerModel) Activator.CreateInstance(propertyType);
+        //        viewModel.DataItem = targetItem;
+        //        viewModel.IncludeRawValues(targetItem);
 
-                return viewModel;
-            }
+        //        return viewModel;
+        //    }
 
-            // AdapterFields
-            if (propertyType.GetInterfaces().Contains(typeof(IFieldAdapter)))
-            {
-                var id = GetPropertyIdByName(propertyInfo.Name);
-                var fieldAdapter = (IFieldAdapter)Activator.CreateInstance(propertyType);
-                fieldAdapter.InitAdapter(DataItem, id);
-                return fieldAdapter;
-            }
+        //    // AdapterFields
+        //    if (propertyType.GetInterfaces().Contains(typeof(IFieldAdapter)))
+        //    {
+        //        var id = GetPropertyIdByName(propertyInfo.Name);
+        //        var fieldAdapter = (IFieldAdapter)Activator.CreateInstance(propertyType);
+        //        fieldAdapter.InitAdapter(DataItem, id);
+        //        return fieldAdapter;
+        //    }
 
 
-            if (propertyType == typeof(string))
-                return value;
+        //    if (propertyType == typeof(string))
+        //        return value;
 
-            Log.Warn($"MvcViewModel: Not supported value type '{propertyType.FullName}'", this);
-            return null;
-        }
+        //    Log.Warn($"MvcViewModel: Not supported value type '{propertyType.FullName}'", this);
+        //    return null;
+        //}
 
         public bool Commit(string username)
         {

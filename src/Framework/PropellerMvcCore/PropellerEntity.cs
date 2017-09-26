@@ -34,16 +34,6 @@ namespace Propeller.Mvc.Core
         [JsonIgnore]
         public string DisplayName => DataItem != null ? DataItem.DisplayName : "WARN-dataitem-not-set";
 
-        public PropellerEntity() { }
-
-        public PropellerEntity(Item dataItem)
-        {
-            if(dataItem == null)
-                Log.Warn($"Instanciating propeller entity of type '{this.GetType().FullName}' with no data item. Is null", this);
-            DataItem = dataItem;
-
-        }
-
         private MemberExpression GetMemberExpression(Expression<Func<T, object>> expression)
         {
             try
