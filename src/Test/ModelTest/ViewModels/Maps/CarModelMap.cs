@@ -8,14 +8,14 @@ namespace ModelTest.ViewModels.Maps
     {
         public CarModelMap()
         {
-            SetProperty(p => p.Manufacture).Map(new ID(ConstantsCarModel.Fields.ManuFactureField)).Include();
-            SetProperty(p => p.CarClass).Map(new ID(ConstantsCarModel.Fields.CarClassField)).Include();
-            SetProperty(p => p.CarModel).Map(new ID(ConstantsCarModel.Fields.CarModelField)).Include();
-            SetProperty(p => p.IsActive).Map(new ID(ConstantsCarModel.Fields.IsActive)).Include();
-            SetProperty(p => p.EnteredProductionDate).Map(new ID(ConstantsCarModel.Fields.EnteredProductionDateField)).Include();
-            SetProperty(p => p.CarPhoto).Map(new ID(ConstantsCarModel.Fields.CarPhoto)).Include();
-            SetProperty(p => p.WikiLink).Map(new ID(ConstantsCarModel.Fields.ExternalWikiLink)).Include();
-            SetProperty(p => p.ProductionCountry).Map(new ID(ConstantsCarModel.Fields.ProductionCountry)).Include();
+            SetProperty(p => p.Manufacture).Map(ConstantsCarModel.Fields.ManuFactureField).Include();
+            SetProperty(p => p.CarClass).Map(ConstantsCarModel.Fields.CarClassField).Include();
+            SetProperty(p => p.CarModel).Map(ConstantsCarModel.Fields.CarModelField).Include();
+            SetProperty(p => p.IsTurboCharged).Map(ConstantsCarModel.Fields.IsTurboCharged).Include();
+            SetProperty(p => p.EnteredProductionDate).Map(ConstantsCarModel.Fields.EnteredProductionDateField).Include();
+            SetProperty(p => p.CarPhoto).Map(ConstantsCarModel.Fields.CarPhoto).Include();
+            SetProperty(p => p.WikiLink).Map(ConstantsCarModel.Fields.ExternalWikiLink).Include();
+            SetProperty(p => p.ProductionCountry).Map(ConstantsCarModel.Fields.ProductionCountry).Include();
         }
     }
 }

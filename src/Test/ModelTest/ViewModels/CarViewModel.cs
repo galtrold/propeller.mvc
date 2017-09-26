@@ -15,7 +15,7 @@ namespace ModelTest.ViewModels
         public string CarModel { get; set; }
         public string CarClass { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool IsTurboCharged { get; set; }
 
         public GeneralLink WikiLink { get; set; }
 

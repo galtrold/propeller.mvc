@@ -8,10 +8,10 @@ namespace ModelTest.ViewModels.Maps
     {
         public CountryModelMap()
         {
-            SetProperty(p => p.Name).Map(new ID(ConstantsCountryModel.Fields.NameField)).Include();
-            SetProperty(p => p.Currency).Map(new ID(ConstantsCountryModel.Fields.CurrencyField)).Include();
-            SetProperty(p => p.DieselTax).Map(new ID(ConstantsCountryModel.Fields.DieselTaxField)).Include();
-            SetProperty(p => p.PetrolTax).Map(new ID(ConstantsCountryModel.Fields.PetrolTaxField)).Include();
+            SetProperty(p => p.Name).Map(ConstantsCountryModel.Fields.NameField).Include();
+            SetProperty(p => p.Currency).Map(ConstantsCountryModel.Fields.CurrencyField).Include();
+            SetProperty(p => p.DieselTax).Map(ConstantsCountryModel.Fields.DieselTaxField).Include();
+            SetProperty(p => p.PetrolTax).Map(ConstantsCountryModel.Fields.PetrolTaxField).Include();
         }
     }
 }
