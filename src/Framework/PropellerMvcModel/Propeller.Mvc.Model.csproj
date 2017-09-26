@@ -68,6 +68,8 @@
     <Compile Include="Adapters\IFieldAdapter.cs" />
     <Compile Include="Adapters\Image.cs" />
     <Compile Include="Adapters\Integer.cs" />
+    <Compile Include="Strategies\AdapterFieldStrategy.cs" />
+    <Compile Include="Strategies\StringFieldStrategy.cs" />
     <Compile Include="Strategies\EmptyFieldStrategy.cs" />
     <Compile Include="Strategies\BooleanFieldStrategy.cs" />
     <Compile Include="Strategies\DateFieldStrategy.cs" />
