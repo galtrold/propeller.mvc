@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using IntergrationTest.Constants;
 using IntergrationTest.Models;
+using NSubstitute;
 using Propeller.Mvc.Model.Adapters;
 using Sitecore.Data;
 using Sitecore.Data.Items;
@@ -37,6 +38,9 @@ namespace IntergrationTest.Utils
 
         public static Db StarwarsDatabase()
         {
+          
+
+
             var db = new Db()
             {
                 // Templates
@@ -57,16 +61,16 @@ namespace IntergrationTest.Utils
                     {new ID(ConstantsMovieModel.Fields.TitleField)},
                     {new ID(ConstantsMovieModel.Fields.ReleaseDateField ) }
                 },
-                new DbTemplate("VehicleClass", ConstantsVehicleModel.Templates.VehiclTemplateId)
+                new DbTemplate("VehicleClass", Constants.ConstantVehicleClassModel.Templates.VehicleClassTemplateId)
                 {
                     {new ID(ConstantVehicleClassModel.Fields.NameField)},
                 },
                 // Items
                 new DbItem("XWing", ConstantsVehicleModel.Instances.XWing, ConstantsVehicleModel.Templates.VehiclTemplateId),
-                new DbItem("ANewHope", ConstantsMovieModel.Instances.ANewHope, ConstantsMovieModel.Templates.MovieTemplateId),
-                new DbItem("EmpireStrikesBack", ConstantsMovieModel.Instances.EmpireStrikesBack, ConstantsMovieModel.Templates.MovieTemplateId),
-                new DbItem("Fighter", ConstantVehicleClassModel.Instances.Fighter, ConstantVehicleClassModel.Templates.VehicleClassTemplateId)
-                
+                //new DbItem("ANewHope", ConstantsMovieModel.Instances.ANewHope, ConstantsMovieModel.Templates.MovieTemplateId),
+                //new DbItem("EmpireStrikesBack", ConstantsMovieModel.Instances.EmpireStrikesBack, ConstantsMovieModel.Templates.MovieTemplateId),
+                //new DbItem("Fighter", ConstantVehicleClassModel.Instances.Fighter, ConstantVehicleClassModel.Templates.VehicleClassTemplateId)
+
             };
             return db;
         }

@@ -19,6 +19,9 @@ namespace Propeller.Mvc.Model.Factory
             if (propertyType == typeof(bool))
                 return new BooleanFieldStrategy();
 
+            if (propertyType == typeof(double) || propertyType == typeof(float) || propertyType == typeof(decimal))
+                return new FloatingFieldStrategy();
+
             if (propertyType == typeof(DateTime))
                 return new DateFieldStrategy();
 

@@ -4,14 +4,14 @@ using Sitecore.Data.Items;
 
 namespace Propeller.Mvc.Model.Strategies
 {
-    internal class StringFieldStrategy : IFieldStrategy
+    internal class FloatingFieldStrategy : IFieldStrategy
     {
         public object CreateField(Item item, ID propertyId, PropertyInfo pi)
         {
             var field = item.Fields[propertyId];
-            if (field != null)
-                return field.Value;
-            return string.Empty;
+            if (double.TryParse(field.Value, out var FloatingNumberValue))
+                return FloatingNumberValue;
+            return 0.0;
         }
     }
 }

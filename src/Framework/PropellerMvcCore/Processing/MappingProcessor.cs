@@ -77,7 +77,7 @@ namespace Propeller.Mvc.Core.Processing
             foreach (var type in types)
             {
                 try
-                {
+                 {
                     if ((!type.IsClass && !type.IsInterface) || type.IsNotPublic)
                         continue;
 
