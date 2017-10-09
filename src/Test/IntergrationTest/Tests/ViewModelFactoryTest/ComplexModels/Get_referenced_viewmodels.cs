@@ -44,8 +44,11 @@ namespace IntergrationTest.Tests.ViewModelFactoryTest.ComplexModels
                     xwingViewModel.Photo.Url.Should().Be(SharedDatabaseDefinition.StaticVehichleData.Photo.Url);
                     xwingViewModel.Photo.Alt.Should().Be(SharedDatabaseDefinition.StaticVehichleData.Photo.Alt);
 
+                    xwingViewModel.ClassModel.Name.Should().Be(SharedDatabaseDefinition.StaticVehichleData.ClassModel.Name);
 
+                    xwingViewModel.Appearances.Should().HaveCount(SharedDatabaseDefinition.StaticVehichleData.Appearances.Count);
 
+                    
                 }
             }
 

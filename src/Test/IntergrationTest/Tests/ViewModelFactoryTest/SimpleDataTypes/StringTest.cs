@@ -26,7 +26,7 @@ namespace IntergrationTest.Tests.ViewModelFactoryTest.SimpleDataTypes
             using (var db = SharedDatabaseDefinition.StarwarsDatabase())
             {
                 // Act
-                var item = db.GetItem("/sitecore/content/Astra");
+                var item = db.GetItem("/sitecore/content/XWing");
                 var carViewModel = factory.Create<VehichleModel>(item);
 
                 // Assert

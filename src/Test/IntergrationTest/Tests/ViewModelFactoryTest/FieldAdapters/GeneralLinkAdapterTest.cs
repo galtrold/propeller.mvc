@@ -25,7 +25,7 @@ namespace IntergrationTest.Tests.ViewModelFactoryTest.FieldAdapters
             {
 
                 // Act
-                var item = db.GetItem("/sitecore/content/Astra");
+                var item = db.GetItem("/sitecore/content/XWing");
                 var carViewModel = factory.Create<VehichleModel>(item);
                 carViewModel.WikiLink = carViewModel.GetAs<GeneralLink>(p => p.WikiLink);
 

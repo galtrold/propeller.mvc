@@ -67,9 +67,9 @@ namespace IntergrationTest.Utils
                 },
                 // Items
                 new DbItem("XWing", ConstantsVehicleModel.Instances.XWing, ConstantsVehicleModel.Templates.VehiclTemplateId),
-                //new DbItem("ANewHope", ConstantsMovieModel.Instances.ANewHope, ConstantsMovieModel.Templates.MovieTemplateId),
-                //new DbItem("EmpireStrikesBack", ConstantsMovieModel.Instances.EmpireStrikesBack, ConstantsMovieModel.Templates.MovieTemplateId),
-                //new DbItem("Fighter", ConstantVehicleClassModel.Instances.Fighter, ConstantVehicleClassModel.Templates.VehicleClassTemplateId)
+                new DbItem("ANewHope", ConstantsMovieModel.Instances.ANewHope, ConstantsMovieModel.Templates.MovieTemplateId),
+                new DbItem("EmpireStrikesBack", ConstantsMovieModel.Instances.EmpireStrikesBack, ConstantsMovieModel.Templates.MovieTemplateId),
+                new DbItem("Fighter", ConstantVehicleClassModel.Instances.Fighter, ConstantVehicleClassModel.Templates.VehicleClassTemplateId)
 
             };
             return db;
