@@ -16,7 +16,7 @@ namespace IntergrationTest.Constants
         }
         public struct Fields
         {
-            public const string NameField = "{EE7BBF3A-9558-4F26-9DA9-D335769FA09E}";
+            public const string ClassNameField = "{EE7BBF3A-9558-4F26-9DA9-D335769FA09E}";
         }
     }
 }

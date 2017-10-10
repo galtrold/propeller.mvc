@@ -68,6 +68,7 @@
     <Compile Include="Adapters\IFieldAdapter.cs" />
     <Compile Include="Adapters\Image.cs" />
     <Compile Include="Adapters\Integer.cs" />
+    <Compile Include="Factory\ModelFactory.cs" />
     <Compile Include="Strategies\FloatingFieldStrategy.cs" />
     <Compile Include="Strategies\AdapterFieldStrategy.cs" />
     <Compile Include="Strategies\StringFieldStrategy.cs" />
@@ -77,7 +78,7 @@
     <Compile Include="Factory\FieldFactory.cs" />
     <Compile Include="Strategies\IFieldStrategy.cs" />
     <Compile Include="Strategies\IntegerFieldStrategy.cs" />
-    <Compile Include="Factory\ModelFactory.cs" />
+    <Compile Include="Factory\InternalModelFactory.cs" />
     <Compile Include="IPropellerModel.cs" />
     <Compile Include="PropellerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

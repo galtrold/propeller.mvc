@@ -1,7 +1,15 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using Propeller.Mvc.Core.Processing;
 using Propeller.Mvc.Model.Adapters;
 using Propeller.Mvc.Model.Strategies;
+using Sitecore.Data;
+using Sitecore.Data.Fields;
+using Sitecore.Data.Items;
+using Sitecore.Diagnostics;
 
 namespace Propeller.Mvc.Model.Factory
 {
@@ -28,7 +36,34 @@ namespace Propeller.Mvc.Model.Factory
             if (propertyType.GetInterfaces().Contains(typeof(IFieldAdapter)))
                 return new AdapterFieldStrategy();
 
-                return new EmptyFieldStrategy();
+            if (typeof(IEnumerable<IPropellerModel>).IsAssignableFrom(propertyType))
+            {
+                return new PropellerModelCollectionStrategy();
+            }
+
+
+            return new EmptyFieldStrategy();
+        }
+    }
+
+    internal class PropellerModelCollectionStrategy : IFieldStrategy
+    {
+        public object CreateField(Item item, ID propertyId, PropertyInfo pi)
+        {
+
+            Type type = pi.PropertyType;
+            if (type.IsGenericType)
+            {
+                Type itemType = type.GetGenericArguments()[0];
+            }
+
+            var multiListField = (MultilistField)item.Fields[propertyId];
+
+            if(multiListField == null && multiListField.Count < 1)
+                return new List<object>();
+
+
+            return null;
         }
     }
 }

@@ -5,6 +5,5 @@ namespace Propeller.Mvc.Model
     public interface IPropellerModel
     {
         Item DataItem { get; set; }
-        //void IncludeRawValues(Item dataItem);
     }
 }

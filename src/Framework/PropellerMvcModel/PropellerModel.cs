@@ -25,60 +25,60 @@ namespace Propeller.Mvc.Model
         /// <typeparam name="TP"></typeparam>
         /// <param name="expression"></param>
         /// <returns></returns>
-        public TP GetItemReference<TP>(Expression<Func<T, object>> expression) where TP : PropellerEntity<TP>, IPropellerModel, new()
-        {
-            var type = typeof(TP);
-            Item targetItem;
-            var item = DataItem;
+        //public TP GetItemReference<TP>(Expression<Func<T, object>> expression) where TP : PropellerEntity<TP>, IPropellerModel, new()
+        //{
+        //    var type = typeof(TP);
+        //    Item targetItem;
+        //    var item = DataItem;
             
-            if (item == null)
-                return Activator.CreateInstance(type) as TP;
+        //    if (item == null)
+        //        return Activator.CreateInstance(type) as TP;
 
-            var propId = GetPropertyId(expression);
-            if (propId ==  ID.Null)
-                return Activator.CreateInstance(type) as TP;
+        //    var propId = GetPropertyId(expression);
+        //    if (propId ==  ID.Null)
+        //        return Activator.CreateInstance(type) as TP;
 
-            var fieldItem = item.Fields[propId];
-            var linkField = (ReferenceField)fieldItem;
-            if (fieldItem == null)
-                return Activator.CreateInstance(type) as TP;
+        //    var fieldItem = item.Fields[propId];
+        //    var linkField = (ReferenceField)fieldItem;
+        //    if (fieldItem == null)
+        //        return Activator.CreateInstance(type) as TP;
 
-            if (fieldItem.Type.ToLower().Equals("droplist"))
-            {
-                Log.Warn("DropList is not supported by this method. DropList are generelly not that useful lsince they only provide the selected Item.Name. Use DropLink instead. ", item);
-                targetItem = null;
-            }
-            else if (linkField != null )
-            {
-                if (linkField.TargetItem != null)
-                {
-                    targetItem = linkField.TargetItem;
+        //    if (fieldItem.Type.ToLower().Equals("droplist"))
+        //    {
+        //        Log.Warn("DropList is not supported by this method. DropList are generelly not that useful lsince they only provide the selected Item.Name. Use DropLink instead. ", item);
+        //        targetItem = null;
+        //    }
+        //    else if (linkField != null )
+        //    {
+        //        if (linkField.TargetItem != null)
+        //        {
+        //            targetItem = linkField.TargetItem;
 
-                }else if (!string.IsNullOrEmpty(linkField.Value) && ID.IsID(linkField.Value) )
-                {
-                    targetItem = item.Database.GetItem(new ID(linkField.Value));
-                }
-                else
-                {
-                    return Activator.CreateInstance(type) as TP;
-                }
-            }
-            else
-            {
-                ReferenceField selectedItem = item.Fields[propId];
-                if (selectedItem == null)
-                {
-                    return Activator.CreateInstance(type) as TP;
-                }
-                targetItem = selectedItem.TargetItem;
-            }
+        //        }else if (!string.IsNullOrEmpty(linkField.Value) && ID.IsID(linkField.Value) )
+        //        {
+        //            targetItem = item.Database.GetItem(new ID(linkField.Value));
+        //        }
+        //        else
+        //        {
+        //            return Activator.CreateInstance(type) as TP;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ReferenceField selectedItem = item.Fields[propId];
+        //        if (selectedItem == null)
+        //        {
+        //            return Activator.CreateInstance(type) as TP;
+        //        }
+        //        targetItem = selectedItem.TargetItem;
+        //    }
 
-            var modelFactory = new ModelFactory();
-            var vm = modelFactory.Create<TP>(targetItem);
-            return vm;
+        //    var modelFactory = new ModelFactory();
+        //    var vm = modelFactory.Create<TP>(targetItem);
+        //    return vm;
 
 
-        }
+        //}
 
         public IEnumerable<TK> GetList<TK>(Expression<Func<T, object>> expression) where TK : PropellerEntity<TK>, IPropellerModel, new()
         {
