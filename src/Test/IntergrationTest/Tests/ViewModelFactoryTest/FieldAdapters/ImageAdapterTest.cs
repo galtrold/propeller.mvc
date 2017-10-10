@@ -24,29 +24,24 @@ namespace IntergrationTest.Tests.ViewModelFactoryTest.FieldAdapters
             var factory = new ModelFactory();
 
             using (var db = SharedDatabaseDefinition.StarwarsDatabase())
-            {   
-                var mediaProvider = Substitute.For<Sitecore.Resources.Media.MediaProvider>();
-                mediaProvider.GetMediaUrl(Arg.Is<Sitecore.Data.Items.MediaItem>(p => true )).Returns(SharedDatabaseDefinition.StaticVehichleData.Photo.Url);
-
-                
-                // Act
-                var item = db.GetItem("/sitecore/content/XWing");
-                var carViewModel = factory.Create<VehichleModel>(item);
-                using (new Sitecore.FakeDb.Resources.Media.MediaProviderSwitcher(mediaProvider))
+            {
+                using (ShareMediaProvider.MediaProvider())
                 {
-                    carViewModel.Photo = carViewModel.GetAs<Image>(p => p.Photo);
+                    // Act
+                    var item = db.GetItem("/sitecore/content/XWing");
+                    var carViewModel = factory.Create<VehichleModel>(item);
+
                     // Assert
                     carViewModel.Photo.Alt.Should().Be(SharedDatabaseDefinition.StaticVehichleData.Photo.Alt);
                     carViewModel.Photo.Url.Should().Be(SharedDatabaseDefinition.StaticVehichleData.Photo.Url);
                 }
-                
-                
-                
+
+
             }
         }
 
 
-     
+
 
 
 

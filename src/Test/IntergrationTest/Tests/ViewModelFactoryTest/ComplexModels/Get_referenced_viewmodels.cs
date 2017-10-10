@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using FluentAssertions;
 using IntergrationTest.Constants;
 using IntergrationTest.Models;
@@ -41,14 +42,17 @@ namespace IntergrationTest.Tests.ViewModelFactoryTest.ComplexModels
                     xwingViewModel.WikiLink.LinkType.Should().Be(SharedDatabaseDefinition.StaticVehichleData.WikiLink.LinkType);
 
                     xwingViewModel.Photo.Url.Should().Be(SharedDatabaseDefinition.StaticVehichleData.Photo.Url);
-                    xwingViewModel.Photo.Url.Should().Be(SharedDatabaseDefinition.StaticVehichleData.Photo.Url);
                     xwingViewModel.Photo.Alt.Should().Be(SharedDatabaseDefinition.StaticVehichleData.Photo.Alt);
 
                     xwingViewModel.ClassModel.Name.Should().Be(SharedDatabaseDefinition.StaticVehichleData.ClassModel.Name);
 
                     xwingViewModel.Appearances.Should().HaveCount(SharedDatabaseDefinition.StaticVehichleData.Appearances.Count);
+                    xwingViewModel.Appearances.Last().Title.Should().Be(SharedDatabaseDefinition.StaticVehichleData.Appearances.First().Title);
+                    xwingViewModel.Appearances.Last().ReleaseDate.Should().Be(SharedDatabaseDefinition.StaticVehichleData.Appearances.First().ReleaseDate);
+                    xwingViewModel.Appearances.First().Title.Should().Be(SharedDatabaseDefinition.StaticVehichleData.Appearances.Last().Title);                                                  
+                    xwingViewModel.Appearances.First().ReleaseDate.Should().Be(SharedDatabaseDefinition.StaticVehichleData.Appearances.Last().ReleaseDate);
 
-                    
+
                 }
             }
 

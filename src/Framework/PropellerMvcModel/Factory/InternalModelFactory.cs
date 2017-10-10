@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -43,9 +44,22 @@ namespace Propeller.Mvc.Model.Factory
                 {
                     if (MappingTable.Instance.ViewModelRegistry.TryGetValue(pi.PropertyType.FullName, out var chieldViewModelType))
                     {
-                        // Property is a viewmodel
+                        // Property is a single propeller models
                         var viewModelItem = GetReferencedItem(dataItem, sitecoreFieldId);
                         pi.SetValue(viewModel, Create<IPropellerModel>(viewModelItem, pi.PropertyType), null);
+                    }else if (typeof(IEnumerable<IPropellerModel>).IsAssignableFrom(pi.PropertyType))
+                    {
+
+                        // Property is a collection of propeller models
+                        var modelItems = GetListItems(dataItem, sitecoreFieldId);
+
+                        var genericType = pi.PropertyType.GetGenericArguments().FirstOrDefault();
+                        if(genericType == null)
+                            continue;
+
+                        var propellerModelCollection = CreateCollection(modelItems, genericType, pi.PropertyType);
+
+                        pi.SetValue(viewModel, propellerModelCollection);
                     }
                     else
                     {
@@ -57,6 +71,27 @@ namespace Propeller.Mvc.Model.Factory
             }
 
             return viewModel;
+        }
+
+        public IList CreateCollection(IEnumerable<Item> modelItemList, Type modelType, Type collectionType)
+        {
+            var propellerModelList = (IList) Activator.CreateInstance(collectionType);
+
+            foreach (var modelItem in modelItemList)           {
+
+                try
+                {
+                    propellerModelList.Add(Create<IPropellerModel>(modelItem, modelType));
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e.Message, e, this);
+                    throw;
+                }
+
+            }
+            return propellerModelList;
+
         }
 
         private Item GetReferencedItem(Item item, ID propertyId)
@@ -77,6 +112,15 @@ namespace Propeller.Mvc.Model.Factory
             }
 
             return targetItem;
+        }
+        private IEnumerable<Item> GetListItems(Item item, ID propertyId)
+        {
+
+            if (propertyId == ID.Null)
+                return null;
+
+            MultilistField itemList = item.Fields[propertyId];
+            return itemList?.GetItems() ?? new Item[]{};
         }
 
         private object ParseFieldValue(PropertyInfo propertyInfo, Item item, ID propertiId)

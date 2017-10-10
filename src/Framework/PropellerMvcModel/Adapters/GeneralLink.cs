@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using Newtonsoft.Json;
 using Sitecore.Data;
 using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
@@ -13,6 +14,7 @@ namespace Propeller.Mvc.Model.Adapters
 
         public string LinkType { get; set; }
 
+        [JsonIgnore]
         public Item TargetItem { get; set; }
 
         public void InitAdapter(Item item, ID propId)

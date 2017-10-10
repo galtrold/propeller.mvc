@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using IntergrationTest.Constants;
 using IntergrationTest.Models;
 using NSubstitute;
@@ -67,8 +68,16 @@ namespace IntergrationTest.Utils
                 },
                 // Items
                 new DbItem("XWing", ConstantsVehicleModel.Instances.XWing, ConstantsVehicleModel.Templates.VehiclTemplateId),
-                new DbItem("ANewHope", ConstantsMovieModel.Instances.ANewHope, ConstantsMovieModel.Templates.MovieTemplateId),
-                new DbItem("EmpireStrikesBack", ConstantsMovieModel.Instances.EmpireStrikesBack, ConstantsMovieModel.Templates.MovieTemplateId),
+                new DbItem("ANewHope", ConstantsMovieModel.Instances.EmpireStrikesBack, ConstantsMovieModel.Templates.MovieTemplateId)
+                {
+                    new DbField(new  ID(ConstantsMovieModel.Fields.TitleField)){ Value = StaticVehichleData.Appearances.First().Title},
+                    new DbField(new  ID(ConstantsMovieModel.Fields.ReleaseDateField)){ Value = StaticVehichleData.Appearances.First().ReleaseDate.ToString("yyyyMMddTHHmmssZ")},
+                },
+                new DbItem("EmpireStrikesBack", ConstantsMovieModel.Instances.ANewHope, ConstantsMovieModel.Templates.MovieTemplateId)
+                {
+                    new DbField(new  ID(ConstantsMovieModel.Fields.TitleField)){ Value = StaticVehichleData.Appearances.Last().Title},
+                    new DbField(new  ID(ConstantsMovieModel.Fields.ReleaseDateField)){ Value = StaticVehichleData.Appearances.Last().ReleaseDate.ToString("yyyyMMddTHHmmssZ")},
+                },
                 new DbItem("Fighter", ConstantVehicleClassModel.Instances.Fighter, ConstantVehicleClassModel.Templates.VehicleClassTemplateId)
                 {
                     new DbField(new ID(ConstantVehicleClassModel.Fields.ClassNameField)){Value = StaticVehichleData.ClassModel.Name}
