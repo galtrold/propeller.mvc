@@ -31,23 +31,23 @@
                 <label class="col-sm-2 control-label">Affiliation</label>
                 <div class="col-sm-10">
                     <p class="form-control-static">
-                        @Model.Template( p => AffiliationTemplate( p.GetList<OrganizationViewModel>(q => q.Affiliation) ))
+                        @Model.Template( p => AffiliationTemplate( p.Affiliation ))
 
                     </p>
                 </div>
                 <label class="col-sm-2 control-label">Homeworld</label>
                 <div class="col-sm-10">
                     <p class="form-control-static">
-                        <a href="@(Model.GetItemReference<PlanetViewModel>(p => p.Homeworld).Url)">
-                            @(Model.GetItemReference<PlanetViewModel>(p => p.Homeworld).DisplayName) (Moons: @(Model.Homeworld.Moons))
+                        <a href="@(Model.Homeworld.Url)">
+                            @(Model.Homeworld.DisplayName) Moons: @(Model.Homeworld.Moons))
                         </a>
                     </p>
                 </div>
                 <label class="col-sm-2 control-label">Vehicle</label>
                 <div class="col-sm-10">
                     <p class="form-control-static">
-                        <a href="@(Model.GetAs<GeneralLink>(p => p.PrimaryTransportation).Url)">
-                            @(Model.GetAs<GeneralLink>(p => p.PrimaryTransportation).Desciption)
+                        <a href="@(Model.PrimaryTransportation.Url)">
+                            @(Model.PrimaryTransportation.Desciption)
                         </a>
                     </p>
                 </div>
@@ -55,8 +55,8 @@
                 <label class="col-sm-2 control-label">Source</label>
                 <div class="col-sm-10">
                     <p class="form-control-static">
-                        <a href="@(Model.GetAs<GeneralLink>(p => p.ExternalLink).Url)">
-                            @(Model.GetAs<GeneralLink>(p => p.ExternalLink).Desciption)
+                        <a href="@(Model.ExternalLink.Url)">
+                            @(Model.ExternalLink.Desciption)
                         </a>
                     </p>
                 </div>

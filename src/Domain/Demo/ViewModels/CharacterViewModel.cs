@@ -1,4 +1,5 @@
-﻿using Propeller.Mvc.Model.Adapters;
+﻿using System.Collections.Generic;
+using Propeller.Mvc.Model.Adapters;
 using Propeller.Mvc.Presentation;
 using Sitecore.Data.Items;
 using Sitecore.Mvc.Presentation;
@@ -13,7 +14,7 @@ namespace Propeller.Mvc.Demo.ViewModels
 
         public string Occupation { get; set; }
 
-        public string Affiliation { get; set; }
+        public List<OrganizationViewModel> Affiliation { get; set; }
 
         public PlanetViewModel Homeworld { get; set; }
 
@@ -21,7 +22,7 @@ namespace Propeller.Mvc.Demo.ViewModels
 
         public GeneralLink PrimaryTransportation { get; set; }
 
-        public string ExternalLink { get; set; }
+        public GeneralLink ExternalLink { get; set; }
 
         
         public CharacterViewModel TemplateArg()
