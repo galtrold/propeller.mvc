@@ -46,7 +46,7 @@ namespace IntergrationTest.Tests.ViewModelFactoryTest.ComplexModels
 
                     xwingViewModel.ClassModel.Name.Should().Be(SharedDatabaseDefinition.StaticVehichleData.ClassModel.Name);
 
-                    xwingViewModel.Appearances.Should().HaveCount(SharedDatabaseDefinition.StaticVehichleData.Appearances.Count);
+                    xwingViewModel.Appearances.Should().HaveCount(SharedDatabaseDefinition.StaticVehichleData.Appearances.Count());
                     xwingViewModel.Appearances.Last().Title.Should().Be(SharedDatabaseDefinition.StaticVehichleData.Appearances.First().Title);
                     xwingViewModel.Appearances.Last().ReleaseDate.Should().Be(SharedDatabaseDefinition.StaticVehichleData.Appearances.First().ReleaseDate);
                     xwingViewModel.Appearances.First().Title.Should().Be(SharedDatabaseDefinition.StaticVehichleData.Appearances.Last().Title);                                                  

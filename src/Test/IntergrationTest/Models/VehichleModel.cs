@@ -22,7 +22,7 @@ namespace IntergrationTest.Models
         
         public VehicleClassModel ClassModel { get; set; }
 
-        public List<MovieModel> Appearances { get; set; }
+        public IEnumerable<MovieModel> Appearances { get; set; }
 
 
     }

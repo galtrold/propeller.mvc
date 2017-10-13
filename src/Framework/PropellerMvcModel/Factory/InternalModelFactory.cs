@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using Propeller.Mvc.Core;
 using Propeller.Mvc.Core.Processing;
 using Propeller.Mvc.Model.Adapters;
+using Sitecore.Common;
 using Sitecore.Data;
 using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
@@ -47,17 +49,18 @@ namespace Propeller.Mvc.Model.Factory
                         // Property is a single propeller models
                         var viewModelItem = GetReferencedItem(dataItem, sitecoreFieldId);
                         pi.SetValue(viewModel, Create<IPropellerModel>(viewModelItem, pi.PropertyType), null);
-                    }else if (typeof(IEnumerable<IPropellerModel>).IsAssignableFrom(pi.PropertyType))
+                    }
+                    else if (typeof(IEnumerable<IPropellerModel>).IsAssignableFrom(pi.PropertyType))
                     {
 
                         // Property is a collection of propeller models
                         var modelItems = GetListItems(dataItem, sitecoreFieldId);
 
                         var genericType = pi.PropertyType.GetGenericArguments().FirstOrDefault();
-                        if(genericType == null)
+                        if (genericType == null)
                             continue;
 
-                        var propellerModelCollection = CreateCollection(modelItems, genericType, pi.PropertyType);
+                        var propellerModelCollection = CreateCollection(modelItems, genericType);
 
                         pi.SetValue(viewModel, propellerModelCollection);
                     }
@@ -73,11 +76,13 @@ namespace Propeller.Mvc.Model.Factory
             return viewModel;
         }
 
-        public IList CreateCollection(IEnumerable<Item> modelItemList, Type modelType, Type collectionType)
+        public object CreateCollection(IEnumerable<Item> modelItemList, Type modelType)
         {
-            var propellerModelList = (IList) Activator.CreateInstance(collectionType);
+            var modelCollecitonType = typeof(List<>).MakeGenericType(modelType);
+            var propellerModelList = (IList)Activator.CreateInstance(modelCollecitonType);
 
-            foreach (var modelItem in modelItemList)           {
+            foreach (var modelItem in modelItemList)
+            {
 
                 try
                 {
@@ -90,8 +95,8 @@ namespace Propeller.Mvc.Model.Factory
                 }
 
             }
-            return propellerModelList;
 
+            return propellerModelList;
         }
 
         private Item GetReferencedItem(Item item, ID propertyId)
@@ -120,7 +125,7 @@ namespace Propeller.Mvc.Model.Factory
                 return null;
 
             MultilistField itemList = item.Fields[propertyId];
-            return itemList?.GetItems() ?? new Item[]{};
+            return itemList?.GetItems() ?? new Item[] { };
         }
 
         private object ParseFieldValue(PropertyInfo propertyInfo, Item item, ID propertiId)
