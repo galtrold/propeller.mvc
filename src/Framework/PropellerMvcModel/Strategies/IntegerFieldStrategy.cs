@@ -10,7 +10,8 @@ namespace Propeller.Mvc.Model.Strategies
         public object CreateField(Item item, ID propertyId, PropertyInfo pi)
         {
             var field = item.Fields[propertyId];
-            if (int.TryParse(field.Value, out var intValue))
+            int intValue;
+            if (int.TryParse(field.Value, out intValue))
                 return intValue;
             return 0;
         }

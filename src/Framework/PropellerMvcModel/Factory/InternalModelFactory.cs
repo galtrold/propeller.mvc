@@ -42,9 +42,11 @@ namespace Propeller.Mvc.Model.Factory
             {
                 var propertyIdentifier = $"{viewModelType.FullName}.{pi.Name}";
 
-                if (MappingTable.Instance.IncludeMap.TryGetValue(propertyIdentifier, out var sitecoreFieldId))
+                ID sitecoreFieldId;
+                if (MappingTable.Instance.IncludeMap.TryGetValue(propertyIdentifier, out sitecoreFieldId))
                 {
-                    if (MappingTable.Instance.ViewModelRegistry.TryGetValue(pi.PropertyType.FullName, out var chieldViewModelType))
+                    Type chieldViewModelType;
+                    if (MappingTable.Instance.ViewModelRegistry.TryGetValue(pi.PropertyType.FullName, out chieldViewModelType))
                     {
                         // Property is a single propeller models
                         var viewModelItem = GetReferencedItem(dataItem, sitecoreFieldId);

@@ -8,10 +8,14 @@ namespace Propeller.Mvc.Model.Strategies
     {
         public object CreateField(Item item, ID propertyId, PropertyInfo pi)
         {
+
             var field = item.Fields[propertyId];
-            if (double.TryParse(field.Value, out var FloatingNumberValue))
-                return FloatingNumberValue;
+            double floatingNumberValue;
+            if (double.TryParse(field.Value, out floatingNumberValue))
+                return floatingNumberValue;
             return 0.0;
         }
+
+
     }
 }
