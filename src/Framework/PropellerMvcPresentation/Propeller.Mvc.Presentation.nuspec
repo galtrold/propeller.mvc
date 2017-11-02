@@ -10,12 +10,12 @@
     <projectUrl>https://github.com/galtrold/propeller.mvc</projectUrl>
     <iconUrl>https://github.com/galtrold/propeller.mvc/blob/master/propellericon.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Propeller Mvc is a small framework which handles alot of the mapping between Sitecore items and project models. Another goel for this project is to make the develeper experience more like ordinary asp.net mvc.</description>
+    <description>Propeller Mvc is a small framework which handles alot of the mapping between Sitecore items and project models. Another goal for this project is to make the develepment experience more like ordinary asp.net mvc.</description>
     <releaseNotes>Initial release</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>sitecore mvc</tags>
      <dependencies>
-      <dependency id="propeller.mvc.model" version="1.0.0.4" />
+      <dependency id="propeller.mvc.model" version="1.1.0.2" />
     </dependencies>
   </metadata>
 </package>
