@@ -30,12 +30,10 @@ namespace Propeller.Mvc.Model.Factory
         public T Create<T>(Item dataItem, Type implicitViewModelType) where T : IPropellerModel
         {
             var viewModelType = implicitViewModelType == null ? typeof(T) : implicitViewModelType;
-            if (dataItem == null)
-            {
-                return default(T);
-            }
-
             var viewModel = (T)Activator.CreateInstance(viewModelType);
+            if (dataItem == null)
+                return viewModel;
+
             viewModel.DataItem = dataItem;
 
             foreach (var pi in viewModelType.GetProperties())
@@ -50,7 +48,8 @@ namespace Propeller.Mvc.Model.Factory
                     {
                         // Property is a single propeller models
                         var viewModelItem = GetReferencedItem(dataItem, sitecoreFieldId);
-                        pi.SetValue(viewModel, Create<IPropellerModel>(viewModelItem, pi.PropertyType), null);
+                        var vm = Create<IPropellerModel>(viewModelItem, pi.PropertyType);
+                        pi.SetValue(viewModel, vm, null);
                     }
                     else if (typeof(IEnumerable<IPropellerModel>).IsAssignableFrom(pi.PropertyType))
                     {
@@ -74,7 +73,7 @@ namespace Propeller.Mvc.Model.Factory
                     }
                 }
             }
-
+            viewModel.Init();
             return viewModel;
         }
 
@@ -88,7 +87,9 @@ namespace Propeller.Mvc.Model.Factory
 
                 try
                 {
-                    propellerModelList.Add(Create<IPropellerModel>(modelItem, modelType));
+                    var model = Create<IPropellerModel>(modelItem, modelType);
+                    model.Init();
+                    propellerModelList.Add(model);
                 }
                 catch (Exception e)
                 {
@@ -116,6 +117,11 @@ namespace Propeller.Mvc.Model.Factory
             else if (linkField != null && linkField.TargetItem != null)
             {
                 targetItem = linkField.TargetItem;
+            }
+
+            if (targetItem == null)
+            {
+                Log.Error(string.Format("Propeller ModelFactory failed to get referenced Sitecore item with id '{0}'.", item.Fields[propertyId].ID),this);
             }
 
             return targetItem;

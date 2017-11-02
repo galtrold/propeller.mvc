@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using Propeller.Mvc.Core;
+﻿using Propeller.Mvc.Core;
 using Propeller.Mvc.Core.Processing;
-using Propeller.Mvc.Model.Adapters;
-using Propeller.Mvc.Model.Factory;
 using Sitecore.Data;
-using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
 using Sitecore.Diagnostics;
 
 
@@ -63,6 +54,13 @@ namespace Propeller.Mvc.Model
             return true;
         }
 
-        
+        /// <summary>
+        /// If the model need some initialization post creation time you can override the method.
+        /// </summary>
+
+        public virtual void Init()
+        {
+            
+        }
     }
 }
