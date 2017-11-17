@@ -1,4 +1,5 @@
-﻿using Propeller.Mvc.Presentation;
+﻿using Propeller.Mvc.Model.Adapters;
+using Propeller.Mvc.Presentation;
 using Sitecore.Data.Items;
 using Sitecore.Mvc.Presentation;
 
@@ -16,7 +17,7 @@ namespace Propeller.Mvc.Demo.ViewModels
 
         public string Affiliation { get; set; }
 
-        public string Photo { get; set; }
+        public Image Photo { get; set; }
 
      
 

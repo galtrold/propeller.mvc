@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Web;
-using Newtonsoft.Json;
 using Propeller.Mvc.Model;
 using Sitecore.Data;
-using Sitecore.Data.Items;
 using Sitecore.Diagnostics;
-using Sitecore.Mvc.Presentation;
-using Sitecore.StringExtensions;
 using Sitecore.Web.UI.WebControls;
-using Rendering = Sitecore.Mvc.Presentation.Rendering;
-using Sitecore.Data.Fields;
 using System.Collections.Generic;
 using Propeller.Mvc.Model.Adapters;
 using Propeller.Mvc.Model.ItemTools;
@@ -52,70 +46,6 @@ namespace Propeller.Mvc.Presentation
 
             }
 
-        }
-
-        public TP GetItemReference<TP>(Expression<Func<T, object>> expression) where TP : PropellerModel<TP>, new()
-        {
-            var itemRepository = new ItemRepository();
-            var type = typeof(TP);
-            
-            var item = DataItem;
-
-            if (item == null)
-                return Activator.CreateInstance(type) as TP;
-
-            var propId = GetPropertyId(expression);
-            if (propId == ID.Null)
-                return Activator.CreateInstance(type) as TP;
-
-            var targetItem = itemRepository.GetReferencedItem(item, propId);
-
-            var vm = Activator.CreateInstance(type) as TP;
-            vm.DataItem = targetItem;
-            return vm;
-        }
-
-        public CT GetAs<CT>(Expression<Func<T, object>> expression) where CT : IFieldAdapter, new()
-        {
-            try
-            {
-                var item = DataItem;
-                var propId = GetPropertyId(expression);
-                if (propId == ID.Null)
-                    return new CT();
-
-                var adapter = new CT();
-                adapter.InitAdapter(item, propId);
-                return adapter;
-            }
-            catch (Exception)
-            {
-                return new CT();
-            }
-
-        }
-
-        public IList<TK> GetList<TK>(Expression<Func<T, object>> expression) where TK : PropellerModel<TK>, new()
-        {
-            var itemRepository = new ItemRepository();
-            if (DataItem == null)
-                return new List<TK>();
-
-            var propId = GetPropertyId(expression);
-            if (propId == ID.Null)
-                return new List<TK>();
-
-            var itemList = itemRepository.GetItemList(DataItem, propId);
-            var type = typeof(TK);
-            var results = new List<TK>();
-            foreach (var item in itemList)
-            {
-                var viewModelItem = (TK)Activator.CreateInstance(type);
-                viewModelItem.DataItem = item;
-                results.Add(viewModelItem);
-            }
-
-            return results;
         }
 
     }

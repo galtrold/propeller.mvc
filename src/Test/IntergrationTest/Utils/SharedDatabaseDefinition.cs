@@ -90,6 +90,33 @@ namespace IntergrationTest.Utils
             return db;
         }
 
+        public static Db CpuDatabase()
+        {
+            var db = new Db()
+            {
+                // Templates
+                new DbTemplate("CpuModel", ConstantsCpuModel.Templates.CpuTemplateId)
+                {
+                    ConstantsCpuModel.Fields.ArchitectureNameField,
+                    ConstantsCpuModel.Fields.Predecessor,
+                    ConstantsCpuModel.Fields.Successor
+                },
+                // Items
+               
+                new DbItem("Haswell", ConstantsCpuModel.Instances.Hasswell, ConstantsCpuModel.Templates.CpuTemplateId)
+                {
+                    new DbField(ConstantsCpuModel.Fields.ArchitectureNameField){ Value = "Haswell"},
+                    new DbField(ConstantsCpuModel.Fields.Predecessor){ Value = ConstantsCpuModel.Instances.IvyBridge.ToString() }
+                },
+                new DbItem("IvyBridge", ConstantsCpuModel.Instances.IvyBridge, ConstantsCpuModel.Templates.CpuTemplateId)
+                {
+                    new DbField(ConstantsCpuModel.Fields.ArchitectureNameField){ Value = "Ivy Bridge"},
+                    new DbField(ConstantsCpuModel.Fields.Successor){ Value = ConstantsCpuModel.Instances.Hasswell.ToString()},
+                }
+            };
+            return db;
+        }
+
     }
    
 }

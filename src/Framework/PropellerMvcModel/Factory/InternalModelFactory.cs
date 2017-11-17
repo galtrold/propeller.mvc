@@ -43,35 +43,35 @@ namespace Propeller.Mvc.Model.Factory
                 var propertyIdentifier = $"{viewModelType.FullName}.{pi.Name}";
 
                 ID sitecoreFieldId;
-                if (MappingTable.Instance.IncludeMap.TryGetValue(propertyIdentifier, out sitecoreFieldId))
+                Func<ID> idFunc;
+                if (MappingTable.Instance.ViewModelRegistry.ContainsKey(pi.PropertyType.FullName) && MappingTable.Instance.JumpMap.TryGetValue(propertyIdentifier, out idFunc))
                 {
-                    Type chieldViewModelType;
-                    if (MappingTable.Instance.ViewModelRegistry.TryGetValue(pi.PropertyType.FullName, out chieldViewModelType))
-                    {
-                        // Property is a single propeller models
-                        var viewModelItem = itemRepository.GetReferencedItem(dataItem, sitecoreFieldId);
-                        var vm = Create<IPropellerModel>(viewModelItem, pi.PropertyType);
-                        pi.SetValue(viewModel, vm, null);
-                    }
-                    else if (typeof(IEnumerable<IPropellerModel>).IsAssignableFrom(pi.PropertyType))
-                    {
 
-                        // Property is a collection of propeller models
-                        var modelItems = itemRepository.GetItemList(dataItem, sitecoreFieldId);
-                        var genericType = pi.PropertyType.GetGenericArguments().FirstOrDefault();
-                        if (genericType == null)
-                            continue;
+                    // Property is a single propeller models
+                    var viewModelItem = itemRepository.GetReferencedItem(dataItem, idFunc());
+                    var vm = Create<IPropellerModel>(viewModelItem, pi.PropertyType);
+                    pi.SetValue(viewModel, vm, null);
+                }
+                else if (typeof(IEnumerable<IPropellerModel>).IsAssignableFrom(pi.PropertyType) && MappingTable.Instance.JumpMap.TryGetValue(propertyIdentifier, out idFunc))
+                {
 
-                        var propellerModelCollection = CreateCollection(modelItems, genericType);
+                    // Property is a collection of propeller models
+                    var modelItems = itemRepository.GetItemList(dataItem, idFunc());
+                    var genericType = pi.PropertyType.GetGenericArguments().FirstOrDefault();
+                    if (genericType == null)
+                        continue;
 
-                        pi.SetValue(viewModel, propellerModelCollection);
-                    }
-                    else
-                    {
-                        // Property is a value
-                        var fieldValue = ParseFieldValue(pi, dataItem, sitecoreFieldId);
-                        pi.SetValue(viewModel, fieldValue);
-                    }
+                    var propellerModelCollection = CreateCollection(modelItems, genericType);
+
+                    pi.SetValue(viewModel, propellerModelCollection);
+                }
+                else if (MappingTable.Instance.IncludeMap.TryGetValue(propertyIdentifier, out sitecoreFieldId))
+                {
+
+
+                    // Property is a value
+                    var fieldValue = ParseFieldValue(pi, dataItem, sitecoreFieldId);
+                    pi.SetValue(viewModel, fieldValue);
                 }
             }
             viewModel.Init();
