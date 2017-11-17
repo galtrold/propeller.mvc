@@ -8,6 +8,7 @@ using System.Reflection;
 using Propeller.Mvc.Core;
 using Propeller.Mvc.Core.Processing;
 using Propeller.Mvc.Model.Adapters;
+using Propeller.Mvc.Model.ItemTools;
 using Sitecore.Common;
 using Sitecore.Data;
 using Sitecore.Data.Fields;
@@ -35,6 +36,7 @@ namespace Propeller.Mvc.Model.Factory
                 return viewModel;
 
             viewModel.DataItem = dataItem;
+            var itemRepository = new ItemRepository();
 
             foreach (var pi in viewModelType.GetProperties())
             {
@@ -47,7 +49,7 @@ namespace Propeller.Mvc.Model.Factory
                     if (MappingTable.Instance.ViewModelRegistry.TryGetValue(pi.PropertyType.FullName, out chieldViewModelType))
                     {
                         // Property is a single propeller models
-                        var viewModelItem = GetReferencedItem(dataItem, sitecoreFieldId);
+                        var viewModelItem = itemRepository.GetReferencedItem(dataItem, sitecoreFieldId);
                         var vm = Create<IPropellerModel>(viewModelItem, pi.PropertyType);
                         pi.SetValue(viewModel, vm, null);
                     }
@@ -55,8 +57,7 @@ namespace Propeller.Mvc.Model.Factory
                     {
 
                         // Property is a collection of propeller models
-                        var modelItems = GetListItems(dataItem, sitecoreFieldId);
-
+                        var modelItems = itemRepository.GetItemList(dataItem, sitecoreFieldId);
                         var genericType = pi.PropertyType.GetGenericArguments().FirstOrDefault();
                         if (genericType == null)
                             continue;
@@ -100,40 +101,6 @@ namespace Propeller.Mvc.Model.Factory
             }
 
             return propellerModelList;
-        }
-
-        private Item GetReferencedItem(Item item, ID propertyId)
-        {
-            var field = item.Fields[propertyId];
-            Item targetItem = null;
-            ReferenceField refItem = field;
-            LinkField linkField = field;
-
-
-            if (refItem != null && refItem.TargetItem != null)
-            {
-                targetItem = refItem.TargetItem;
-            }
-            else if (linkField != null && linkField.TargetItem != null)
-            {
-                targetItem = linkField.TargetItem;
-            }
-
-            if (targetItem == null)
-            {
-                Log.Error(string.Format("Propeller ModelFactory failed to get referenced Sitecore item with id '{0}'.", item.Fields[propertyId].ID),this);
-            }
-
-            return targetItem;
-        }
-        private IEnumerable<Item> GetListItems(Item item, ID propertyId)
-        {
-
-            if (propertyId == ID.Null)
-                return null;
-
-            MultilistField itemList = item.Fields[propertyId];
-            return itemList?.GetItems() ?? new Item[] { };
         }
 
         private object ParseFieldValue(PropertyInfo propertyInfo, Item item, ID propertiId)

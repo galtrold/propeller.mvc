@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using System.Reflection;
 using Newtonsoft.Json;
 using Propeller.Mvc.Core.Processing;
 using Sitecore.Data;
@@ -34,7 +35,7 @@ namespace Propeller.Mvc.Core
         [JsonIgnore]
         public string DisplayName => DataItem != null ? DataItem.DisplayName : "WARN-dataitem-not-set";
 
-        private MemberExpression GetMemberExpression(Expression<Func<T, object>> expression)
+        protected MemberExpression GetMemberExpression(Expression<Func<T, object>> expression)
         {
             try
             {
@@ -57,17 +58,20 @@ namespace Propeller.Mvc.Core
 
         protected ID GetPropertyId(Expression<Func<T, object>> expression)
         {
-
-            MemberExpression memberExpression = GetMemberExpression(expression);
-
-
-            var propName = memberExpression?.Member.Name;
+            var propName = GetPropertyName(expression);
 
             if (string.IsNullOrEmpty(propName))
                 return ID.Null;
-
             return GetPropertyIdByName(propName);
 
+        }
+
+         protected string GetPropertyName(Expression<Func<T, object>> expression)
+        {
+
+            MemberExpression memberExpression = GetMemberExpression(expression);
+            var propName = memberExpression?.Member.Name;
+            return propName;
         }
 
         protected ID GetPropertyIdByName(string propName)

@@ -82,6 +82,7 @@
     <Compile Include="Adapters\Image.cs" />
     <Compile Include="Adapters\Integer.cs" />
     <Compile Include="Factory\ModelFactory.cs" />
+    <Compile Include="Repository\ItemRepository.cs" />
     <Compile Include="Strategies\FloatingFieldStrategy.cs" />
     <Compile Include="Strategies\AdapterFieldStrategy.cs" />
     <Compile Include="Strategies\StringFieldStrategy.cs" />

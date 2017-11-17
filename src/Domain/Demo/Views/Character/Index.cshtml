@@ -32,14 +32,13 @@
                 <div class="col-sm-10">
                     <p class="form-control-static">
                         @Model.Template( p => AffiliationTemplate( p.Affiliation ))
-
                     </p>
                 </div>
                 <label class="col-sm-2 control-label">Homeworld</label>
                 <div class="col-sm-10">
                     <p class="form-control-static">
-                        <a href="@(Model.Homeworld.Url)">
-                            @(Model.Homeworld.DisplayName) Moons: @(Model.Homeworld.Moons))
+                        <a href="@(Model.GetItemReference<PlanetViewModel>(p => p.Homeworld).Url)">
+                            @(Model.Homeworld.DisplayName) Moons: @(Model.GetItemReference<PlanetViewModel>(p => p.Homeworld).Render(p => p.Moons))
                         </a>
                     </p>
                 </div>
@@ -60,6 +59,15 @@
                         </a>
                     </p>
                 </div>
+                <h1>Test</h1>
+                <ul>
+                    @foreach(var org in Model.GetList<OrganizationViewModel>(p => p.Affiliation))
+                    {
+                        <li>@org.Render(p => p.Intro)</li>
+                    }
+
+
+</ul>
             </div>
         </form>
     </div>
