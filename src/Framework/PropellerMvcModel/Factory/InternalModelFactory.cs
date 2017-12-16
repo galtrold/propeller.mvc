@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -20,6 +21,9 @@ namespace Propeller.Mvc.Model.Factory
 {
     internal class InternalModelFactory
     {
+        // VisitedComplete dictionary is use to detect back edges. i.e. cyclic references.
+        private Dictionary<string, IPropellerModel> _visitedCompleted = new Dictionary<string, IPropellerModel>();
+
         /// <summary>
         /// The actual create method. The method is hidden(private) in order to hide the second type parameter because the client will never have to use it.
         /// It is only used during resursive calls when building the object tree.
@@ -35,6 +39,8 @@ namespace Propeller.Mvc.Model.Factory
             if (dataItem == null)
                 return viewModel;
 
+            _visitedCompleted.Add(dataItem.ID.ToString(), viewModel);
+            
             viewModel.DataItem = dataItem;
             var itemRepository = new ItemRepository();
 
@@ -47,10 +53,27 @@ namespace Propeller.Mvc.Model.Factory
                 if (MappingTable.Instance.ViewModelRegistry.ContainsKey(pi.PropertyType.FullName) && MappingTable.Instance.JumpMap.TryGetValue(propertyIdentifier, out idFunc))
                 {
 
-                    // Property is a single propeller models
+                    // Property is a single propeller model i.e. a reference property.
                     var viewModelItem = itemRepository.GetReferencedItem(dataItem, idFunc());
-                    var vm = Create<IPropellerModel>(viewModelItem, pi.PropertyType);
-                    pi.SetValue(viewModel, vm, null);
+
+                    // Before creating referenced item check if we do not have a back edge.
+                    IPropellerModel ancestor;
+                    if (viewModelItem == null)
+                    {
+                        
+                    }
+                    else if (_visitedCompleted.TryGetValue(viewModelItem.ID.ToString(), out ancestor))
+                    {
+                        pi.SetValue(viewModel, ancestor, null);
+                    }
+                    else
+                    {
+                        var vm = Create<IPropellerModel>(viewModelItem, pi.PropertyType);
+                        pi.SetValue(viewModel, vm, null);
+                    }
+                   
+                    
+                    
                 }
                 else if (typeof(IEnumerable<IPropellerModel>).IsAssignableFrom(pi.PropertyType) && MappingTable.Instance.JumpMap.TryGetValue(propertyIdentifier, out idFunc))
                 {
@@ -75,10 +98,11 @@ namespace Propeller.Mvc.Model.Factory
                 }
             }
             viewModel.Init();
+            _visitedCompleted[dataItem.ID.ToString()] = viewModel;
             return viewModel;
         }
 
-        public object CreateCollection(IEnumerable<Item> modelItemList, Type modelType)
+        private object CreateCollection(IEnumerable<Item> modelItemList, Type modelType)
         {
             var modelCollecitonType = typeof(List<>).MakeGenericType(modelType);
             var propellerModelList = (IList)Activator.CreateInstance(modelCollecitonType);
