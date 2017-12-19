@@ -117,6 +117,39 @@ namespace IntergrationTest.Utils
             return db;
         }
 
+        public static Db CpuListDatabase()
+        {
+            var db = new Db()
+            {
+                // Templates
+                new DbTemplate("CpuModel", ConstantsCpuModel.Templates.CpuTemplateId)
+                {
+                    ConstantsCpuModel.Fields.ArchitectureNameField,
+                    ConstantsCpuModel.Fields.Predecessor,
+                    ConstantsCpuModel.Fields.Successor
+                },
+                new DbTemplate("CpuSelection", ConstantsCpuModel.Templates.CpuSelectionTemplateId)
+                {
+                    ConstantsCpuModel.Fields.ChosenCpus
+                },
+                // Items
+               
+                new DbItem("Haswell", ConstantsCpuModel.Instances.Hasswell, ConstantsCpuModel.Templates.CpuTemplateId)
+                {
+                    new DbField(ConstantsCpuModel.Fields.ArchitectureNameField){ Value = "Haswell"}
+                },
+                new DbItem("IvyBridge", ConstantsCpuModel.Instances.IvyBridge, ConstantsCpuModel.Templates.CpuTemplateId)
+                {
+                    new DbField(ConstantsCpuModel.Fields.ArchitectureNameField){ Value = "Ivy Bridge"}
+                },
+                new DbItem("IntelCps", ConstantsCpuModel.Instances.IntelCpuSelection, ConstantsCpuModel.Templates.CpuSelectionTemplateId)
+                {
+                    new DbField(ConstantsCpuModel.Fields.ChosenCpus){ Value = $"{ConstantsCpuModel.Instances.Hasswell}|{ConstantsCpuModel.Instances.IvyBridge}"}
+                }
+            };
+            return db;
+        }
+
     }
    
 }

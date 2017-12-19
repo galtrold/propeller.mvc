@@ -104,7 +104,9 @@
     <Compile Include="Constants\ConstantVehicleClassModel.cs" />
     <Compile Include="Constants\ConstantsMovieModel.cs" />
     <Compile Include="Models\CpuModel.cs" />
+    <Compile Include="Models\CpuSelectionModel.cs" />
     <Compile Include="Models\Maps\CpuModelMap.cs" />
+    <Compile Include="Models\Maps\CpuSelectionMap.cs" />
     <Compile Include="Models\Maps\VehicleClassModelMap.cs" />
     <Compile Include="Models\MovieModel.cs" />
     <Compile Include="Models\VehicleClassModel.cs" />
@@ -113,6 +115,7 @@
     <Compile Include="Tests\ViewModelFactoryTest\ComplexModels\Get_referenced_viewmodels.cs" />
     <Compile Include="Tests\ViewModelFactoryTest\FieldAdapters\GeneralLinkAdapterTest.cs" />
     <Compile Include="Tests\ViewModelFactoryTest\FieldAdapters\ImageAdapterTest.cs" />
+    <Compile Include="Tests\ViewModelFactoryTest\Lists\ListItemsWithoutViewModels.cs" />
     <Compile Include="Tests\ViewModelFactoryTest\Serilization\Serialize_PropellerModel.cs" />
     <Compile Include="Tests\ViewModelFactoryTest\SimpleDataTypes\BooleanTest.cs" />
     <Compile Include="Tests\ViewModelFactoryTest\SimpleDataTypes\DateTimeTest.cs" />
