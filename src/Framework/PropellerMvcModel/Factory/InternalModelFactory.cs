@@ -58,15 +58,11 @@ namespace Propeller.Mvc.Model.Factory
 
                     // Before creating referenced item check if we do not have a back edge.
                     IPropellerModel ancestor;
-                    if (viewModelItem == null)
-                    {
-                        
-                    }
-                    else if (_visitedCompleted.TryGetValue(viewModelItem.ID.ToString(), out ancestor))
+                    if (viewModelItem != null && _visitedCompleted.TryGetValue(viewModelItem.ID.ToString(), out ancestor))
                     {
                         pi.SetValue(viewModel, ancestor, null);
                     }
-                    else
+                    else if(viewModelItem != null)
                     {
                         var vm = Create<IPropellerModel>(viewModelItem, pi.PropertyType);
                         pi.SetValue(viewModel, vm, null);
