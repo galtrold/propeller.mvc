@@ -28,13 +28,6 @@ public class CharacterViewModel : PropellerViewModel<CharacterViewModel>
     public string Affiliation { get; set; }
 
     public string Homeworld { get; set; }
-
-    public CharacterViewModel(){}
-
-    public CharacterViewModel(Item dataItem) : base(dataItem){}
-
-    public CharacterViewModel(Rendering rendering) : base(rendering){}
-
 }
 ```
 
@@ -56,19 +49,27 @@ public class CharacterMap : ConfigurationMap<CharacterViewModel>
 ```
 
 ## 3 Instantiate ViewModel
+
 The Controller part is the simplest step. Basically the Controller has two tasks, 1) instantiate the ViewModel 2) provide the Sitecore item for the ViewModel.
 Generally this item ( regardless of it being the page item or rendering item) is accessible via the RenderingContext and the ViewModel will automatically  resolve this.
+
+**NOTE**
+
+If you arn't using the presentasion package there is a ModelFactory you can use instead of the ViewModelFactory which works the exact same way.
 
 ```cs
 public class CharacterController : Controller
 {
     public ActionResult Index()
     {
-        var characterViewModel = new CharacterViewModel(RenderingContext.Current.Rendering);
+        var vmFactory = new ViewModelFactory();
+        var characterViewModel =  vmFactory.Create<CharacterViewModel>(RenderingContext.Current.Rendering);
         return View(characterViewModel);
     }
 }
 ```
+
+
 
 ## 4 Render ViewModel
 Use the ViewModel as the ```@model``` in the razor view. In order to support Sitecores Experience editor the ViewModel provides a ```Render``` method which uses an expression for selecting the property to render. 
@@ -116,8 +117,6 @@ public class CharacterMap : ConfigurationMap<CharacterViewModel>
 ```
 
 ## 1.1 Basic mapping
-The mapping takes place inside the Constructor method where the ```SetProperty()``` method dictates which property to map. This method returns a configuration object enabling multiple configurations on the same property by chaining.
-
 The first configuration method is the ```Map()``` method and is the only required configuration. It simply maps the property with the Sitecore template field Id, like this:
 
 ```cs
@@ -164,22 +163,13 @@ Without doing anything you have access to the ItemName, DisplayName and url.
 ## 2.2 Basic Sitecore rendering
 The ViewModel has a Render method which uses Sitecores FieldRenderer.Render method. This means you get the standard rendering provided by Sitecore which also supports the Experience editor for editing content. The “problem” with Sitecores render method is that you need to provide it the field Id for the property you want to render or the property name (in the configuration chapter we discussed why we avoid field name as an identifier). The ViewModel hides the field identification away by providing an expression with a generic type of its self.  This enables static typing of the property to render. Because the ConfigurationMap has mapped the property name (fully qualified propertyname) with the field, the ViewModel is able to lookup the field Id based on the expression. No more magic Ids or Constant files lying around. The ViewModel provides a tight mapping to the Sitecore item which cannot ‘leak’ outside the scope of the 
 ```cs
-ViewModel.Model.Render(p => p.Species)
+ViewModel.Render(p => p.Species)
 ```
 The ViewModels property type has no infuence on the rendering the data when using the ViewModels ```Render``` method. It simply provides static typing and provices a way of resolving Sitecores field id. 
 
 ## 2.3 Referenced items
-Basic rendering works great with simple data types but are not very useful when dealing with referenced data items. If you were to Render a DropLink or TreeList, the result be the Id of referenced item(s), not  particular useful. In order to deal with referenced items, the ViewModel has the GetItemReference method.
-```cs 
-TP GetItemReference<TP>(Expression<Func<T, object>> expression) 
-```
-And is used like this
-```cs 
-@Model.GetItemReference<Person>(p => p.Address).Street 
-```
-
-It returns the generic type it is provided (the type mush be a ViewModel) and as the Render method it provides an expression to specific which property holds the referenced item. The returned ViewModel is now available for further rendering.
-The benefits of GetItemReference is 1) referenced items are automatically instantiated as complex objects and 2) you get static typing throughout the whole object tree.
+Basic rendering works great with simple data types but are not very useful when dealing with referenced data items. If you were to Render a DropLink or TreeList, the result be the Id of referenced item(s), not  particular useful. In order to deal with referenced items, the property type must be a PropellerModel or an IEnumerable<ProperllerModel>. That way you can just access the properties on the referenced item directly.
+Circurlar references are autotomaticly detected and managed when constructing the object graph, so no worries there.
 
 ## 2.4 Raw values
 Web services (web api's) are becomming increasenly popular and is such case, you are not interrested in the HTML output from Sitecore. What you are want is the raw values. Now you could manually fetch the raw values from the Sitecore item, but this is tedious work and genereally not something we want to spend our time with. Luckily the framework provides a way to automate this work and is done at the configuration level. As mentioned in the Configuration section, you can chain configuration for each property. You can tell the framework to automatically populate the ViewModels properties by configuring them with the ```Include()``` method like this.
