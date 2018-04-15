@@ -21,7 +21,7 @@ gulp.task('push-domain', function() {
 var publishProjects = function(location, dest) {
     var targets = ["Build"];
 
-    console.log("publish to " + dest + " folder");
+    console.log("PUBLISH TO:  " + dest + " folder");
     return gulp.src([location + "/**/*.csproj"])
         .pipe(foreach(function(stream, file) {
             return stream

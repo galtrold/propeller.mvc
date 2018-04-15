@@ -27,6 +27,6 @@ $msBuild = Resolve-MsBuild
 & $msbuild "..\propeller.mvc.sln" /p:Configuration=Release /t:Rebuild /m
 
 
-nuget pack $pathCore -Prop Configuration=Release
-nuget pack $pathModel -Prop Configuration=Release
-nuget pack $pathPresentation -Prop Configuration=Release
+nuget pack $pathCore -Prop Configuration=Release -Symbols
+nuget pack $pathModel -Prop Configuration=Release -Symbols
+nuget pack $pathPresentation -Prop Configuration=Release -Symbols
