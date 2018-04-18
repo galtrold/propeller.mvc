@@ -196,11 +196,11 @@ public class Image : IFieldAdapter
     }
 }
 ```     
-The ```IFieldAdapter``` contains only the ```InitAdapter``` method which provide the Sitecore item and the target field id. From here on you can extract any data you wish and provide it via properties. The ViewModel uses the Field Adapters with the ```the GetAs<T>``` method, where T implements IFieldAdapter. This can be used to extract raw data for a webservice or directly in the Razor view like this.
+The ```IFieldAdapter``` contains only the ```InitAdapter``` method which provide the Sitecore item and the target field id. From here you can extract any data you wish and provide it via properties. The ```ModelFactory``` will automatially run the ```InitAdapter``` method when it detects a property which type implements ```IFieldAdapter```. Now you can access your own properties anywhere. In the example below the Photo property uses the ImageFieldAdapter which provides two properties; ```Url``` and ```Alt```.
 ```html
-<img src="@Model.GetAs<Propeller.Mvc.Model.Adapters.Image>(p => p.Photo).Url"
-             alt="@Model.GetAs<Propeller.Mvc.Model.Adapters.Image>(p => p.Photo).Alt" 
-             style="max-width: 100%;height: auto"/>
+<img src="@Model.Photo.Url"
+     alt="@Model.Photo.Alt" 
+     style="max-width: 100%;height: auto"/>
 ```
 
 ## 2.6 Templating
@@ -216,7 +216,7 @@ The framework supports the use of ASP.NET helper Template (in the razor view) an
 ```
 And is used by Template method which is an extension method for the ```IPropellerTemplate``` interface.
 ```html
-@Model.Template(vm => VehicleTemplate(vm.GetAs<Image>(p => p.Photo)))
+@Model.Template(vm => VehicleTemplate(vm.Photo))
 ```
 The template is obviously beneficial when you have 'complex' renderings several places on the page because you only defined it once. But maybe more beneficial is, that it provides a combinetion of custom rendering and supporting the Experience editor. The mechanics of the ```Template``` method is very simple. When in ___page edit___ mode, the template method uses the the Sitecores built in Render method as described in 2.2 When not in ___page edit___ mode it uses the template (helper method).
 
