@@ -14,5 +14,5 @@ then
 	nodejs /app/config_merge.js
 fi
 
-echo "Startup ELK stack"
-exec /usr/local/bin/start.sh
+# echo "Startup ELK stack"
+# exec /usr/local/bin/start.sh

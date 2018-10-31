@@ -32,6 +32,15 @@ namespace propeller.logger.Appenders
         {
 
             loggingEvent.Properties["hostname"] = System.Environment.MachineName;
+            try
+            {
+                loggingEvent.Properties["sitename"] = System.Web.Hosting.HostingEnvironment.ApplicationHost.GetSiteName();
+            }
+            catch (Exception e)
+            {
+                loggingEvent.Properties["sitename"] = "N/A";
+
+            }
 
             if (!_isValidated)
                 ValidateConfiguration();

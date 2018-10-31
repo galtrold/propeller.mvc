@@ -1,4 +1,4 @@
-FROM sebp/elk
+FROM node
 COPY /dist / 
 RUN /bin/bash -c "source /app/container_setup_script.sh"
 ENV doMerge "false"

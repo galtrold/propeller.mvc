@@ -59,6 +59,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,24 +75,27 @@
     <Content Include="App_Config\Include\propeller.logger\propellerlog.config">
       <SubType>Designer</SubType>
       <TransformOnBuild>true</TransformOnBuild>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="PropellerLogger\DockerCompose\docker-compose.yml" />
-    <Content Include="PropellerLogger\DockerCompose\propeller-input.conf" />
     <None Include="App_Config\Include\propeller.logger\propellerlog.Debug.config">
       <DependentUpon>propellerlog.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="App_Config\Include\propeller.logger\propellerlog.Release.config">
       <DependentUpon>propellerlog.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="App_Config\Include\propeller.logger\propellerlog.sc7.config">
       <DependentUpon>propellerlog.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="App_Config\Include\propeller.logger\propellerlog.sc81.config">
       <DependentUpon>propellerlog.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="README.md" />
