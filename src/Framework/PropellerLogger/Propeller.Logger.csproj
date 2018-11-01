@@ -25,12 +25,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'sc7|AnyCPU'">
     <OutputPath>bin\sc7\</OutputPath>
@@ -72,43 +73,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\propeller.logger\propellerlog.config">
-      <SubType>Designer</SubType>
-      <TransformOnBuild>true</TransformOnBuild>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="App_Config\Include\propeller.logger\propellerlog.Debug.config">
-      <DependentUpon>propellerlog.config</DependentUpon>
-      <IsTransformFile>True</IsTransformFile>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="App_Config\Include\propeller.logger\propellerlog.Release.config">
-      <DependentUpon>propellerlog.config</DependentUpon>
-      <IsTransformFile>True</IsTransformFile>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="App_Config\Include\propeller.logger\propellerlog.sc7.config">
-      <DependentUpon>propellerlog.config</DependentUpon>
-      <IsTransformFile>True</IsTransformFile>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="App_Config\Include\propeller.logger\propellerlog.sc81.config">
-      <DependentUpon>propellerlog.config</DependentUpon>
-      <IsTransformFile>True</IsTransformFile>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Content Include="App_Config\Include\Propeller.Logger\propellerlog.config" />
+    <None Include="App_Config\Include\Propeller.Logger\propellerlog.Debug.config" />
+    <None Include="App_Config\Include\Propeller.Logger\propellerlog.Release.config" />
+    <Content Include="App_Config\Include\Propeller.Logger\propellerlog.sc7.config" />
+    <Content Include="App_Config\Include\Propeller.Logger\propellerlog.sc81.config" />
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\..\..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets" Condition="Exists('..\..\..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets'))" />
-  </Target>
   <PropertyGroup>
     <PostBuildEvent>xcopy /F /R /Y /I "$(ProjectDir)container_setup_script.sh" "$(ProjectDir)dist\app\"
 xcopy /F /R /Y /I "$(ProjectDir)bin/sc81/propeller.logger.dll" "$(ProjectDir)dist\app\lib\"

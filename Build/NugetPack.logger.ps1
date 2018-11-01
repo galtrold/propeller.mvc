@@ -1,6 +1,6 @@
-# $pathLogger = "..\src\Framework\PropellerLogger\Propeller.Logger.csproj"
+$pathLogger = "..\src\Framework\PropellerLogger\Propeller.Logger.csproj"
 $pathProj = "..\src\Framework\PropellerLogger\Propeller.Logger.csproj"
-# $pathLogger = "..\src\Framework\PropellerLogger\Propeller.Logger.nuspec"
+#$pathLogger = "..\src\Framework\PropellerLogger\Propeller.Logger.nuspec"
 $pathLoggerSc7 = "..\src\Framework\PropellerLogger\Propeller.Logger.sc7.nuspec"
 
 function Resolve-MsBuild {
@@ -25,9 +25,9 @@ function Resolve-MsBuild {
 
 $msBuild = Resolve-MsBuild
 
-& $msbuild $pathProj /p:Configuration=sc7 /t:Rebuild /m
-# & $msbuild $pathProj /p:Configuration=Release /t:Rebuild /m
+#& $msbuild $pathProj /p:Configuration=sc7 /t:Rebuild /m
+& $msbuild $pathProj /p:Configuration=Release /t:Rebuild /m
 
 
-nuget pack $pathLoggerSc7 -Prop Configuration=sc7
-# nuget pack $pathLogger -Prop Configuration=Release
+#nuget pack $pathLoggerSc7 -Prop Configuration=sc7
+nuget pack $pathLogger -Prop Configuration=Release

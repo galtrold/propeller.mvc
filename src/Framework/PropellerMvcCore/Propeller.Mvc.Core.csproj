@@ -88,7 +88,9 @@
     <Compile Include="Utility\PropertyIdResolver.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Propeller.Mvc.Core\PropellerMapping.config" />
+    <Content Include="App_Config\Include\Propeller.Mvc.Core\PropellerMapping.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
