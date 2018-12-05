@@ -25,9 +25,9 @@ namespace Propeller.Mvc.Model.ItemTools
                 targetItem = linkField.TargetItem;
             }
 
-            if (targetItem == null)
+            if (targetItem == null && field != null && !string.IsNullOrWhiteSpace(field.Value))
             {
-                Log.Error(string.Format("Propeller ModelFactory failed to get referenced Sitecore item with id '{0}'.", item.Fields[propertyId].ID), this);
+                Log.Error($"Propeller ModelFactory failed to get referenced Sitecore item (ITEM id: {item.ID}, Field id:{propertyId} Field value: '{field.Value}')", this);
             }
 
             return targetItem;
