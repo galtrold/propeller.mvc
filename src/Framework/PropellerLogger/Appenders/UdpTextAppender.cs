@@ -42,6 +42,8 @@ namespace propeller.logger.Appenders
 
             }
 
+            loggingEvent.Properties["log_owner"] = loggingEvent.LoggerName;
+
             if (!_isValidated)
                 ValidateConfiguration();
 
