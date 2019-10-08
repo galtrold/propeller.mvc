@@ -70,7 +70,7 @@ namespace Propeller.Mvc.Core.Processing
             }
             catch (ReflectionTypeLoadException ex)
             {
-                Log.Warn("[MappingProcessor] " + ex.Message, ex, this);
+                Log.Warn($"[MappingProcessor] An error occurred while retrieving types for {assembly.FullName}: {ex.Message}", ex, this);
                 return;
             }
 
