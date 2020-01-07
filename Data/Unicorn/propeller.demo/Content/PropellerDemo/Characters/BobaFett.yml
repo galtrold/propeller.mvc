@@ -12,10 +12,16 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20161019T163836Z
+    - ID: "3e8e0b7e-8db2-46b1-93b5-9c9be9605935"
+      Hint: Weapon
+      Value: "{FF28A020-B774-498C-84C0-040D5DD5EA8A}"
     - ID: "4d888b1e-8b88-4594-8b1b-6082bcdcfeff"
       Hint: PrimaryTransportation
       Value: |
         <link text="Slave One" anchor="" linktype="internal" class="" title="" target="" querystring="" id="{54E9DCC2-5B8C-4F03-9C09-D5408A511DFA}" />
+    - ID: "4ddf17fb-0c3b-4052-b3c7-9b101ce74da4"
+      Hint: Armor
+      Value: "{FF28A020-B774-498C-84C0-040D5DD5EA8A}"
     - ID: "7079e001-680a-460c-bb86-91e31c3ea2a5"
       Hint: Gender
       Value: Male

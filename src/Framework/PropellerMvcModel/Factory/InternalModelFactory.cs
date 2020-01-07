@@ -38,8 +38,8 @@ namespace Propeller.Mvc.Model.Factory
             var viewModel = (T)Activator.CreateInstance(viewModelType);
             if (dataItem == null)
                 return viewModel;
-
-            _visitedCompleted.Add(dataItem.ID.ToString(), viewModel);
+            var  modelId = $"{viewModelType}-{dataItem.ID}";
+            _visitedCompleted.Add(modelId, viewModel);
             
             viewModel.DataItem = dataItem;
             var itemRepository = new ItemRepository();
@@ -55,12 +55,20 @@ namespace Propeller.Mvc.Model.Factory
 
                     // Property is a single propeller model i.e. a reference property.
                     var viewModelItem = itemRepository.GetReferencedItem(dataItem, idFunc());
-
+                    var propertyModelId = $"{pi.PropertyType.FullName}-{viewModelItem.ID}";
                     // Before creating referenced item check if we do not have a back edge.
                     IPropellerModel ancestor;
-                    if (viewModelItem != null && _visitedCompleted.TryGetValue(viewModelItem.ID.ToString(), out ancestor))
+                    if (viewModelItem != null && _visitedCompleted.TryGetValue(propertyModelId, out ancestor))
                     {
-                        pi.SetValue(viewModel, ancestor, null);
+                        try
+                        {
+                            pi.SetValue(viewModel, ancestor, null);
+                        }
+                        catch (Exception e)
+                        {
+                            
+                        }
+                        
                     }
                     else if(viewModelItem != null)
                     {

@@ -1,0 +1,20 @@
+﻿---
+ID: "ff28a020-b774-498c-84c0-040d5dd5ea8a"
+Parent: "e56ebb6a-517a-4791-a2e4-3982f8e1ec90"
+Template: "d8753e90-7336-4995-9a13-088bf2a70508"
+Path: /sitecore/content/Home/PropellerDemo/Characters/BobaFett/LaserMountedHelmet
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200107T174850Z
+    - ID: "bbc0ab3a-5b9c-4098-a9af-32be463ebe0b"
+      Hint: ItemPropertie_ItemValue
+      Value: 44
+    - ID: "e0d6ae69-032c-48dc-977c-69282475b825"
+      Hint: ItemPropertie_ItemType
+      Value: Multi purpose helmet.

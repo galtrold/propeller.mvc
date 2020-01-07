@@ -1,0 +1,21 @@
+﻿---
+ID: "3e8e0b7e-8db2-46b1-93b5-9c9be9605935"
+Parent: "1e942bc7-efa1-4859-bf89-e8a6fab9e8ce"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/Components/Domain/Data/__Character/CharacterEquipment/Weapon
+DB: master
+SharedFields:
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: Droptree
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200107T174606Z

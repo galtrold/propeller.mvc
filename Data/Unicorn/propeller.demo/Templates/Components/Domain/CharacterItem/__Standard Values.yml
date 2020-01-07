@@ -1,0 +1,18 @@
+﻿---
+ID: "2e399b40-4d3a-41cb-b9bb-22bd1571ef89"
+Parent: "d8753e90-7336-4995-9a13-088bf2a70508"
+Template: "d8753e90-7336-4995-9a13-088bf2a70508"
+Path: /sitecore/templates/Components/Domain/CharacterItem/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200107T174750Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

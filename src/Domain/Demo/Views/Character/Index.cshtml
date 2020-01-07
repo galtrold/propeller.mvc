@@ -31,7 +31,7 @@
                 <label class="col-sm-2 control-label">Affiliation</label>
                 <div class="col-sm-10">
                     <p class="form-control-static">
-                        @Model.Template( p => AffiliationTemplate( p.Affiliation ))
+                        @Model.Template(p => AffiliationTemplate(p.Affiliation))
                     </p>
                 </div>
                 <label class="col-sm-2 control-label">Homeworld</label>
@@ -42,6 +42,25 @@
                         </a>
                     </p>
                 </div>
+
+                <label class="col-sm-2 control-label">Armor</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">
+                        
+                            Type: @Model.Armor.BodyPart Armor value: @Model.Armor.ProtectionValue
+                        
+                    </p>
+                </div>
+
+                <label class="col-sm-2 control-label">Weapon</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">
+                        
+                            Type: @Model.Weapon.WeaponType Damage value: @Model.Weapon.DamageValue
+                        
+                    </p>
+                </div>
+
                 <label class="col-sm-2 control-label">Vehicle</label>
                 <div class="col-sm-10">
                     <p class="form-control-static">
@@ -61,13 +80,13 @@
                 </div>
                 <h1>Test</h1>
                 <ul>
-                    @foreach(var org in Model.Affiliation)
+                    @foreach (var org in Model.Affiliation)
                     {
                         <li>@org.Render(p => p.Intro)</li>
                     }
 
 
-</ul>
+                </ul>
             </div>
         </form>
     </div>

@@ -24,6 +24,9 @@ namespace Propeller.Mvc.Demo.ViewModels
 
         public GeneralLink ExternalLink { get; set; }
 
+        public ArmorViewModel Armor { get; set; }
+
+        public WeaponViewModel Weapon { get; set; }
         
         public CharacterViewModel TemplateArg()
         {
