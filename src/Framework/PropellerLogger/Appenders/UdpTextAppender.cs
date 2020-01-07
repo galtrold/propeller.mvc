@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using log4net.Appender;
 using log4net.spi;
+using System.Web.Configuration;
 
 namespace propeller.logger.Appenders
 {
@@ -34,7 +35,12 @@ namespace propeller.logger.Appenders
             loggingEvent.Properties["hostname"] = System.Environment.MachineName;
             try
             {
-                loggingEvent.Properties["sitename"] = System.Web.Hosting.HostingEnvironment.ApplicationHost.GetSiteName();
+                var configuredSitename = WebConfigurationManager.AppSettings["elkIndexName"];
+
+                var sitename = string.IsNullOrWhiteSpace(configuredSitename)
+                    ? System.Web.Hosting.HostingEnvironment.ApplicationHost.GetSiteName()
+                    : configuredSitename;
+                loggingEvent.Properties["sitename"] = sitename;
             }
             catch (Exception e)
             {
