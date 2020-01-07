@@ -13,6 +13,7 @@ namespace Propeller.Mvc.Demo.Controllers
 
         public ActionResult Index()
         {
+            
             var vmFactory = new ViewModelFactory();
             var characterViewModel =  vmFactory.Create<CharacterViewModel>(RenderingContext.Current.Rendering);
             ViewBag.SerializedModel = JsonConvert.SerializeObject(characterViewModel, Formatting.Indented);

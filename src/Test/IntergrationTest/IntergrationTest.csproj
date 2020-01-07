@@ -62,11 +62,11 @@
     <Reference Include="Sitecore.FakeDb, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.FakeDb.1.7.0\lib\net45\Sitecore.FakeDb.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Kernel, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Kernel.NoReferences.8.2.170728\lib\NET452\Sitecore.Kernel.dll</HintPath>
+    <Reference Include="Sitecore.Kernel, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Kernel.NoReferences.7.2.140228\lib\NET45\Sitecore.Kernel.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Logging, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Logging.NoReferences.8.2.170728\lib\NET452\Sitecore.Logging.dll</HintPath>
+    <Reference Include="Sitecore.Logging, Version=1.2.0.30715, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Logging.NoReferences.7.2.140228\lib\NET45\Sitecore.Logging.dll</HintPath>
     </Reference>
     <Reference Include="sitecore.nexus, Version=1.0.0.4407, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\sitecore.nexus.NoReferences.8.1.160519\lib\NET45\sitecore.nexus.dll</HintPath>
