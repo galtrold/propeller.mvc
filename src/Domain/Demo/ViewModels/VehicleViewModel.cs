@@ -5,7 +5,7 @@ using Sitecore.Mvc.Presentation;
 
 namespace Propeller.Mvc.Demo.ViewModels
 {
-    public class VehicleViewModel : PropellerViewModel<VehicleViewModel>, IPropellerTemplate<VehicleViewModel>
+    public class VehicleViewModel : PropellerViewModel<VehicleViewModel>, IPropellerTemplate<VehicleViewModel>, ICombatId
     {
         public string Manufacturer { get; set; }
 
@@ -28,7 +28,8 @@ namespace Propeller.Mvc.Demo.ViewModels
       
 
         
-        public VehicleViewModel TemplateArg() { return this; } 
-        
+        public VehicleViewModel TemplateArg() { return this; }
+
+        public string Category { get; set; }
     }
 }

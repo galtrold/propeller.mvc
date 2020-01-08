@@ -92,10 +92,10 @@ namespace Propeller.Mvc.Model.Factory
 
                     pi.SetValue(viewModel, propellerModelCollection);
                 }
-                else if (MappingTable.Instance.IncludeMap.TryGetValue(propertyIdentifier, out sitecoreFieldId))
+                else if (MappingTable.Instance.IncludeMap.TryGetValue(propertyIdentifier, out idFunc))
                 {
 
-
+                    sitecoreFieldId = idFunc();
                     // Property is a value
                     var fieldValue = ParseFieldValue(pi, dataItem, sitecoreFieldId);
                     pi.SetValue(viewModel, fieldValue);

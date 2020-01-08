@@ -222,8 +222,10 @@
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CharacterViewModel.cs" />
+    <Compile Include="ViewModels\ICombatId.cs" />
     <Compile Include="ViewModels\Map\ArmorViewModelMap.cs" />
     <Compile Include="ViewModels\Map\CharacterMap.cs" />
+    <Compile Include="ViewModels\Map\ICombatIdMap.cs" />
     <Compile Include="ViewModels\Map\OrganizationMap.cs" />
     <Compile Include="ViewModels\Map\PlanetMap.cs" />
     <Compile Include="ViewModels\Map\VehicleMap.cs" />
