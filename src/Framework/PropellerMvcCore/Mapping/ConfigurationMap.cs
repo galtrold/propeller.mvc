@@ -44,6 +44,8 @@ namespace Propeller.Mvc.Core.Mapping
                     if (!MappingTable.Instance.JumpMap.ContainsKey(fullyQualifiedClassName))
                         MappingTable.Instance.JumpMap.Add(fullPropertyName, () => PropertyIdResolver.FetchId($"{interfaceFullyQualifiedClassName}.{propertyInfo.Name}"));
 
+                    if(!MappingTable.Instance.IncludeMap.ContainsKey(fullyQualifiedClassName))
+                        MappingTable.Instance.IncludeMap.Add(fullPropertyName, () => PropertyIdResolver.FetchId($"{interfaceFullyQualifiedClassName}.{propertyInfo.Name}"));
 
                 }
 

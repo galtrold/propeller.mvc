@@ -106,12 +106,14 @@ namespace IntergrationTest.Utils
                 new DbItem("Haswell", ConstantsCpuModel.Instances.Hasswell, ConstantsCpuModel.Templates.CpuTemplateId)
                 {
                     new DbField(ConstantsCpuModel.Fields.ArchitectureNameField){ Value = "Haswell"},
-                    new DbField(ConstantsCpuModel.Fields.Predecessor){ Value = ConstantsCpuModel.Instances.IvyBridge.ToString() }
+                    new DbField(ConstantsCpuModel.Fields.Predecessor){ Value = ConstantsCpuModel.Instances.IvyBridge.ToString() },
+                    new DbField(ConstantsCpuModel.Fields.Successor){ Value = ConstantsCpuModel.Instances.Hasswell.ToString() }
                 },
                 new DbItem("IvyBridge", ConstantsCpuModel.Instances.IvyBridge, ConstantsCpuModel.Templates.CpuTemplateId)
                 {
                     new DbField(ConstantsCpuModel.Fields.ArchitectureNameField){ Value = "Ivy Bridge"},
                     new DbField(ConstantsCpuModel.Fields.Successor){ Value = ConstantsCpuModel.Instances.Hasswell.ToString()},
+                    new DbField(ConstantsCpuModel.Fields.Predecessor){ Value = ConstantsCpuModel.Instances.IvyBridge.ToString() }
                 }
             };
             return db;
@@ -126,7 +128,8 @@ namespace IntergrationTest.Utils
                 {
                     ConstantsCpuModel.Fields.ArchitectureNameField,
                     ConstantsCpuModel.Fields.Predecessor,
-                    ConstantsCpuModel.Fields.Successor
+                    ConstantsCpuModel.Fields.Successor,
+                    ConstantsCpuModel.Fields.InstrunctionCount
                 },
                 new DbTemplate("CpuSelection", ConstantsCpuModel.Templates.CpuSelectionTemplateId)
                 {
