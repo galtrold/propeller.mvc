@@ -116,9 +116,17 @@ namespace Propeller.Mvc.Model.Factory
 
                 try
                 {
-                    var model = Create<IPropellerModel>(modelItem, modelType);
-                    model.Init();
-                    propellerModelList.Add(model);
+                    var propertyModelId = $"{modelType.FullName}-{modelItem.ID}";
+                    if (_visitedCompleted.TryGetValue(propertyModelId, out var alreadyCreatedModel))
+                    {
+                        propellerModelList.Add(alreadyCreatedModel);
+                    }
+                    else
+                    {
+                        var model = Create<IPropellerModel>(modelItem, modelType);
+                        model.Init();
+                        propellerModelList.Add(model);
+                    }
                 }
                 catch (Exception e)
                 {
