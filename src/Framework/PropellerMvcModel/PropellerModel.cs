@@ -1,4 +1,8 @@
-﻿using Propeller.Mvc.Core;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Propeller.Mvc.Core;
 using Propeller.Mvc.Core.Processing;
 using Sitecore.Data;
 using Sitecore.Diagnostics;
@@ -25,7 +29,28 @@ namespace Propeller.Mvc.Model
                 ID sitecoreFieldId;
                 if (MappingTable.Instance.EditableMap.TryGetValue(propertyIdentifier, out sitecoreFieldId))
                 {
-                    var value = pi.GetValue(this) as string;
+                    string value = null;
+                    if (typeof(IEnumerable<IPropellerModel>).IsAssignableFrom(pi.PropertyType))
+                    {
+                        if (pi.GetValue(this) is IEnumerable<IPropellerModel> list)
+                        {
+                            StringBuilder stringBuilder = new StringBuilder();
+                            foreach (var propellerModel in list)
+                            {
+                                if (stringBuilder.Length > 0)
+                                    stringBuilder.Append('|');
+                                stringBuilder.Append(propellerModel.DataItem.ID);
+                            }
+
+                            value = stringBuilder.ToString();
+                        }
+                    }
+                    else
+                    {
+                        value = pi.GetValue(this) as string;
+                    }
+
+
                     if (value == null)
                     {
                         Log.Warn($"Failed to edit property '{propertyIdentifier}', value is null", this);
