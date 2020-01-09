@@ -17,6 +17,7 @@ namespace Propeller.Mvc.Demo.ViewModels.Map
             SetProperty(p => p.MaximumAtmosphericSpeed).Map(new ID("{8BED42AC-2707-4CD5-B1FD-BF6BD138AF4B}")).Include().Editable();
             SetProperty(p => p.Shielding).Map(new ID("{9304E02D-4F20-4361-AEC4-E8BB10C7BC89}")).Include().Editable();
             SetProperty(p => p.EnteredService).Map(new ID("{CA2B640A-A591-46A3-A437-9A07ADC7F684}")).Include();
+            ImportConfiguration<ICombatId>();
         }
     }
 }

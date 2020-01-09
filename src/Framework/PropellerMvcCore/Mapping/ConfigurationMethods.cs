@@ -26,7 +26,7 @@ namespace Propeller.Mvc.Core.Mapping
         public static ConfigurationItem Include(this ConfigurationItem configItem)
         {
             if (!MappingTable.Instance.IncludeMap.ContainsKey(configItem.PropertyName))
-                MappingTable.Instance.IncludeMap.Add(configItem.PropertyName, configItem.FieldId);
+                MappingTable.Instance.IncludeMap.Add(configItem.PropertyName, () => PropertyIdResolver.FetchId(configItem.PropertyName));
 
             return configItem;
 
@@ -40,6 +40,9 @@ namespace Propeller.Mvc.Core.Mapping
             return configItem;
 
         }
+
+
+
 
        
     }

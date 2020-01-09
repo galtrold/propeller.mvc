@@ -38,7 +38,7 @@ namespace Propeller.Mvc.Model.Factory
             var viewModel = (T)Activator.CreateInstance(viewModelType);
             if (dataItem == null)
                 return viewModel;
-            var  modelId = $"{viewModelType}-{dataItem.ID}";
+            var modelId = GenerateId(dataItem, viewModelType);
             _visitedCompleted.Add(modelId, viewModel);
             
             viewModel.DataItem = dataItem;
@@ -55,7 +55,7 @@ namespace Propeller.Mvc.Model.Factory
 
                     // Property is a single propeller model i.e. a reference property.
                     var viewModelItem = itemRepository.GetReferencedItem(dataItem, idFunc());
-                    var propertyModelId = $"{pi.PropertyType.FullName}-{viewModelItem.ID}";
+                    var propertyModelId = GenerateId(viewModelItem, pi.PropertyType);
                     // Before creating referenced item check if we do not have a back edge.
                     IPropellerModel ancestor;
                     if (viewModelItem != null && _visitedCompleted.TryGetValue(propertyModelId, out ancestor))
@@ -92,18 +92,25 @@ namespace Propeller.Mvc.Model.Factory
 
                     pi.SetValue(viewModel, propellerModelCollection);
                 }
-                else if (MappingTable.Instance.IncludeMap.TryGetValue(propertyIdentifier, out sitecoreFieldId))
+                else if (MappingTable.Instance.IncludeMap.TryGetValue(propertyIdentifier, out idFunc))
                 {
 
-
+                    sitecoreFieldId = idFunc();
                     // Property is a value
                     var fieldValue = ParseFieldValue(pi, dataItem, sitecoreFieldId);
                     pi.SetValue(viewModel, fieldValue);
                 }
             }
             viewModel.Init();
-            _visitedCompleted[dataItem.ID.ToString()] = viewModel;
             return viewModel;
+        }
+
+        private string GenerateId(Item item, Type type)
+        {
+            if (item == null || type == null)
+                return string.Empty;
+
+            return $"{type.FullName}-{item.ID}";
         }
 
         private object CreateCollection(IEnumerable<Item> modelItemList, Type modelType)
@@ -116,9 +123,17 @@ namespace Propeller.Mvc.Model.Factory
 
                 try
                 {
-                    var model = Create<IPropellerModel>(modelItem, modelType);
-                    model.Init();
-                    propellerModelList.Add(model);
+                    var propertyModelId = GenerateId(modelItem, modelType);
+                    if (_visitedCompleted.TryGetValue(propertyModelId, out var alreadyCreatedModel))
+                    {
+                        propellerModelList.Add(alreadyCreatedModel);
+                    }
+                    else
+                    {
+                        var model = Create<IPropellerModel>(modelItem, modelType);
+                        model.Init();
+                        propellerModelList.Add(model);
+                    }
                 }
                 catch (Exception e)
                 {

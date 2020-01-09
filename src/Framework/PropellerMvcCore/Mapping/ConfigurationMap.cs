@@ -25,10 +25,11 @@ namespace Propeller.Mvc.Core.Mapping
             return new ConfigurationItem(fullPropertyName);
         }
 
-        public void ImportConfiguration(Type type)
+        public void ImportConfiguration<TI>()
         {
             try
             {
+                var type = typeof(TI);
                 if (!type.IsInterface)
                     return;
 
@@ -38,10 +39,13 @@ namespace Propeller.Mvc.Core.Mapping
                 var propertyInfos = type.GetProperties();
                 foreach (var propertyInfo in propertyInfos)
                 {
-                    var fullPropertyName = string.Format("{0}.{1}", fullyQualifiedClassName, propertyInfo.Name);
-                    var interfaceFullPropertyName = string.Format("{0}.{1}", interfaceFullyQualifiedClassName, propertyInfo.Name);
+                    var fullPropertyName = $"{fullyQualifiedClassName}.{propertyInfo.Name}";
+
                     if (!MappingTable.Instance.JumpMap.ContainsKey(fullyQualifiedClassName))
-                        MappingTable.Instance.JumpMap.Add(fullPropertyName, () => PropertyIdResolver.FetchId(interfaceFullPropertyName));
+                        MappingTable.Instance.JumpMap.Add(fullPropertyName, () => PropertyIdResolver.FetchId($"{interfaceFullyQualifiedClassName}.{propertyInfo.Name}"));
+
+                    if(!MappingTable.Instance.IncludeMap.ContainsKey(fullyQualifiedClassName))
+                        MappingTable.Instance.IncludeMap.Add(fullPropertyName, () => PropertyIdResolver.FetchId($"{interfaceFullyQualifiedClassName}.{propertyInfo.Name}"));
 
                 }
 

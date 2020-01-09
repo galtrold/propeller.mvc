@@ -10,6 +10,7 @@ namespace IntergrationTest.Models.Maps
             SetProperty(p => p.ArchitectureName).Map(ConstantsCpuModel.Fields.ArchitectureNameField).Include();
             SetProperty(p => p.Predecessor).Map(ConstantsCpuModel.Fields.Predecessor).Include();
             SetProperty(p => p.Successor).Map(ConstantsCpuModel.Fields.Successor).Include();
+            ImportConfiguration<IMips>();
         }
     }
 }

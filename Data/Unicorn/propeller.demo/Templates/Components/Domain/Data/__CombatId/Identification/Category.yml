@@ -1,0 +1,21 @@
+﻿---
+ID: "b69bed8b-4c31-4455-bf30-3b1c21b9fe4f"
+Parent: "dbaf19c2-ec29-4a86-a216-dc2f51f75282"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/Components/Domain/Data/__CombatId/Identification/Category
+DB: master
+SharedFields:
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: "Single-Line Text"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 100
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200107T230144Z

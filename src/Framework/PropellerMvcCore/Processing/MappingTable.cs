@@ -31,7 +31,7 @@ namespace Propeller.Mvc.Core.Processing
                     _instance = new MappingTable
                     {
                         Map = new Dictionary<string, ID>(),
-                        IncludeMap = new Dictionary<string, ID>(),
+                        IncludeMap = new Dictionary<string, Func<ID>>(),
                         EditableMap = new Dictionary<string, ID>(),
                         JumpMap = new Dictionary<string, Func<ID>>(),
                         ViewModelRegistry =  new Dictionary<string, Type>()
@@ -45,7 +45,7 @@ namespace Propeller.Mvc.Core.Processing
         
 
         public Dictionary<string, ID> Map { get; set; }
-        public Dictionary<string, ID> IncludeMap { get; set; }
+        public Dictionary<string, Func<ID>> IncludeMap { get; set; }
         public Dictionary<string, ID> EditableMap { get; set; }
 
         public Dictionary<string, Func<ID>> JumpMap { get; set; }

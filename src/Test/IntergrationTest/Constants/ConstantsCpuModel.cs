@@ -23,6 +23,7 @@ namespace IntergrationTest.Constants
             public static ID Predecessor = new ID("{72180B9C-255D-4064-8FFA-4F3DA2B7BBC7}");
             public static ID Successor = new ID("{5195C739-ACE2-469B-AF75-2D5D0A29A76B}");
             public static ID ChosenCpus = new ID("{91E456BB-6A8E-4EED-8BF1-596D98DDEA5E}");
+            public static ID InstrunctionCount = new ID("{4DDF17FB-0C3B-4052-B3C7-9B101CE74DA4}");
         }
     }
 }
