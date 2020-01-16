@@ -27,51 +27,54 @@ namespace Propeller.Mvc.Model
             {
                 var propertyIdentifier = $"{viewModelType.FullName}.{pi.Name}";
                 ID sitecoreFieldId;
-                if (MappingTable.Instance.EditableMap.TryGetValue(propertyIdentifier, out sitecoreFieldId))
+                if (!MappingTable.Instance.EditableMap.TryGetValue(propertyIdentifier, out sitecoreFieldId))
+                    continue;
+                string value = null;
+                if (typeof(IEnumerable<IPropellerModel>).IsAssignableFrom(pi.PropertyType))
                 {
-                    string value = null;
-                    if (typeof(IEnumerable<IPropellerModel>).IsAssignableFrom(pi.PropertyType))
+                    if (pi.GetValue(this) is IEnumerable<IPropellerModel> list)
                     {
-                        if (pi.GetValue(this) is IEnumerable<IPropellerModel> list)
+                        StringBuilder stringBuilder = new StringBuilder();
+                        foreach (var propellerModel in list)
                         {
-                            StringBuilder stringBuilder = new StringBuilder();
-                            foreach (var propellerModel in list)
-                            {
-                                if (stringBuilder.Length > 0)
-                                    stringBuilder.Append('|');
-                                stringBuilder.Append(propellerModel.DataItem.ID);
-                            }
-
-                            value = stringBuilder.ToString();
+                            if (stringBuilder.Length > 0)
+                                stringBuilder.Append('|');
+                            stringBuilder.Append(propellerModel.DataItem.ID);
                         }
+
+                        value = stringBuilder.ToString();
                     }
-                    else
+ 
+                }
+                else if (pi.GetValue(this) is IPropellerModel model)
+                {
+                    value = model.DataItem.ID.ToString();
+                }
+
+                else
+                {
+                    value = pi.GetValue(this) as string;
+                }
+
+
+                if (value == null)
+                {
+                    Log.Warn($"Failed to edit property '{propertyIdentifier}', value is null", this);
+                    continue;
+                }
+
+                using (new Sitecore.Security.Accounts.UserSwitcher(username, true))
+                {
+                    dataItem.Editing.BeginEdit();
+                    try
                     {
-                        value = pi.GetValue(this) as string;
+                        dataItem.Fields[sitecoreFieldId].Value = value;
                     }
-
-
-                    if (value == null)
+                    finally
                     {
-                        Log.Warn($"Failed to edit property '{propertyIdentifier}', value is null", this);
-                        continue;
+                        //Close the editing state
+                        dataItem.Editing.EndEdit();
                     }
-
-                    using (new Sitecore.Security.Accounts.UserSwitcher(username, true))
-                    {
-                        dataItem.Editing.BeginEdit();
-                        try
-                        {
-                            dataItem.Fields[sitecoreFieldId].Value = value;
-                        }
-                        finally
-                        {
-                            //Close the editing state
-                            dataItem.Editing.EndEdit();
-                        }
-                    }
-
-
                 }
             }
 
