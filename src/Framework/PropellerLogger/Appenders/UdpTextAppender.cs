@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Web;
 using log4net.Appender;
 using log4net.spi;
 using System.Web.Configuration;
@@ -31,24 +33,49 @@ namespace propeller.logger.Appenders
 
         protected override void Append(LoggingEvent loggingEvent)
         {
-
-            loggingEvent.Properties["hostname"] = System.Environment.MachineName;
+            // Get url path
             try
             {
-                var configuredSitename = WebConfigurationManager.AppSettings["elkIndexName"];
-
-                var sitename = string.IsNullOrWhiteSpace(configuredSitename)
-                    ? System.Web.Hosting.HostingEnvironment.ApplicationHost.GetSiteName()
-                    : configuredSitename;
-                loggingEvent.Properties["sitename"] = sitename;
+                var path = HttpContext.Current.Request.Url.AbsoluteUri;
+                loggingEvent.Properties["uri"] = path;
             }
             catch (Exception e)
             {
-                loggingEvent.Properties["sitename"] = "N/A";
+                loggingEvent.Properties["uri"] = "N/A";                
+            }
+            
+            
+            
+            
+            
+            StackTrace stackTrace = new StackTrace();
+
+            // Get calling method name
+            string callersFulleName = string.IsNullOrWhiteSpace(loggingEvent.LoggerName) ? "Unable_to_resolve_caller" : loggingEvent.LoggerName;
+            if (callersFulleName.Contains('['))
+                callersFulleName = callersFulleName.Split('[').FirstOrDefault();
+            
+
+            var machineName = System.Environment.MachineName;
+            loggingEvent.Properties["hostname"] = string.IsNullOrWhiteSpace(machineName) ? "MachineName_not_available" : machineName;
+            try
+            {
+                var siteName = System.Web.Hosting.HostingEnvironment.ApplicationHost.GetSiteName();
+                loggingEvent.Properties["sitename"] = string.IsNullOrWhiteSpace(siteName) ? "not_available" : siteName;
+
+            }
+            catch (Exception e)
+            {
+                loggingEvent.Properties["sitename"] = "MachineName_not_available";
 
             }
 
-            loggingEvent.Properties["log_owner"] = loggingEvent.LoggerName;
+            loggingEvent.Properties["log_owner"] = callersFulleName;
+
+            var configuredSitename = WebConfigurationManager.AppSettings["elkIndexName"];
+            loggingEvent.Properties["indexname"] = string.IsNullOrWhiteSpace(configuredSitename) ? "sitecore_index" : configuredSitename;
+            
+
 
             if (!_isValidated)
                 ValidateConfiguration();
