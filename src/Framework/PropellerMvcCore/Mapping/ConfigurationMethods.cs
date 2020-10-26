@@ -1,4 +1,6 @@
-﻿using Propeller.Mvc.Core.Processing;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Propeller.Mvc.Core.Processing;
 using Propeller.Mvc.Core.Utility;
 using Sitecore.Data;
 
@@ -38,7 +40,18 @@ namespace Propeller.Mvc.Core.Mapping
                 MappingTable.Instance.EditableMap.Add(configItem.PropertyName, configItem.FieldId);
 
             return configItem;
+        }
+        
+        public static ConfigurationItem FromChildren(this ConfigurationItem configItem, List<string> templates = null)
+        {
+            if (templates == null)
+                templates = new List<string>();
+            var lowerCaseTemplateIds = templates.Select(p => p.ToLower());
+            
+            if (!MappingTable.Instance.ChildSourceMap.ContainsKey(configItem.PropertyName))
+                MappingTable.Instance.ChildSourceMap.Add(configItem.PropertyName,lowerCaseTemplateIds);
 
+            return configItem;
         }
 
 

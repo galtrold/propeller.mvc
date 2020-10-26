@@ -83,7 +83,34 @@ namespace Propeller.Mvc.Model.Factory
                 {
 
                     // Property is a collection of propeller models
-                    var modelItems = itemRepository.GetItemList(dataItem, idFunc());
+                    IEnumerable<Item> modelItems = null;
+                    
+                    if (MappingTable.Instance.ChildSourceMap.TryGetValue(propertyIdentifier, out var templateFilters))
+                    {
+                        try
+                        {
+                            // Get from Children
+                            if (templateFilters != null && templateFilters.Any())
+                            {
+                                modelItems = dataItem.Children.Where(p => templateFilters.Contains(p.TemplateID.ToString().ToLower()));
+                            }
+                            else
+                            {
+                                modelItems = dataItem.Children;   
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            modelItems = new List<Item>();
+                            Log.Error("Problem occured while converting item.child items into propeller model IEnumerale<T>", e, this);
+                        }
+                    }
+                    else
+                    {
+                        // else get from referenceditems
+                        modelItems = itemRepository.GetItemList(dataItem, idFunc());    
+                    }
+                    
                     var genericType = pi.PropertyType.GetGenericArguments().FirstOrDefault();
                     if (genericType == null)
                         continue;
