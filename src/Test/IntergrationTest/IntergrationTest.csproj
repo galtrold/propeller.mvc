@@ -42,7 +42,7 @@
     <PackageReference Include="NETStandard.Library" Version="1.6.1" />
     <PackageReference Include="Newtonsoft.Json" Version="6.0.8" />
     <PackageReference Include="NSubstitute" Version="2.0.3" />
-    <PackageReference Include="SharpZipLib" Version="0.86.0" />
+    <PackageReference Include="SharpZipLib" Version="1.3.3" />
     <PackageReference Include="Sitecore.FakeDb" Version="1.7.0" />
     <PackageReference Include="Sitecore.Kernel" Version="8.2.180406" />
     <PackageReference Include="Sitecore.Logging" Version="8.2.180406" />
