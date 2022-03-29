@@ -85,7 +85,7 @@ namespace Propeller.Mvc.Core
             if (MappingTable.Instance.JumpMap.TryGetValue(key, out idFunc))
                 return idFunc();
 
-            Log.Error($"Kunne ikke finde item id for '{key}'", this);
+            Log.Warn($"Kunne ikke finde item id for '{key}'", this);
             return ID.Null;
         }
 
