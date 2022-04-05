@@ -15,7 +15,7 @@ namespace Propeller.Mvc.Presentation.Factory
             if (PageContext.Current.Item != null)
                 return Create<T>(PageContext.Current.Item);
 
-            Log.Error("Error no data item available", this);
+            Log.Warn("Error no data item available", this);
             return default(T);
 
         }
