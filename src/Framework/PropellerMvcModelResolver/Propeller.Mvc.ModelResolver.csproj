@@ -57,7 +57,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="1.0.0" />
     <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="6.0.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RazorGenerator.Mvc" Version="2.4.2" />
     <PackageReference Include="SharpZipLib" Version="0.86.0" />
     <PackageReference Include="Sitecore.Kernel.NoReferences" Version="7.2.140228" />
