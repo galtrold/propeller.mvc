@@ -53,7 +53,7 @@
     <PackageReference Include="Microsoft.AspNet.Razor" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.1.2" />
     <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="4.5.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Sitecore.Kernel.NoReferences" Version="7.2.140228" />
     <PackageReference Include="Sitecore.Mvc.NoReferences" Version="7.2.140228" />
   </ItemGroup>
